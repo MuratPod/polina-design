@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sala · Prototipo de concepto — Ayudantes de Museos del Estado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+/* ============ DESIGN TOKENS («examen sin pánico») ============ */
+:root{
+  --ink-900:#0F2A30;  --ink-800:#15393F;  --ink-700:#1D4D55;  --ink-600:#28646D;
+  --ink-100:#DCE9E8;  --ink-50:#EEF5F4;
+  --terra-600:#A84B2A; --terra-500:#C0643F; --terra-100:#F6E3D9;
+  --gold-500:#C49A45;  --gold-100:#F5EBD3;
+  --paper:#F6F1E8; --paper-2:#EFE8DB; --surface:#FFFDF8; --line:#E3D9C8;
+  --text:#1B2427; --muted:#56615F; --subtle:#6E7775;
+  --ok-700:#2D6B4C; --ok-100:#DFEEE4;
+  --warn-700:#8A5A12; --warn-100:#F7EBCF;
+  --err-700:#9A3B28; --err-100:#F6E0D8;
+  --ai-700:#4B3F8F; --ai-100:#E9E6F7;
+  --serif:"Source Serif 4","Iowan Old Style","Georgia",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --r-sm:10px; --r-md:16px; --r-lg:22px; --r-pill:999px;
+  --sh-1:0 1px 2px rgba(15,42,48,.06),0 2px 8px rgba(15,42,48,.05);
+  --sh-2:0 4px 14px rgba(15,42,48,.08),0 12px 32px rgba(15,42,48,.06);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--text);background:var(--paper-2);line-height:1.45;-webkit-font-smoothing:antialiased}
+a{color:var(--ink-700)}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+:focus-visible{outline:3px solid var(--gold-500);outline-offset:2px;border-radius:6px}
+.page-head{max-width:1180px;margin:0 auto;padding:40px 24px 8px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-600);font-weight:600}
+.page-head h1{font-family:var(--serif);font-size:clamp(28px,4vw,44px);color:var(--ink-900);margin:6px 0 8px;line-height:1.1}
+.page-head p{color:var(--muted);max-width:760px}
+.toc{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.toc a{font-size:13px;padding:6px 12px;border-radius:var(--r-pill);background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--ink-800)}
+.mood{max-width:1180px;margin:24px auto;padding:0 24px}
+.mood-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px;box-shadow:var(--sh-1)}
+.mcard h3{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:14px}
+.c-adj{grid-column:span 4;background:var(--ink-800);color:#F3EFE6;border:0}
+.c-adj h3{color:#B9D3D1}
+.adj{font-family:var(--serif);font-size:32px;line-height:1.15}
+.adj span{display:block}
+.adj span:nth-child(2){color:var(--gold-100)}
+.adj span:nth-child(3){color:#F0C9B5}
+.c-adj p{margin-top:14px;font-size:14px;color:#CFE0DE}
+.c-sw{grid-column:span 8}
+.swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.sw{border-radius:var(--r-md);overflow:hidden;border:1px solid var(--line)}
+.sw i{display:block;height:64px}
+.sw div{padding:8px 10px;font-size:12px}
+.sw b{display:block;font-size:12px}
+.sw small{color:var(--muted)}
+.c-type{grid-column:span 6}
+.type-xl{font-family:var(--serif);font-size:34px;color:var(--ink-900);line-height:1.1}
+.type-l{font-family:var(--serif);font-size:22px;color:var(--ink-800);margin-top:8px}
+.type-b{font-size:15px;margin-top:10px}
+.type-s{font-size:12px;color:var(--muted);margin-top:6px}
+.c-comp{grid-column:span 6}
+.chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.c-refs{grid-column:span 12;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:16px}
+.ref{border-radius:var(--r-md);height:110px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:10px;color:#fff;font-size:12px;font-weight:500}
+.ref.r1{background:linear-gradient(160deg,#28646D,#0F2A30)}
+.ref.r2{background:radial-gradient(circle at 70% 30%,#E9D6B4,#C49A45 60%,#8A6A2C)}
+.ref.r3{background:repeating-linear-gradient(90deg,#F6F1E8 0 18px,#EFE8DB 18px 36px);color:var(--ink-900)}
+.ref.r4{background:linear-gradient(140deg,#C0643F,#7E3A22)}
+.ref span{background:rgba(0,0,0,.32);padding:3px 8px;border-radius:var(--r-pill)}
+.ref.r3 span{background:rgba(255,255,255,.75)}
+.stage-wrap{max-width:1180px;margin:32px auto 60px;padding:0 24px}
+.stage-wrap>h2{font-family:var(--serif);font-size:28px;color:var(--ink-900);margin-bottom:4px}
+.stage-wrap>p{color:var(--muted);margin-bottom:20px}
+.stage{display:grid;grid-template-columns:230px 410px 1fr;gap:28px;align-items:start}
+.screen-nav{position:sticky;top:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:10px}
+.screen-nav button{display:flex;gap:10px;align-items:center;width:100%;text-align:left;padding:9px 10px;border-radius:var(--r-sm);font-size:13.5px;color:var(--ink-800)}
+.screen-nav button:hover{background:var(--ink-50)}
+.screen-nav button.on{background:var(--ink-800);color:#fff}
+.screen-nav .n{min-width:24px;height:22px;padding:0 4px;border-radius:11px;background:var(--ink-100);color:var(--ink-800);font-size:11px;font-weight:700;display:grid;place-items:center;flex:none}
+.screen-nav button.on .n{background:var(--gold-500);color:var(--ink-900)}
+.notes{position:sticky;top:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px}
+.notes h3{font-family:var(--serif);font-size:20px;color:var(--ink-900);margin-bottom:6px}
+.notes .tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-600);margin-bottom:4px}
+.notes p,.notes li{font-size:14px;color:var(--muted)}
+.notes ul{padding-left:18px;margin:6px 0 12px}
+.notes .take{border-left:3px solid var(--ok-700);padding-left:10px;margin-top:12px}
+.notes .reject{border-left:3px solid var(--terra-500);padding-left:10px;margin-top:12px}
+.notes .desk{margin-top:14px;padding:12px;background:var(--ink-50);border-radius:var(--r-md);font-size:13px;color:var(--ink-800)}
+.phone{width:390px;height:844px;border-radius:48px;background:#0d1416;padding:10px;box-shadow:0 30px 60px rgba(15,42,48,.25),inset 0 0 0 2px #2a3436;position:relative;margin:0 auto}
+.phone::before{content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);width:110px;height:30px;border-radius:20px;background:#0d1416;z-index:20}
+.viewport{width:100%;height:100%;border-radius:38px;overflow:hidden;background:var(--paper);position:relative;display:flex;flex-direction:column}
+.status{height:48px;flex:none;display:flex;justify-content:space-between;align-items:flex-end;padding:0 28px 6px;font-size:14px;font-weight:600;color:var(--ink-900)}
+.screens{flex:1;position:relative;overflow:hidden}
+.screen{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:4px 18px 24px;opacity:0;transform:translateX(24px);pointer-events:none;transition:opacity .28s var(--ease),transform .28s var(--ease);scrollbar-width:none;visibility:hidden}
+.screen::-webkit-scrollbar{display:none}
+.screen.active{opacity:1;transform:none;pointer-events:auto;visibility:visible}
+.screen.dark{background:var(--ink-900);color:#EFF5F4}
+.tabbar{flex:none;height:78px;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:8px 6px 18px}
+.tabbar.hidden{display:none}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10.5px;font-weight:500;color:var(--subtle);border-radius:12px}
+.tab svg{width:22px;height:22px}
+.tab.on{color:var(--ink-800);font-weight:600}
+.tab.on .ico{background:var(--ink-100)}
+.tab .ico{width:44px;height:28px;border-radius:14px;display:grid;place-items:center;transition:background .2s}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0 12px}
+.topbar h2{font-family:var(--serif);font-size:22px;color:var(--ink-900);font-weight:600}
+.iconbtn{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:1px solid var(--line);color:var(--ink-800);flex:none}
+.iconbtn svg{width:18px;height:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px;box-shadow:var(--sh-1)}
+.stack>*+*{margin-top:12px}
+.row{display:flex;align-items:center;gap:10px}
+.between{justify-content:space-between}
+.muted{color:var(--muted)}
+.small{font-size:12.5px}
+.h3{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink-900);line-height:1.25}
+.label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px 18px;border-radius:var(--r-md);font-weight:600;font-size:15.5px;transition:transform .12s,box-shadow .2s,background .2s}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--ink-800);color:#fff;box-shadow:0 3px 0 var(--ink-900)}
+.btn-primary:hover{background:var(--ink-700)}
+.btn-primary[disabled]{background:#B7C3C2;color:#F4F7F7;box-shadow:none;cursor:not-allowed}
+.btn-ghost{background:transparent;color:var(--ink-800);border:1.5px solid var(--line)}
+.btn-light{background:#fff;color:var(--ink-900)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:var(--r-pill);font-size:12.5px;font-weight:500;background:var(--surface);border:1px solid var(--line);color:var(--ink-800);white-space:nowrap;text-decoration:none}
+.chip.sel{background:var(--ink-800);color:#fff;border-color:var(--ink-800)}
+.chip.streak{background:var(--terra-100);border-color:#EBC8B6;color:var(--terra-600)}
+.chip.xp{background:var(--gold-100);border-color:#E7D4A6;color:#6E531B}
+.badge-ai{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:var(--r-pill);font-size:11px;font-weight:600;background:var(--ai-100);color:var(--ai-700);border:1px solid #D3CCF0;white-space:nowrap}
+.badge-ai svg{width:12px;height:12px}
+.badge-demo{display:inline-flex;padding:3px 8px;border-radius:var(--r-pill);font-size:10.5px;font-weight:600;background:var(--paper-2);color:var(--muted);border:1px dashed #CDBFA8;white-space:nowrap}
+.source{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--r-md);background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--ink-800);font-size:13px}
+.source svg{width:18px;height:18px;flex:none;color:var(--ink-600)}
+.source b{display:block;font-size:13px}
+.source small{color:var(--muted)}
+.progress{height:10px;border-radius:var(--r-pill);background:var(--ink-100);overflow:hidden}
+.progress i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--ink-600),var(--ink-800));transition:width .5s var(--ease)}
+.progress.gold i{background:linear-gradient(90deg,var(--gold-500),var(--terra-500))}
+.hello{font-family:var(--serif);font-size:24px;color:var(--ink-900);line-height:1.15}
+.goal{background:var(--ink-800);color:#EAF2F1;border:0}
+.goal .label{color:#A9C7C4}
+.next{display:flex;gap:14px;align-items:center}
+.next .seal{width:52px;height:52px;border-radius:16px;background:var(--gold-100);display:grid;place-items:center;color:#6E531B;flex:none}
+.path{position:relative;padding:8px 0 4px}
+.unit{margin:18px 0 6px;padding:12px 14px;border-radius:var(--r-md);display:flex;justify-content:space-between;align-items:center}
+.unit h4{font-family:var(--serif);font-size:16px}
+.unit.u1{background:var(--ink-50);color:var(--ink-900)}
+.unit.u2{background:#F3EADB;color:#4F3B14}
+.unit.u3{background:#F5E4DA;color:#6A2E1B}
+.nodes{display:flex;flex-direction:column;align-items:center;gap:16px;padding:10px 0}
+.node{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;position:relative;font-weight:700;transition:transform .15s}
+.node:hover{transform:scale(1.05)}
+.node svg{width:26px;height:26px}
+.node.done{background:var(--ink-700);color:#fff;box-shadow:0 4px 0 var(--ink-900)}
+.node.current{background:var(--gold-500);color:var(--ink-900);box-shadow:0 4px 0 #8C6A26,0 0 0 6px rgba(196,154,69,.22);margin-top:22px}
+.node.locked{background:#E7E1D6;color:#7E8684;box-shadow:0 4px 0 #D3CBBC}
+.node.exam{border-radius:18px;background:var(--surface);border:2px dashed var(--ink-600);color:var(--ink-700)}
+.node .lbl{position:absolute;left:78px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:12.5px;font-weight:600;color:var(--ink-900);text-align:left}
+.node .lbl small{display:block;color:var(--muted);font-weight:400}
+.node .lbl.l{left:auto;right:78px;text-align:right}
+.o1{margin-left:-110px}.o2{margin-left:0}.o3{margin-left:110px}
+.pulse{position:absolute;inset:-8px;border-radius:50%;border:2px solid var(--gold-500);animation:pulse 2s infinite}
+@keyframes pulse{0%{opacity:.8;transform:scale(.9)}100%{opacity:0;transform:scale(1.25)}}
+.tip{position:absolute;top:-34px;left:50%;transform:translateX(-50%);background:var(--ink-900);color:#fff;font-size:11.5px;padding:5px 10px;border-radius:8px;white-space:nowrap;font-weight:600}
+.tip::after{content:"";position:absolute;bottom:-5px;left:50%;transform:translateX(-50%) rotate(45deg);width:10px;height:10px;background:var(--ink-900)}
+.lesson-top{display:flex;align-items:center;gap:12px;padding:8px 0 4px}
+.lesson-top .progress{flex:1}
+.q-meta{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 10px}
+.q{font-family:var(--serif);font-size:21px;line-height:1.3;color:var(--ink-900);font-weight:600}
+.opts{margin-top:18px;display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;gap:12px;align-items:center;text-align:left;padding:14px;border-radius:var(--r-md);background:var(--surface);border:1.5px solid var(--line);box-shadow:0 2px 0 var(--line);font-size:15px;transition:border-color .15s,background .15s}
+.opt .k{width:28px;height:28px;border-radius:8px;border:1.5px solid var(--line);display:grid;place-items:center;font-size:13px;font-weight:700;color:var(--muted);flex:none}
+button.opt:hover{border-color:var(--ink-600)}
+.opt.sel{border-color:var(--ink-700);background:var(--ink-50);box-shadow:0 2px 0 var(--ink-600)}
+.opt.sel .k{background:var(--ink-700);border-color:var(--ink-700);color:#fff}
+.opt.right{border-color:var(--ok-700);background:var(--ok-100)}
+.opt.right .k{background:var(--ok-700);border-color:var(--ok-700);color:#fff}
+.opt.wrong{border-color:var(--err-700);background:var(--err-100)}
+.opt.wrong .k{background:var(--err-700);border-color:var(--err-700);color:#fff}
+.toggle{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.sw-t{width:40px;height:24px;border-radius:12px;background:#B9AF9E;position:relative;transition:background .2s;flex:none}
+.sw-t::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.sw-t.on{background:var(--ink-700)}
+.sw-t.on::after{left:19px}
+.sticky-foot{position:sticky;bottom:-24px;margin:20px -18px -24px;padding:14px 18px 20px;background:linear-gradient(180deg,rgba(246,241,232,0),var(--paper) 30%)}
+.fb-sheet{border-radius:var(--r-lg) var(--r-lg) 0 0;margin:18px -18px -24px;padding:20px 18px 26px}
+.fb-sheet.ok{background:var(--ok-100);border-top:3px solid var(--ok-700)}
+.fb-sheet.err{background:#FBEFE6;border-top:3px solid var(--terra-500)}
+.fb-title{font-family:var(--serif);font-size:22px;font-weight:600}
+.fb-sheet.ok .fb-title{color:var(--ok-700)}
+.fb-sheet.err .fb-title{color:var(--terra-600)}
+.explain{background:var(--surface);border-radius:var(--r-md);padding:14px;border:1px solid var(--line);font-size:14.5px}
+.explain p+p{margin-top:8px}
+.xp-pop{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:#6E531B;background:var(--gold-100);padding:4px 10px;border-radius:var(--r-pill);font-size:13px;animation:pop .5s var(--ease)}
+@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:none;opacity:1}}
+.variant-switch{display:flex;background:var(--paper-2);border-radius:var(--r-pill);padding:3px;gap:2px}
+.variant-switch button{flex:1;padding:7px;border-radius:var(--r-pill);font-size:12.5px;font-weight:600;color:var(--muted)}
+.variant-switch button.on{background:var(--surface);color:var(--ink-900);box-shadow:var(--sh-1)}
+.hero-exam{background:linear-gradient(160deg,var(--ink-700),var(--ink-900));color:#F1F6F5;border-radius:var(--r-lg);padding:20px;position:relative;overflow:hidden}
+.hero-exam::after{content:"";position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;border:24px solid rgba(196,154,69,.18)}
+.hero-exam .label{color:#A9C7C4}
+.hero-exam h3{font-family:var(--serif);font-size:24px;margin:6px 0 4px;line-height:1.15}
+.chip.glass{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.25)}
+.params{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.param{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:12px}
+.param b{font-family:var(--serif);font-size:22px;color:var(--ink-900);display:block}
+.param span{font-size:12px;color:var(--muted)}
+.exam-chrome{display:flex;justify-content:space-between;align-items:center;padding:6px 0 10px;border-bottom:1px solid rgba(255,255,255,.12)}
+.timer{font-variant-numeric:tabular-nums;font-weight:700;font-size:18px;display:flex;gap:6px;align-items:center}
+.viewport.dark{background:var(--ink-900)}
+.viewport.dark .status{color:#fff}
+.screen.dark .q{color:#fff}
+.screen.dark .opt{background:#183A40;border-color:#2C5960;box-shadow:none;color:#EFF5F4}
+.screen.dark .opt .k{border-color:#3C6C73;color:#B9D3D1}
+.screen.dark .opt.sel{background:#22525A;border-color:var(--gold-500)}
+.screen.dark .opt.sel .k{background:var(--gold-500);border-color:var(--gold-500);color:var(--ink-900)}
+.qgrid{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;margin-top:10px}
+.qgrid i{height:20px;border-radius:5px;background:#21474D;font-style:normal;font-size:9px;display:grid;place-items:center;color:#9FBDBA}
+.qgrid i.a{background:#3E7C83;color:#fff}
+.qgrid i.b{background:transparent;border:1px dashed #6D9BA0}
+.qgrid i.c{background:var(--gold-500);color:var(--ink-900);font-weight:700}
+.qgrid i.f{box-shadow:inset 0 0 0 2px #F0A27F}
+.qgrid i.r{opacity:.6}
+.piece{height:190px;border-radius:var(--r-lg);background:radial-gradient(ellipse at 50% 40%,#3a3229 0%,#1f1a15 70%);position:relative;overflow:hidden;display:grid;place-items:center}
+.vase{width:110px;height:130px;position:relative}
+.vase::before{content:"";position:absolute;bottom:0;left:5px;width:100px;height:96px;border-radius:50% 50% 42% 42%/58% 58% 42% 42%;background:radial-gradient(circle at 35% 35%,#E3A877,#B4643A 55%,#6F3519);box-shadow:0 14px 20px rgba(0,0,0,.4)}
+.vase::after{content:"";position:absolute;top:6px;left:32px;width:46px;height:34px;border-radius:6px 6px 12px 12px;background:linear-gradient(90deg,#8D4826,#C9784A,#8D4826)}
+.vase .band{position:absolute;bottom:44px;left:8px;width:94px;height:12px;z-index:2;background:repeating-linear-gradient(90deg,#2b1a10 0 6px,transparent 6px 12px);border-radius:4px;opacity:.75}
+.vase .band2{bottom:24px;height:6px;opacity:.55}
+.piece .cap{position:absolute;left:12px;bottom:10px;font-size:11px;color:#F2E9DC;background:rgba(0,0,0,.45);padding:4px 8px;border-radius:8px}
+.piece .zoom{position:absolute;right:10px;top:10px;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff}
+.field label{display:flex;justify-content:space-between;font-size:12.5px;font-weight:600;color:var(--ink-800);margin-bottom:5px}
+.field label small{font-weight:400;color:var(--subtle)}
+.input{width:100%;padding:12px 13px;border-radius:var(--r-sm);border:1.5px solid var(--line);background:var(--surface);font:inherit;font-size:14.5px;color:var(--text)}
+.input::placeholder{color:#8E9694}
+.input:focus{outline:none;border-color:var(--ink-600);box-shadow:0 0 0 4px var(--ink-50)}
+textarea.input{min-height:96px;resize:vertical}
+.fgroup{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fb-field{border-radius:var(--r-md);padding:12px;background:var(--surface);border:1px solid var(--line);border-left-width:4px}
+.fb-field.bien{border-left-color:var(--ok-700)}
+.fb-field.mejorar{border-left-color:var(--gold-500)}
+.fb-field.falta{border-left-color:var(--err-700)}
+.st{font-size:11px;font-weight:700;padding:2px 8px;border-radius:var(--r-pill);text-transform:uppercase;letter-spacing:.06em}
+.st.bien{background:var(--ok-100);color:var(--ok-700)}
+.st.mejorar{background:var(--warn-100);color:var(--warn-700)}
+.st.falta{background:var(--err-100);color:var(--err-700)}
+.fb-field .val{font-size:13px;color:var(--muted);margin:4px 0;font-style:italic}
+.fb-field p{font-size:13.5px}
+.score-ring{width:84px;height:84px;border-radius:50%;background:conic-gradient(var(--ink-700) 0 68%,var(--ink-100) 68% 100%);display:grid;place-items:center;flex:none}
+.score-ring div{width:66px;height:66px;border-radius:50%;background:var(--surface);display:grid;place-items:center;text-align:center;line-height:1}
+.score-ring b{font-family:var(--serif);font-size:22px;color:var(--ink-900)}
+.score-ring small{font-size:10px;color:var(--muted)}
+.chiprow{display:flex;gap:8px;overflow-x:auto;margin:0 -18px 6px;padding:2px 18px 8px;scrollbar-width:none}
+.chiprow::-webkit-scrollbar{display:none}
+.news{padding:0;overflow:hidden}
+.news .img{height:96px}
+.news .body{padding:14px}
+.news .meta{display:flex;gap:6px;align-items:center;font-size:12px;color:var(--muted);margin-bottom:6px;flex-wrap:wrap}
+.news .inst{font-weight:600;color:var(--ink-700)}
+.news .rel{margin-top:10px;font-size:12.5px;background:var(--ink-50);color:var(--ink-800);padding:8px 10px;border-radius:var(--r-sm)}
+.bars .bar{display:grid;grid-template-columns:118px 1fr 36px;gap:10px;align-items:center;font-size:13px;margin-top:9px}
+.bars .track{height:10px;background:var(--paper-2);border-radius:var(--r-pill);overflow:hidden}
+.bars .track i{display:block;height:100%;border-radius:inherit}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center;font-size:11px;color:var(--muted)}
+.week .d{height:34px;border-radius:10px;background:var(--paper-2);display:grid;place-items:center;margin-top:4px;font-weight:600}
+.week .d.y{background:var(--ink-700);color:#fff}
+.week .d.t{background:var(--gold-100);color:#6E531B;box-shadow:inset 0 0 0 2px var(--gold-500)}
+.week .d.rest{background:transparent;border:1px dashed #CDBFA8;font-size:9.5px}
+.spark{display:flex;align-items:flex-end;gap:8px;height:90px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+.spark div{flex:1;background:var(--ink-100);border-radius:6px 6px 0 0;position:relative}
+.spark div.last{background:var(--ink-700)}
+.spark div span{position:absolute;top:-17px;left:50%;transform:translateX(-50%);font-size:10.5px;font-weight:600;color:var(--ink-800)}
+.spark-l{display:flex;gap:8px;font-size:10px;color:var(--muted);margin-top:4px}
+.spark-l span{flex:1;text-align:center}
+.setting{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);font-size:14.5px;gap:10px}
+.setting:last-child{border-bottom:0}
+.setting small{display:block;color:var(--muted);font-size:12px}
+.select{padding:9px 12px;border-radius:var(--r-sm);border:1.5px solid var(--line);background:var(--surface);font:inherit;font-size:14px;color:var(--ink-900)}
+.stepper{display:flex;align-items:center;gap:6px}
+.stepper button{width:30px;height:30px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);font-weight:700;color:var(--ink-800)}
+.stepper output{min-width:40px;text-align:center;font-weight:600;font-variant-numeric:tabular-nums}
+.disclaimer{background:var(--warn-100);border:1px solid #EAD4A2;color:#5E3F0C;border-radius:var(--r-md);padding:12px 14px;font-size:13px;display:flex;gap:10px}
+.disclaimer svg{width:20px;height:20px;flex:none}
+.disclaimer a{color:#5E3F0C;font-weight:600}
+@media (max-width:1100px){.stage{grid-template-columns:230px 410px}.notes{grid-column:1/-1;position:static}}
+@media (max-width:760px){
+  .stage{grid-template-columns:1fr}.screen-nav{position:static;display:flex;overflow-x:auto;gap:4px}.screen-nav button{white-space:nowrap;width:auto}
+  .c-adj,.c-sw,.c-type,.c-comp{grid-column:span 12}.swatches{grid-template-columns:repeat(3,1fr)}.c-refs{grid-template-columns:1fr 1fr}
+}
+@media (max-width:430px){.phone{width:100%;height:calc(100vh - 20px);border-radius:0;padding:0;box-shadow:none}.phone::before{display:none}.viewport{border-radius:0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/><path d="M9 7h6"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z"/><circle cx="7.5" cy="7.5" r="1.5"/></symbol>
+  <symbol id="i-news" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2s5 4.5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 1-3.5s.5 2 2 2.5C10 8 12 2 12 2z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></symbol>
+  <symbol id="i-col" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M4 10h16M12 3 3 8h18zM6 10v8M10 10v8M14 10v8M18 10v8"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M8 13h8M8 17h5"/></symbol>
+  <symbol id="i-ai" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8zM19 14l.9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9z"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></symbol>
+  <symbol id="i-zoom" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5M11 8v6M8 11h6"/></symbol>
+</svg>
+
+<header class="page-head">
+  <div class="eyebrow">Prototipo de concepto · v0.1 · para revisión</div>
+  <h1>Sala — prepara Ayudantes de Museos sin pánico</h1>
+  <p>Nombre provisional «Sala». Prototipo clicable, mobile-first, para la Escala de Ayudantes de Museos del Estado. Todo el contenido (preguntas, explicaciones, noticias, puntuaciones) es <b>de ejemplo</b>; las explicaciones generadas por IA llevan siempre la etiqueta <span class="badge-ai"><svg><use href="#i-ai"/></svg>Contenido IA</span> y una fuente al lado.</p>
+  <nav class="toc"><a href="#moodboard">1 · Moodboard</a><a href="#prototipo">2 · Prototipo clicable</a></nav>
+</header>
+
+<section class="mood" id="moodboard" aria-label="Moodboard">
+  <div class="mood-grid">
+    <div class="mcard c-adj">
+      <h3>Tres adjetivos</h3>
+      <div class="adj"><span>Sereno.</span><span>Riguroso.</span><span>Cálido.</span></div>
+      <p>«Examen sin pánico»: la calma de una sala de museo, la exactitud de un BOE y la cercanía de un buen preparador.</p>
+    </div>
+    <div class="mcard c-sw">
+      <h3>Color</h3>
+      <div class="swatches">
+        <div class="sw"><i style="background:#15393F"></i><div><b>Tinta</b><small>#15393F · primario</small></div></div>
+        <div class="sw"><i style="background:#28646D"></i><div><b>Verde sala</b><small>#28646D · acción</small></div></div>
+        <div class="sw"><i style="background:#F6F1E8"></i><div><b>Papel</b><small>#F6F1E8 · fondo</small></div></div>
+        <div class="sw"><i style="background:#C0643F"></i><div><b>Terracota</b><small>#C0643F · racha</small></div></div>
+        <div class="sw"><i style="background:#C49A45"></i><div><b>Oro pátina</b><small>#C49A45 · XP</small></div></div>
+        <div class="sw"><i style="background:#2D6B4C"></i><div><b>Bien</b><small>#2D6B4C</small></div></div>
+        <div class="sw"><i style="background:#F7EBCF;border-bottom:4px solid #C49A45"></i><div><b>Mejorar</b><small>#8A5A12 texto</small></div></div>
+        <div class="sw"><i style="background:#9A3B28"></i><div><b>Falta</b><small>#9A3B28</small></div></div>
+        <div class="sw"><i style="background:#4B3F8F"></i><div><b>IA</b><small>#4B3F8F · etiqueta</small></div></div>
+        <div class="sw"><i style="background:#FFFDF8"></i><div><b>Superficie</b><small>#FFFDF8 · tarjetas</small></div></div>
+      </div>
+    </div>
+    <div class="mcard c-type">
+      <h3>Tipografía</h3>
+      <div class="type-xl">Patrimonio Histórico</div>
+      <div class="type-l">Source Serif 4 — títulos y preguntas</div>
+      <div class="type-b">Inter — interfaz y lectura. Texto a 15–16 px, interlineado amplio, sin mayúsculas gritonas.</div>
+      <div class="type-s">ETIQUETAS · 11 PX · ESPACIADO 0,1 EM</div>
+    </div>
+    <div class="mcard c-comp">
+      <h3>Componentes</h3>
+      <div class="chips">
+        <span class="chip streak"><svg width="14" height="14"><use href="#i-flame"/></svg>12 días</span>
+        <span class="chip xp"><svg width="14" height="14"><use href="#i-star"/></svg>340 XP</span>
+        <span class="chip sel">Legislación</span><span class="chip">Museología</span>
+        <span class="badge-ai"><svg><use href="#i-ai"/></svg>Contenido IA</span>
+        <span class="badge-demo">Contenido de ejemplo</span>
+        <span class="st bien">Bien</span><span class="st mejorar">Mejorar</span><span class="st falta">Falta</span>
+      </div>
+      <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <button class="btn btn-primary" type="button">Continuar</button><button class="btn btn-ghost" type="button">Abrir fuente</button>
+      </div>
+      <div class="progress" style="margin-top:14px"><i style="width:62%"></i></div>
+    </div>
+    <div class="mcard c-refs" aria-label="Referencias de atmósfera">
+      <div class="ref r1"><span>Sala en penumbra · foco en la pieza</span></div>
+      <div class="ref r2"><span>Pátina dorada · logro discreto</span></div>
+      <div class="ref r3"><span>Papel de ficha · orden documental</span></div>
+      <div class="ref r4"><span>Terracota · cerámica, calidez</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="stage-wrap" id="prototipo">
+  <h2>Prototipo clicable</h2>
+  <p>Navega con la barra inferior del teléfono o con la lista de pantallas. Tecla <b>←</b> para volver. A la derecha: para qué sirve cada pantalla y su adaptación a escritorio.</p>
+  <div class="stage">
+    <nav class="screen-nav" id="screenNav" aria-label="Pantallas"></nav>
+    <div class="phone" role="region" aria-label="Simulación de teléfono">
+      <div class="viewport">
+        <div class="status"><span>9:41</span><span aria-hidden="true">▂▄▆ ◔</span></div>
+        <div class="screens" id="screens">
+<!-- 1 INICIO -->
+<section class="screen" data-screen="inicio" data-tab="inicio">
+  <div class="topbar">
+    <div class="row"><span class="chip streak" title="Racha"><svg width="14" height="14"><use href="#i-flame"/></svg>12 días</span><span class="chip xp" title="Experiencia"><svg width="14" height="14"><use href="#i-star"/></svg>340 XP</span></div>
+    <button class="iconbtn" data-go="ajustes" aria-label="Ajustes de convocatoria"><svg><use href="#i-gear"/></svg></button>
+  </div>
+  <div class="stack">
+    <div>
+      <div class="label">Jueves · tu plan de estudio</div>
+      <div class="hello">Buenas tardes, Polina.<br>Hoy toca Legislación.</div>
+    </div>
+    <div class="card goal">
+      <div class="row between"><span class="label">Objetivo semanal</span><span class="small" style="color:#CFE0DE">5 de 7 sesiones</span></div>
+      <div class="progress gold" style="margin:10px 0 14px;background:rgba(255,255,255,.14)"><i style="width:71%"></i></div>
+      <div class="next">
+        <div class="seal"><svg width="26" height="26"><use href="#i-col"/></svg></div>
+        <div style="flex:1"><div class="label">Siguiente paso · 8 min</div><div class="h3" style="color:#fff">Ley 16/1985: categorías de protección</div></div>
+      </div>
+      <button class="btn btn-light" style="margin-top:14px" data-go="leccion"><svg width="16" height="16"><use href="#i-play"/></svg>Empezar sesión</button>
+    </div>
+  </div>
+  <div class="path">
+    <div class="unit u1"><div><div class="label" style="color:var(--ink-600)">Bloque I</div><h4>Legislación</h4></div><span class="small">2/5</span></div>
+    <div class="nodes">
+      <button class="node done o2" data-go="leccion" aria-label="Constitución, repasar"><svg><use href="#i-check"/></svg><span class="lbl">Constitución<small>art. 44–46</small></span></button>
+      <button class="node done o1" data-go="leccion" aria-label="Ley 16/1985 I, repasar"><svg><use href="#i-check"/></svg><span class="lbl">Ley 16/1985 · I<small>Disposiciones generales</small></span></button>
+      <button class="node current o2" data-go="leccion" aria-label="Lección actual"><span class="pulse"></span><span class="tip">Aquí</span><svg><use href="#i-star"/></svg><span class="lbl">Ley 16/1985 · II<small>Categorías de protección</small></span></button>
+      <button class="node locked o3" aria-label="Bloqueado"><svg><use href="#i-lock"/></svg><span class="lbl l">RD 620/1987<small>Museos estatales</small></span></button>
+      <button class="node exam o2" data-go="sim-start" aria-label="Repaso del bloque"><svg><use href="#i-flag"/></svg><span class="lbl">Repaso del bloque<small>20 preg. · formato examen</small></span></button>
+    </div>
+    <div class="unit u2"><div><div class="label" style="color:#7A5B1E">Bloque II</div><h4>Museología y museografía</h4></div><span class="small">1/8</span></div>
+    <div class="nodes">
+      <button class="node done o2" data-go="leccion" aria-label="Definición ICOM, repasar"><svg><use href="#i-check"/></svg><span class="lbl">Definición de museo<small>ICOM 2022</small></span></button>
+      <button class="node locked o3" aria-label="Bloqueado"><svg><use href="#i-lock"/></svg><span class="lbl l">Documentación<small>Normalización</small></span></button>
+    </div>
+    <div class="unit u3"><div><div class="label" style="color:#8C3E22">Bloque III</div><h4>Patrimonio y conservación</h4></div><span class="small">0/7</span></div>
+    <div class="nodes">
+      <button class="node locked o1" aria-label="Bloqueado"><svg><use href="#i-lock"/></svg><span class="lbl">Conservación preventiva<small>Plan Nacional</small></span></button>
+    </div>
+    <p class="small muted" style="text-align:center;margin-top:8px">Bloques y temas: estructura de ejemplo, no el temario oficial completo.</p>
+  </div>
+</section>
+
+<!-- ESTUDIAR (hub) -->
+<section class="screen" data-screen="estudiar" data-tab="estudiar">
+  <div class="topbar"><h2>Estudiar</h2><span class="chip xp"><svg width="14" height="14"><use href="#i-star"/></svg>340 XP</span></div>
+  <div class="stack">
+    <button class="card" style="text-align:left;width:100%;display:block" data-go="leccion">
+      <div class="label">Test temático · 10 preguntas · ~8 min</div>
+      <div class="h3" style="margin:4px 0">Legislación de Patrimonio</div>
+      <div class="muted small">Modo estudio: sin cronómetro, con explicación tras cada respuesta.</div>
+    </button>
+    <button class="card" style="text-align:left;width:100%;display:block;background:var(--ink-800);border:0" data-go="sim-start">
+      <div class="label" style="color:#A9C7C4">Simulacro completo</div>
+      <div class="h3" style="color:#fff;margin:4px 0">100 + 10 preguntas · 100 min</div>
+      <div class="small" style="color:#CFE0DE">Penalización −1/3 · como el día del examen.</div>
+    </button>
+    <div class="card">
+      <div class="label">Repaso de errores</div>
+      <div class="h3" style="margin:4px 0">14 preguntas pendientes</div>
+      <div class="muted small">Vuelven a 1, 3 y 7 días hasta que las domines.</div>
+      <button class="btn btn-ghost" style="margin-top:12px" data-go="leccion">Repasar errores</button>
+    </div>
+  </div>
+</section>
+
+<!-- 2 LECCIÓN -->
+<section class="screen" data-screen="leccion" data-tab="estudiar" data-full>
+  <div class="lesson-top">
+    <button class="iconbtn" data-back aria-label="Salir de la lección"><svg><use href="#i-x"/></svg></button>
+    <div class="progress" role="progressbar" aria-valuenow="4" aria-valuemax="10"><i style="width:40%"></i></div>
+    <span class="small muted" style="font-weight:600">4/10</span>
+  </div>
+  <div class="q-meta"><span class="chip">Legislación · Ley 16/1985</span><span class="badge-demo">Pregunta de ejemplo</span></div>
+  <div class="q">Según la Ley 16/1985 del Patrimonio Histórico Español, ¿qué categoría otorga la máxima protección a bienes muebles e inmuebles?</div>
+  <div class="opts" id="lessonOpts">
+    <button class="opt" data-ok="0"><span class="k">A</span>Bien inventariado</button>
+    <button class="opt" data-ok="1"><span class="k">B</span>Bien de Interés Cultural (BIC)</button>
+    <button class="opt" data-ok="0"><span class="k">C</span>Bien catalogado de relevancia regional</button>
+    <button class="opt" data-ok="0"><span class="k">D</span>Monumento histórico-artístico nacional</button>
+  </div>
+  <div class="toggle" style="margin-top:18px"><button class="sw-t" id="timerToggle" role="switch" aria-checked="false" aria-label="Cronómetro"></button><span id="timerLbl">Cronómetro desactivado · modo estudio</span></div>
+  <div class="sticky-foot">
+    <button class="btn btn-primary" id="checkBtn" disabled>Comprobar</button>
+    <button class="btn" style="margin-top:4px;color:var(--muted);font-size:14px;padding:10px" data-go="fb-err">No lo sé — ver explicación</button>
+  </div>
+</section>
+
+<!-- 3a FEEDBACK CORRECTO -->
+<section class="screen" data-screen="fb-ok" data-tab="estudiar" data-full>
+  <div class="lesson-top">
+    <button class="iconbtn" data-back aria-label="Volver"><svg><use href="#i-back"/></svg></button>
+    <div class="progress"><i style="width:50%"></i></div><span class="small muted" style="font-weight:600">5/10</span>
+  </div>
+  <div class="variant-switch" style="margin-top:10px" aria-label="Variante de demostración"><button class="on">Acierto</button><button data-go="fb-err" data-replace>Error</button></div>
+  <div class="q" style="font-size:17px;margin-top:12px">¿Categoría de máxima protección según la Ley 16/1985?</div>
+  <div class="opts"><div class="opt right"><span class="k"><svg width="14" height="14"><use href="#i-check"/></svg></span>Bien de Interés Cultural (BIC)</div></div>
+  <div class="fb-sheet ok">
+    <div class="row between"><div class="fb-title">¡Bien visto!</div><span class="xp-pop"><svg width="14" height="14"><use href="#i-star"/></svg>+10 XP</span></div>
+    <p class="small" style="margin:4px 0 12px;color:var(--ok-700)">3 aciertos seguidos en este tema: lo das por consolidado.</p>
+    <div class="explain">
+      <div class="row between" style="margin-bottom:8px"><b class="small">Por qué</b><span class="badge-ai"><svg><use href="#i-ai"/></svg>Contenido IA</span></div>
+      <p>La Ley distingue niveles: <b>BIC</b> (el más alto), bienes incluidos en el <b>Inventario General</b> (solo muebles) y el resto del Patrimonio Histórico Español.</p>
+    </div>
+    <a class="source" style="margin-top:10px" href="https://www.boe.es/buscar/act.php?id=BOE-A-1985-12534" target="_blank" rel="noopener"><svg><use href="#i-doc"/></svg><span style="flex:1"><b>Abrir fuente · Ley 16/1985, art. 1 y 9</b><small>BOE-A-1985-12534 · texto consolidado</small></span><svg><use href="#i-ext"/></svg></a>
+    <button class="btn btn-primary" style="margin-top:16px" data-go="inicio" data-reset>Continuar</button>
+  </div>
+</section>
+
+<!-- 3b FEEDBACK ERROR -->
+<section class="screen" data-screen="fb-err" data-tab="estudiar" data-full>
+  <div class="lesson-top">
+    <button class="iconbtn" data-back aria-label="Volver"><svg><use href="#i-back"/></svg></button>
+    <div class="progress"><i style="width:50%"></i></div><span class="small muted" style="font-weight:600">5/10</span>
+  </div>
+  <div class="variant-switch" style="margin-top:10px" aria-label="Variante de demostración"><button data-go="fb-ok" data-replace>Acierto</button><button class="on">Error</button></div>
+  <div class="q" style="font-size:17px;margin-top:12px">¿Categoría de máxima protección según la Ley 16/1985?</div>
+  <div class="opts">
+    <div class="opt wrong"><span class="k">A</span><span style="flex:1">Bien inventariado</span><span class="small" style="color:var(--err-700)">Tu respuesta</span></div>
+    <div class="opt right"><span class="k">B</span>Bien de Interés Cultural (BIC)</div>
+  </div>
+  <div class="fb-sheet err">
+    <div class="fb-title">Casi. Es una confusión muy común.</div>
+    <p class="small" style="margin:4px 0 12px;color:#7A3A22">Sin problema: volverás a verla mañana y dentro de 3 días.</p>
+    <div class="explain">
+      <div class="row between" style="margin-bottom:8px"><b class="small">La clave para no fallarla</b><span class="badge-ai"><svg><use href="#i-ai"/></svg>Contenido IA</span></div>
+      <p>«Inventariado» es el <b>segundo</b> nivel y solo se aplica a bienes muebles. El nivel máximo es <b>BIC</b>, que vale para muebles <i>e</i> inmuebles.</p>
+      <p class="muted small"><svg width="14" height="14" style="vertical-align:-2px"><use href="#i-bulb"/></svg> Para recordarlo, ordénalos de mayor a menor: BIC → Inventario General → resto del Patrimonio.</p>
+    </div>
+    <a class="source" style="margin-top:10px" href="https://www.boe.es/buscar/act.php?id=BOE-A-1985-12534" target="_blank" rel="noopener"><svg><use href="#i-doc"/></svg><span style="flex:1"><b>Abrir fuente · Ley 16/1985, arts. 9 y 26</b><small>BOE-A-1985-12534</small></span><svg><use href="#i-ext"/></svg></a>
+    <div class="row" style="margin-top:12px;gap:8px"><button class="chip">Marcar para repasar</button><button class="chip">Reportar error</button></div>
+    <button class="btn btn-primary" style="margin-top:14px" data-go="inicio" data-reset>Entendido, continuar</button>
+  </div>
+</section>
+<!-- 4a SIMULACRO START -->
+<section class="screen" data-screen="sim-start" data-tab="estudiar">
+  <div class="topbar"><button class="iconbtn" data-back aria-label="Volver"><svg><use href="#i-back"/></svg></button><h2 style="flex:1">Simulacro</h2></div>
+  <div class="stack">
+    <div class="hero-exam">
+      <div class="label">Convocatoria de referencia</div>
+      <h3>Escala de Ayudantes de Museos del Estado</h3>
+      <div class="row" style="gap:8px;margin-top:10px;flex-wrap:wrap"><span class="chip glass">BOE-A-2025-26893</span><span class="chip glass">Primer ejercicio · test</span></div>
+    </div>
+    <div class="params">
+      <div class="param"><b>100 + 10</b><span>preguntas + reserva</span></div>
+      <div class="param"><b>100 min</b><span>duración total</span></div>
+      <div class="param"><b>−1/3</b><span>por respuesta errónea</span></div>
+      <div class="param"><b>0</b><span>en blanco no penaliza</span></div>
+    </div>
+    <div class="card small" style="display:flex;gap:10px">
+      <svg width="20" height="20" style="flex:none;color:var(--ink-600)"><use href="#i-info"/></svg>
+      <div><b>Estrategia:</b> con −1/3, si descartas dos opciones, responder suele compensar. Si no descartas ninguna, mejor en blanco.</div>
+    </div>
+    <div class="disclaimer"><svg><use href="#i-info"/></svg><div>Parámetros de la convocatoria de referencia; puedes cambiarlos en <a href="#" data-go="ajustes">Ajustes</a>. Puntuación orientativa, no oficial.</div></div>
+    <button class="btn btn-primary" data-go="sim-run">Empezar simulacro</button>
+    <button class="btn btn-ghost" data-go="sim-run">Mini-simulacro · 25 preguntas / 25 min</button>
+  </div>
+</section>
+
+<!-- 4b SIMULACRO EN CURSO -->
+<section class="screen dark" data-screen="sim-run" data-tab="estudiar" data-full>
+  <div class="exam-chrome">
+    <button class="iconbtn" style="background:transparent;border-color:#2C5960;color:#fff" data-back aria-label="Pausar y salir"><svg><use href="#i-x"/></svg></button>
+    <div class="timer" id="examTimer" aria-live="off"><svg width="18" height="18"><use href="#i-clock"/></svg>100:00</div>
+    <span class="small" style="color:#B9D3D1;font-weight:600">37 / 110</span>
+  </div>
+  <div class="row between" style="margin:12px 0 8px"><span class="small" style="color:#9FBDBA">Pregunta 37 · Museología</span><button class="chip" style="background:transparent;color:#F0C9B5;border-color:#6B4A3A"><svg width="12" height="12"><use href="#i-flag"/></svg>Marcar</button></div>
+  <div class="q" style="font-size:19px">¿Qué norma regula los Museos de titularidad estatal y el Sistema Español de Museos?</div>
+  <div class="opts" id="examOpts">
+    <button class="opt"><span class="k">A</span>Ley 16/1985, de 25 de junio</button>
+    <button class="opt sel"><span class="k">B</span>Real Decreto 620/1987, de 10 de abril</button>
+    <button class="opt"><span class="k">C</span>Real Decreto 111/1986, de 10 de enero</button>
+    <button class="opt"><span class="k">D</span>Ley 10/2015, de 26 de mayo</button>
+  </div>
+  <div class="row" style="gap:10px;margin-top:16px">
+    <button class="btn" style="background:#183A40;color:#fff;border:1px solid #2C5960" id="blankBtn">Dejar en blanco</button>
+    <button class="btn" style="background:var(--gold-500);color:var(--ink-900)">Siguiente</button>
+  </div>
+  <div style="margin-top:20px">
+    <div class="row between small" style="color:#9FBDBA"><span>Mapa del examen</span><span>34 resp. · 2 en blanco · 1 marcada</span></div>
+    <div class="qgrid" id="qgrid"></div>
+    <p class="small" style="color:#9FBDBA;margin-top:8px">101–110: preguntas de reserva.</p>
+  </div>
+  <p class="small" style="color:#9FBDBA;margin-top:10px">Sin XP ni explicaciones durante el simulacro. Las verás todas al terminar.</p>
+</section>
+
+<!-- 5 CATALOGACIÓN FICHA -->
+<section class="screen" data-screen="ficha" data-tab="catalogar">
+  <div class="topbar"><h2>Catalogar</h2><span class="chip">Ficha 3 de 12</span></div>
+  <div class="piece">
+    <div class="vase"><div class="band"></div><div class="band band2"></div></div>
+    <span class="cap">Imagen de referencia · pieza de ejemplo</span>
+    <button class="iconbtn zoom" aria-label="Ampliar imagen"><svg><use href="#i-zoom"/></svg></button>
+  </div>
+  <p class="small muted" style="margin:10px 0 14px">Observa la pieza y redacta la ficha como en el ejercicio práctico. Usa terminología normalizada. Si un dato no se puede saber, escribe «No consta».</p>
+  <form class="stack" id="fichaForm" onsubmit="return false">
+    <div class="field"><label for="f1">Museo <small>institución</small></label><input id="f1" class="input" placeholder="Ej.: Museo Arqueológico Nacional"></div>
+    <div class="fgroup">
+      <div class="field"><label for="f2">N.º inventario</label><input id="f2" class="input" placeholder="—"></div>
+      <div class="field"><label for="f3">Objeto</label><input id="f3" class="input" placeholder="Término genérico"></div>
+    </div>
+    <div class="field"><label for="f4">Autor / Taller</label><input id="f4" class="input" placeholder="Anónimo, taller…"></div>
+    <div class="field"><label for="f5">Título / Nombre específico</label><input id="f5" class="input" placeholder="Si procede"></div>
+    <div class="fgroup">
+      <div class="field"><label for="f6">Materia</label><input id="f6" class="input" placeholder="Ej.: arcilla"></div>
+      <div class="field"><label for="f7">Técnica</label><input id="f7" class="input" placeholder="Ej.: torneado"></div>
+    </div>
+    <div class="fgroup">
+      <div class="field"><label for="f8">Dimensiones</label><input id="f8" class="input" placeholder="Alt. × diám. (cm)"></div>
+      <div class="field"><label for="f9">Datación</label><input id="f9" class="input" placeholder="Siglo / rango"></div>
+    </div>
+    <div class="field"><label for="f10">Contexto cultural / Estilo</label><input id="f10" class="input" placeholder="Ej.: Cultura ibérica"></div>
+    <div class="field"><label for="f11">Descripción <small>forma, decoración, estado</small></label><textarea id="f11" class="input" placeholder="De lo general a lo particular…"></textarea></div>
+    <div class="row between small muted"><span>Guardado automático · 22:32</span><span>Tiempo: libre</span></div>
+    <button class="btn btn-primary" type="button" data-go="ficha-fb">Enviar ficha para revisión</button>
+  </form>
+</section>
+
+<!-- 6 CATALOGACIÓN FEEDBACK -->
+<section class="screen" data-screen="ficha-fb" data-tab="catalogar">
+  <div class="topbar"><button class="iconbtn" data-back aria-label="Volver a la ficha"><svg><use href="#i-back"/></svg></button><h2 style="flex:1">Revisión de la ficha</h2></div>
+  <div class="card row" style="gap:14px">
+    <div class="score-ring"><div><b>6,8</b><small>/ 10</small></div></div>
+    <div><div class="label">Puntuación orientativa</div><div class="h3" style="font-size:16px">Buena base. Afina técnica, datación y descripción.</div><div class="row" style="margin-top:6px;gap:6px;flex-wrap:wrap"><span class="badge-ai"><svg><use href="#i-ai"/></svg>Contenido IA</span><span class="badge-demo">No oficial</span></div></div>
+  </div>
+  <div class="row small" style="gap:12px;margin:14px 0 10px;flex-wrap:wrap"><span><span class="st bien">Bien</span> 5</span><span><span class="st mejorar">Mejorar</span> 3</span><span><span class="st falta">Falta</span> 2</span></div>
+  <div class="stack">
+    <div class="fb-field bien"><div class="row between"><b class="small">Museo</b><span class="st bien">Bien</span></div><div class="val">«Museo Arqueológico Nacional»</div><p>Nombre oficial completo. <span class="muted">1 / 1</span></p></div>
+    <div class="fb-field bien"><div class="row between"><b class="small">Objeto</b><span class="st bien">Bien</span></div><div class="val">«Vaso»</div><p>Término genérico adecuado. <span class="muted">1 / 1</span></p></div>
+    <div class="fb-field mejorar"><div class="row between"><b class="small">Técnica</b><span class="st mejorar">Mejorar</span></div><div class="val">«Hecho a torno, pintado»</div><p>Separa técnicas con términos normalizados: <b>torneado; pintado</b>. <span class="muted">0,5 / 1</span></p></div>
+    <div class="fb-field mejorar"><div class="row between"><b class="small">Datación</b><span class="st mejorar">Mejorar</span></div><div class="val">«Época ibérica»</div><p>Da un rango (p. ej. <b>s. IV – s. III a. C.</b>). El período cultural va en «Contexto cultural». <span class="muted">0,5 / 1</span></p></div>
+    <div class="fb-field falta"><div class="row between"><b class="small">Dimensiones</b><span class="st falta">Falta</span></div><div class="val">(vacío)</div><p>Indica al menos altura y diámetro máximo, en cm. <span class="muted">0 / 1</span></p></div>
+    <div class="fb-field mejorar"><div class="row between"><b class="small">Descripción</b><span class="st mejorar">Mejorar</span></div><div class="val">«Vaso rojo con rayas»</div><p>Estructura: forma → partes (borde, cuello, cuerpo, base) → decoración (bandas, motivos) → estado. <span class="muted">0,8 / 2</span></p></div>
+    <div class="fb-field falta"><div class="row between"><b class="small">N.º inventario</b><span class="st falta">Falta</span></div><div class="val">(vacío)</div><p>Si no se conoce, escribe «No consta» en lugar de dejarlo vacío.</p></div>
+  </div>
+  <div class="card" style="margin-top:12px">
+    <div class="label">Rúbrica orientativa</div>
+    <p class="small muted" style="margin-top:4px">Identificación 3 · Datos técnicos 3 · Descripción 2 · Terminología 2. Ponderación propuesta, <b>no oficial</b>.</p>
+  </div>
+  <a class="source" style="margin-top:10px" href="https://www.cultura.gob.es/cultura/areas/museos/mc/ceres/portada.html" target="_blank" rel="noopener"><svg><use href="#i-doc"/></svg><span style="flex:1"><b>Normalización documental de museos</b><small>CER.es · Tesauros del Ministerio de Cultura (enlace de ejemplo)</small></span><svg><use href="#i-ext"/></svg></a>
+  <div class="row" style="gap:10px;margin-top:14px"><button class="btn btn-ghost" data-back>Corregir ficha</button><button class="btn btn-primary" data-go="tutor">Ver progreso</button></div>
+</section>
+<!-- 7 ACTUALIDAD -->
+<section class="screen" data-screen="actualidad" data-tab="actualidad">
+  <div class="topbar"><h2>Actualidad</h2><span class="small muted">Actualizado hoy</span></div>
+  <div class="chiprow" id="newsChips">
+    <button class="chip sel">Todo</button><button class="chip">Convocatoria</button><button class="chip">Exposiciones</button><button class="chip">Adquisiciones</button><button class="chip">Legislación</button>
+  </div>
+  <div class="stack" id="newsList">
+    <article class="card news" data-cat="Convocatoria">
+      <div class="img" style="background:linear-gradient(135deg,var(--ink-600),var(--ink-900))"></div>
+      <div class="body">
+        <div class="meta"><span class="inst">BOE · Ministerio de Cultura</span><span>· 27 oct 2026</span><span class="badge-demo">Ejemplo</span></div>
+        <div class="h3" style="font-size:16px">Lista provisional de admitidos y excluidos</div>
+        <p class="small muted" style="margin-top:6px">Plazo de 10 días hábiles para subsanar. Revisa tus datos y el turno de acceso.</p>
+        <div class="row between" style="margin-top:10px"><span class="badge-ai"><svg><use href="#i-ai"/></svg>Resumen IA</span><a class="small" href="https://www.boe.es" target="_blank" rel="noopener">Abrir en BOE ↗</a></div>
+      </div>
+    </article>
+    <article class="card news" data-cat="Exposiciones">
+      <div class="img" style="background:radial-gradient(circle at 30% 40%,#E9D6B4,#C49A45 50%,#6E531B)"></div>
+      <div class="body">
+        <div class="meta"><span class="inst">Museo Arqueológico Nacional</span><span>· 24 oct 2026</span><span class="badge-demo">Ejemplo</span></div>
+        <div class="h3" style="font-size:16px">Reapertura de la sala de orfebrería prerromana</div>
+        <p class="small muted" style="margin-top:6px">Nueva museografía con criterios de conservación preventiva e iluminación LED de baja emisión.</p>
+        <div class="rel"><b>Para tu examen:</b> Bloque III · Conservación preventiva.</div>
+        <div class="row between" style="margin-top:10px"><span class="badge-ai"><svg><use href="#i-ai"/></svg>Resumen IA</span><a class="small" href="https://www.cultura.gob.es/man/" target="_blank" rel="noopener">Abrir fuente ↗</a></div>
+      </div>
+    </article>
+    <article class="card news" data-cat="Adquisiciones">
+      <div class="img" style="background:linear-gradient(140deg,var(--terra-500),#6A2E1B)"></div>
+      <div class="body">
+        <div class="meta"><span class="inst">Museo Nacional de Escultura</span><span>· 20 oct 2026</span><span class="badge-demo">Ejemplo</span></div>
+        <div class="h3" style="font-size:16px">Ingreso de una talla barroca por dación en pago</div>
+        <p class="small muted" style="margin-top:6px">Formas de ingreso de fondos en museos estatales: un tema que suele caer.</p>
+        <div class="rel"><b>Para tu examen:</b> Bloque I · Ley 16/1985, medidas de fomento.</div>
+        <div class="row between" style="margin-top:10px"><span class="badge-ai"><svg><use href="#i-ai"/></svg>Resumen IA</span><a class="small" href="https://www.cultura.gob.es/mnescultura/" target="_blank" rel="noopener">Abrir fuente ↗</a></div>
+      </div>
+    </article>
+    <article class="card news" data-cat="Legislación">
+      <div class="img" style="background:repeating-linear-gradient(90deg,#F6F1E8 0 14px,#EFE8DB 14px 28px)"></div>
+      <div class="body">
+        <div class="meta"><span class="inst">BOE · Jefatura del Estado</span><span>· 15 oct 2026</span><span class="badge-demo">Ejemplo</span></div>
+        <div class="h3" style="font-size:16px">Modificación de una norma de patrimonio</div>
+        <p class="small muted" style="margin-top:6px">Te avisamos si cambia algún artículo de tu temario y marcamos las preguntas afectadas.</p>
+        <div class="row between" style="margin-top:10px"><span class="badge-ai"><svg><use href="#i-ai"/></svg>Resumen IA</span><a class="small" href="https://www.boe.es" target="_blank" rel="noopener">Abrir en BOE ↗</a></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 8 TUTOR -->
+<section class="screen" data-screen="tutor" data-tab="tutor">
+  <div class="topbar"><h2>Tu progreso</h2><button class="iconbtn" data-go="ajustes" aria-label="Ajustes de convocatoria"><svg><use href="#i-gear"/></svg></button></div>
+  <div class="stack">
+    <div class="card" style="background:var(--ink-50);border-color:var(--ink-100)">
+      <div class="row between"><div class="label" style="color:var(--ink-600)">Tutor · próxima sesión</div><span class="badge-ai"><svg><use href="#i-ai"/></svg>Contenido IA</span></div>
+      <div class="h3" style="margin:6px 0">15 min · Ingreso de fondos + 1 ficha de cerámica</div>
+      <p class="small muted">Tus fallos se concentran en «ingreso de fondos» y en las dimensiones de las fichas.</p>
+      <button class="btn btn-primary" style="margin-top:12px" data-go="leccion">Empezar sesión recomendada</button>
+    </div>
+    <div class="card">
+      <div class="label">Temas a reforzar · % de aciertos</div>
+      <div class="bars">
+        <div class="bar"><span>Ingreso de fondos</span><div class="track"><i style="width:42%;background:var(--terra-500)"></i></div><b>42%</b></div>
+        <div class="bar"><span>RD 620/1987</span><div class="track"><i style="width:55%;background:var(--gold-500)"></i></div><b>55%</b></div>
+        <div class="bar"><span>Conservación</span><div class="track"><i style="width:61%;background:var(--gold-500)"></i></div><b>61%</b></div>
+        <div class="bar"><span>Ley 16/1985</span><div class="track"><i style="width:78%;background:var(--ink-600)"></i></div><b>78%</b></div>
+        <div class="bar"><span>Constitución</span><div class="track"><i style="width:91%;background:var(--ok-700)"></i></div><b>91%</b></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="row between"><div class="label">Objetivo semanal</div><span class="chip streak"><svg width="14" height="14"><use href="#i-flame"/></svg>12 días</span></div>
+      <div class="week" style="margin-top:8px">
+        <div>L<div class="d y">✓</div></div><div>M<div class="d y">✓</div></div><div>X<div class="d rest">Desc.</div></div><div>J<div class="d t">Hoy</div></div><div>V<div class="d">·</div></div><div>S<div class="d y">✓</div></div><div>D<div class="d y">✓</div></div>
+      </div>
+      <p class="small muted" style="margin-top:10px">5 sesiones de 15 min + 2 fichas. Un día de descanso por semana no rompe la racha.</p>
+    </div>
+    <div class="card">
+      <div class="row between"><div class="label">Fichas de catalogación</div><span class="badge-demo">Orientativo</span></div>
+      <div class="spark" style="margin-top:24px">
+        <div style="height:40%"><span>4,1</span></div><div style="height:48%"><span>4,8</span></div><div style="height:55%"><span>5,5</span></div><div style="height:52%"><span>5,2</span></div><div style="height:63%"><span>6,3</span></div><div class="last" style="height:68%"><span>6,8</span></div>
+      </div>
+      <div class="spark-l"><span>Ánfora</span><span>Retablo</span><span>Moneda</span><span>Fíbula</span><span>Grabado</span><span>Vaso</span></div>
+    </div>
+    <div class="card row between"><div><div class="label">Último simulacro</div><div class="h3">63 / 100 netos</div><div class="small muted">71 bien · 24 mal · 5 en blanco</div></div><button class="chip" data-go="sim-start">Repetir</button></div>
+  </div>
+</section>
+
+<!-- 9 AJUSTES -->
+<section class="screen" data-screen="ajustes" data-tab="tutor">
+  <div class="topbar"><button class="iconbtn" data-back aria-label="Volver"><svg><use href="#i-back"/></svg></button><h2 style="flex:1">Ajustes de convocatoria</h2></div>
+  <div class="stack">
+    <div class="card">
+      <div class="setting"><div>Convocatoria<small>Define temario y formato</small></div><select class="select" aria-label="Convocatoria"><option>2025 · vigente</option><option>2024</option><option>2023</option></select></div>
+      <div class="setting"><div>Referencia BOE<small>Bases de la convocatoria</small></div><a class="chip" href="https://www.boe.es/diario_boe/txt.php?id=BOE-A-2025-26893" target="_blank" rel="noopener">BOE-A-2025-26893 ↗</a></div>
+      <div class="setting"><div>Turno<small>Afecta a los temas exentos</small></div><select class="select" aria-label="Turno"><option>Libre</option><option>Promoción interna</option></select></div>
+    </div>
+    <div class="card">
+      <div class="label" style="margin-bottom:4px">Parámetros del primer ejercicio</div>
+      <div class="setting"><div>Preguntas</div><div class="stepper" data-step="5" data-min="10" data-max="200"><button aria-label="Menos">−</button><output>100</output><button aria-label="Más">+</button></div></div>
+      <div class="setting"><div>Reserva</div><div class="stepper" data-step="1" data-min="0" data-max="20"><button aria-label="Menos">−</button><output>10</output><button aria-label="Más">+</button></div></div>
+      <div class="setting"><div>Duración (min)</div><div class="stepper" data-step="5" data-min="10" data-max="240"><button aria-label="Menos">−</button><output>100</output><button aria-label="Más">+</button></div></div>
+      <div class="setting"><div>Penalización por error</div><select class="select" aria-label="Penalización"><option>−1/3</option><option>−1/4</option><option>Sin penalización</option></select></div>
+      <div class="setting"><div>En blanco<small>No penaliza</small></div><span class="st bien">0 pts</span></div>
+    </div>
+    <div class="card">
+      <div class="setting"><div>Recordatorio diario<small>Uno al día, nunca culpabilizador</small></div><button class="sw-t on" role="switch" aria-checked="true" aria-label="Recordatorio diario"></button></div>
+      <div class="setting"><div>Mostrar XP y racha<small>Ocúltalos si te distraen</small></div><button class="sw-t on" role="switch" aria-checked="true" aria-label="Mostrar XP y racha"></button></div>
+    </div>
+    <div class="disclaimer"><svg><use href="#i-info"/></svg><div><b>Aviso:</b> puntuaciones, rúbricas y simulacros son <b>orientativos</b> y no tienen valor oficial. Consulta siempre las bases publicadas en el BOE. El contenido marcado «IA» puede contener errores: compruébalo en la fuente.</div></div>
+  </div>
+</section>
+
+        </div>
+        <nav class="tabbar" id="tabbar" aria-label="Navegación principal">
+          <button class="tab" data-tabgo="inicio"><span class="ico"><svg><use href="#i-home"/></svg></span>Inicio</button>
+          <button class="tab" data-tabgo="estudiar"><span class="ico"><svg><use href="#i-book"/></svg></span>Estudiar</button>
+          <button class="tab" data-tabgo="catalogar"><span class="ico"><svg><use href="#i-tag"/></svg></span>Catalogar</button>
+          <button class="tab" data-tabgo="actualidad"><span class="ico"><svg><use href="#i-news"/></svg></span>Actualidad</button>
+          <button class="tab" data-tabgo="tutor"><span class="ico"><svg><use href="#i-chart"/></svg></span>Tutor</button>
+        </nav>
+      </div>
+    </div>
+    <aside class="notes" id="notes" aria-live="polite"></aside>
+  </div>
+</section>
+<script>
+const NOTES = {
+  inicio:{n:"1",t:"Inicio · Camino",para:"Saber en 3 segundos qué toca hoy y cuánto falta para el objetivo semanal.",take:["Camino de nodos por bloques del temario","Un único «siguiente paso» destacado","Racha y XP pequeños, en la esquina"],reject:["Mascota, confeti y sonidos","Ligas y rankings competitivos","Vidas/corazones que bloquean el estudio"],desk:"Camino en la columna central y panel lateral fijo con objetivo semanal, recomendación del tutor y actualidad."},
+  estudiar:{n:"1b",t:"Estudiar · menú",para:"Elegir modo: test temático, simulacro o repaso de errores.",take:["Sesiones cortas con duración visible","Repaso espaciado de fallos"],reject:["Mezclar juego y examen en la misma tarjeta"],desk:"Tres tarjetas en fila."},
+  leccion:{n:"2",t:"Lección · pregunta",para:"Responder una pregunta tipo test con calma, sin distracciones. Elige B para ver el acierto; otra opción para ver el error.",take:["Barra de progreso de la lección","«Comprobar» solo se activa al elegir","Salida «No lo sé» sin castigo"],reject:["Cronómetro obligatorio en modo estudio (desactivado por defecto)","Pérdida de vidas por fallo"],desk:"Pregunta centrada (máx. 680 px), atajos de teclado A–D y Enter."},
+  "fb-ok":{n:"3a",t:"Feedback · acierto",para:"Reforzar el acierto y fijar el porqué con la fuente legal.",take:["+XP discreto","Mensaje positivo breve"],reject:["Celebración exagerada","Explicaciones sin fuente"],desk:"Explicación en panel lateral derecho; la fuente se abre en pestaña nueva."},
+  "fb-err":{n:"3b",t:"Feedback · error",para:"Convertir el error en aprendizaje sin culpa: por qué fallaste, una clave para recordarlo y la fuente.",take:["Tono amable, coaching suave","La pregunta vuelve en repaso espaciado"],reject:["Rojo agresivo y sonidos de error","Texto IA sin etiqueta ni fuente"],desk:"Igual que 3a, con tu respuesta y la correcta lado a lado."},
+  "sim-start":{n:"4a",t:"Simulacro · inicio",para:"Reproducir las condiciones reales: 100+10, 100 min, −1/3, blanco sin penalización.",take:["Pantalla de preparación clara antes del reto"],reject:["Gamificar el simulacro: aquí el tono es serio"],desk:"Parámetros en tabla + historial de simulacros a la derecha."},
+  "sim-run":{n:"4b",t:"Simulacro · en curso",para:"Concentración total: cronómetro, contador, mapa de preguntas, opción de dejar en blanco.",take:["Progreso siempre visible"],reject:["XP, racha y feedback durante el examen","Barra inferior (modo foco)"],desk:"Mapa de 110 preguntas fijo a la izquierda; pregunta en el centro."},
+  ficha:{n:"5",t:"Catalogación · ficha",para:"Practicar el ejercicio de catalogación con imagen de referencia y campos normalizados.",take:["Tarea concreta y corta (1 pieza)","Autoguardado"],reject:["Autocompletado que haga la ficha por ti"],desk:"Imagen grande y ampliable a la izquierda, formulario a la derecha."},
+  "ficha-fb":{n:"6",t:"Catalogación · revisión",para:"Ver campo a campo qué está bien, qué mejorar y qué falta, con puntos orientativos.",take:["Feedback inmediato y concreto","Siguiente paso claro"],reject:["Nota única sin explicación","Presentar la nota como oficial"],desk:"Tu ficha y la revisión lado a lado, campo por campo."},
+  actualidad:{n:"7",t:"Actualidad",para:"Estar al día (BOE, museos estatales) y ver por qué importa para el temario.",take:["Tarjetas breves y filtrables"],reject:["Feed infinito tipo red social","Resúmenes sin enlace al original"],desk:"Rejilla de 3 columnas con filtros a la izquierda."},
+  tutor:{n:"8",t:"Progreso · Tutor",para:"Saber qué temas reforzar y qué hacer en la próxima sesión.",take:["Objetivo semanal y racha flexible","Recomendación personalizada"],reject:["Comparación con otros usuarios","Racha que se pierde por un día de descanso"],desk:"Panel tipo cuadro de mando 2×2."},
+  ajustes:{n:"9",t:"Ajustes de convocatoria",para:"Elegir convocatoria y ajustar los parámetros del examen; dejar claro que la nota no es oficial.",take:["Opción de ocultar XP y racha"],reject:["Notificaciones culpabilizadoras"],desk:"Formulario en una columna de 640 px."}
+};
+const TAB_HOME={inicio:"inicio",estudiar:"estudiar",catalogar:"ficha",actualidad:"actualidad",tutor:"tutor"};
+const screens=[...document.querySelectorAll('.screen')];
+const byId=id=>document.querySelector('.screen[data-screen="'+id+'"]');
+let stack=[],current=null,timerInt=null;
+
+function show(id,opts){
+  opts=opts||{};const el=byId(id); if(!el||id===current) return;
+  if(current&&opts.push!==false&&!opts.replace) stack.push(current);
+  screens.forEach(s=>s.classList.remove('active'));
+  el.classList.add('active'); el.scrollTop=0; current=id;
+  document.querySelector('.viewport').classList.toggle('dark',el.classList.contains('dark'));
+  document.getElementById('tabbar').classList.toggle('hidden',el.hasAttribute('data-full'));
+  document.querySelectorAll('.tab').forEach(t=>{const on=t.dataset.tabgo===el.dataset.tab;t.classList.toggle('on',on);t.setAttribute('aria-current',on?'page':'false');});
+  document.querySelectorAll('.screen-nav button').forEach(b=>b.classList.toggle('on',b.dataset.id===id));
+  renderNotes(id);
+  clearInterval(timerInt); if(id==='sim-run') startExamTimer();
+  history.replaceState(null,'','#'+id);
+}
+function back(){const prev=stack.pop(); show(prev||'inicio',{push:false});}
+function renderNotes(id){
+  const n=NOTES[id]; if(!n) return;
+  const li=a=>a.map(x=>'<li>'+x+'</li>').join('');
+  document.getElementById('notes').innerHTML='<span class="tag">Pantalla '+n.n+'</span><h3>'+n.t+'</h3><p><b>Para qué:</b> '+n.para+'</p>'+
+  '<div class="take"><b class="small" style="color:var(--ok-700)">Tomamos (patrones de apps de hábito)</b><ul>'+li(n.take)+'</ul></div>'+
+  '<div class="reject"><b class="small" style="color:var(--terra-600)">Rechazamos conscientemente</b><ul>'+li(n.reject)+'</ul></div>'+
+  '<div class="desk"><b>Escritorio (≥1024 px):</b> '+n.desk+'</div>';
+}
+const nav=document.getElementById('screenNav');
+Object.keys(NOTES).forEach(id=>{const n=NOTES[id];const b=document.createElement('button');b.dataset.id=id;b.innerHTML='<span class="n">'+n.n+'</span>'+n.t;b.onclick=()=>{stack=[];show(id,{push:false});};nav.appendChild(b);});
+
+document.addEventListener('click',e=>{
+  const t=e.target;
+  const go=t.closest('[data-go]'); if(go){e.preventDefault(); if(go.hasAttribute('data-reset')){stack=[];resetLesson();show(go.dataset.go,{push:false});return;} show(go.dataset.go,{replace:go.hasAttribute('data-replace')}); return;}
+  if(t.closest('[data-back]')){e.preventDefault();back();return;}
+  const tab=t.closest('[data-tabgo]'); if(tab){stack=[];show(TAB_HOME[tab.dataset.tabgo],{push:false});return;}
+  const sw=t.closest('.sw-t'); if(sw){sw.classList.toggle('on');sw.setAttribute('aria-checked',sw.classList.contains('on'));
+    if(sw.id==='timerToggle') document.getElementById('timerLbl').textContent=sw.classList.contains('on')?'Cronómetro activado · 60 s por pregunta':'Cronómetro desactivado · modo estudio'; return;}
+  const st=t.closest('.stepper button'); if(st){const w=st.parentElement,o=w.querySelector('output');let v=parseInt(o.textContent,10);const s=+w.dataset.step;v+=st.getAttribute('aria-label')==='Más'?s:-s;v=Math.max(+w.dataset.min,Math.min(+w.dataset.max,v));o.textContent=v;return;}
+  const ch=t.closest('#newsChips .chip'); if(ch){document.querySelectorAll('#newsChips .chip').forEach(c=>c.classList.remove('sel'));ch.classList.add('sel');const f=ch.textContent.trim();document.querySelectorAll('#newsList .news').forEach(a=>a.style.display=(f==='Todo'||a.dataset.cat===f)?'':'none');return;}
+  const eo=t.closest('#examOpts .opt'); if(eo){document.querySelectorAll('#examOpts .opt').forEach(o=>o.classList.remove('sel'));eo.classList.add('sel');return;}
+  if(t.closest('#blankBtn')){document.querySelectorAll('#examOpts .opt').forEach(o=>o.classList.remove('sel'));return;}
+});
+let picked=null;
+document.querySelectorAll('#lessonOpts .opt').forEach(o=>o.addEventListener('click',()=>{document.querySelectorAll('#lessonOpts .opt').forEach(x=>x.classList.remove('sel'));o.classList.add('sel');picked=o;document.getElementById('checkBtn').disabled=false;}));
+document.getElementById('checkBtn').addEventListener('click',()=>{if(picked) show(picked.dataset.ok==='1'?'fb-ok':'fb-err');});
+function resetLesson(){picked=null;document.querySelectorAll('#lessonOpts .opt').forEach(x=>x.classList.remove('sel'));document.getElementById('checkBtn').disabled=true;}
+const qg=document.getElementById('qgrid');
+for(let i=1;i<=110;i++){const c=document.createElement('i');c.textContent=i;let cl=[];if(i<37)cl.push((i===12||i===29)?'b':'a');if(i===20)cl.push('f');if(i===37)cl.push('c');if(i>100)cl.push('r');c.className=cl.join(' ');qg.appendChild(c);}
+function startExamTimer(){let s=100*60;const el=document.getElementById('examTimer');const tick=()=>{const m=String(Math.floor(s/60)).padStart(2,'0'),ss=String(s%60).padStart(2,'0');el.innerHTML='<svg width="18" height="18"><use href="#i-clock"/></svg>'+m+':'+ss;s=Math.max(0,s-1);};tick();timerInt=setInterval(tick,1000);}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName))back();});
+const h=location.hash.slice(1); show(byId(h)?h:'inicio',{push:false});
+</script>
+</body>
+</html>
