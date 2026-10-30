@@ -1,4 +1,4 @@
-# Sala · v0.2 — cambios (feedback de Polina)
+# Aula Museos (entonces «Sala») · v0.2 — cambios (feedback de Polina)
 
 ## Para Polina (ES)
 1. **Tests en dos modos**, explicados en *Estudiar* y en *Simulacro · inicio*:

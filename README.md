@@ -1,12 +1,13 @@
-# Sala — prototipo de concepto (v0.2)
+# Aula Museos — prototipo de concepto (v0.3)
 
 Prototipo clicable, mobile-first, para la app de preparación de la oposición
-**Escala de Ayudantes de Museos del Estado**. Sin código de producción: es solo un mock para evaluar dirección visual y flujos.
+**Escala de Ayudantes de Museos del Estado**. Demo en línea: https://muratpod.github.io/polina-design/ (el repositorio mantiene por ahora el nombre técnico `polina-design`). Sin código de producción: es solo un mock para evaluar dirección visual y flujos.
 
 ## Archivos
 - `index.html` — moodboard (arriba) + prototipo clicable en marco de teléfono (390 px) + notas por pantalla. Un solo archivo, CSS/JS embebidos, sin compilación.
 - `CONCEPTO.md` — concepto para Polina (español).
 - `RESUMEN-MURAT.md` — resumen breve (ruso).
+- `CHANGELOG.md` — historial de versiones (v0.3: nombre Aula Museos).
 - `CHANGELOG-v0.2.md` — qué cambió en v0.2 (feedback de Polina).
 
 ## Cómo abrirlo

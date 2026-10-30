@@ -1,9 +1,11 @@
-# Sala · Concepto de diseño v0.2
+# Aula Museos · Concepto de diseño v0.3
 
+> **v0.3:** nombre de producto aprobado: **Aula Museos** (antes «Sala», nombre de trabajo). Ver `CHANGELOG.md`.
+>
 > **v0.2** (feedback de Polina): dos modos de test (prueba / examen con +1 · 0 · −1/3), jerarquía de fuentes visible, ficha de catalogación con 11 campos cerrados corregida con Tesauros + CER.es. Detalle en `CHANGELOG-v0.2.md`.
 *«Duolingo para opositores» — Escala de Ayudantes de Museos del Estado*
 
-> **Importante:** todas las preguntas, explicaciones, noticias, fichas y puntuaciones del prototipo son **contenido de ejemplo** (placeholders ilustrativos). Lo que simula ser generado por IA lleva siempre la etiqueta **«Contenido IA»** y un enlace a la fuente al lado. «Sala» es un nombre provisional.
+> **Importante:** todas las preguntas, explicaciones, noticias, fichas y puntuaciones del prototipo son **contenido de ejemplo** (placeholders ilustrativos). Lo que simula ser generado por IA lleva siempre la etiqueta **«Contenido IA»** y un enlace a la fuente al lado. El nombre de producto **Aula Museos** está aprobado (v0.3).
 
 ## 1. Dirección visual
 La app debe sentirse como una sala de museo bien iluminada: calma, orden y una pieza cada vez. El color principal es una **tinta verde azulado profunda** (#15393F) sobre fondos **papel** cálidos (#F6F1E8), con **terracota** y **oro pátina** reservados solo para racha y XP, para que la motivación se note sin gritar. Los títulos y las preguntas van en una serif editorial (**Source Serif 4**), que da seriedad de catálogo; la interfaz y el texto largo en **Inter**, muy legible. Tarjetas con esquinas generosas y sombras suaves; los errores se muestran en tonos cálidos y amables, nunca en rojo alarma. Tres palabras: **Sereno. Riguroso. Cálido.** — «examen sin pánico».
@@ -53,7 +55,7 @@ Los **dos primeros flujos** a validar con usuarios reales:
 Simulacro (modo examen), Actualidad, Tutor y Ajustes se muestran para dar visión completa, pero pueden llegar después.
 
 ## 5. Para validar contigo
-- Nombre provisional «Sala» y paleta tinta + papel + terracota/oro.
+- ~~Nombre provisional «Sala»~~ → nombre aprobado **Aula Museos**; paleta tinta + papel + terracota/oro.
 - Nivel de gamificación: XP y racha visibles por defecto (se pueden ocultar), sin ligas ni vidas.
 - Racha con 1 día de descanso semanal sin perderla.
 - Rúbrica orientativa de la ficha (11 campos × 1 punto: bien 1 · mejorar 0,5 · falta 0) — **propuesta nuestra, no oficial**.
