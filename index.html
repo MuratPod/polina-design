@@ -292,6 +292,31 @@ textarea.input{min-height:96px;resize:vertical}
 }
 @media (max-width:430px){.phone{width:100%;height:calc(100vh - 20px);border-radius:0;padding:0;box-shadow:none}.phone::before{display:none}.viewport{border-radius:0}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* v0.2 */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mode{border-radius:var(--r-md);padding:12px;border:1px solid var(--line);background:var(--surface);font-size:12.5px;color:var(--muted)}
+.mode b{display:block;font-size:13.5px;color:var(--ink-900);margin-bottom:4px}
+.mode.ex{background:var(--ink-800);border-color:var(--ink-800);color:#CFE0DE}
+.mode.ex b{color:#fff}
+.mode ul{margin:6px 0 0 16px;padding:0}
+.formula{font-family:var(--serif);font-size:15px;color:var(--ink-900);background:var(--paper-2);border-radius:var(--r-sm);padding:8px 10px;margin-top:6px;text-align:center}
+.mode.ex .formula{background:rgba(255,255,255,.08);color:#fff}
+.srch{border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);padding:10px 12px;font-size:12.5px}
+.srch summary{cursor:pointer;font-weight:600;color:var(--ink-800);list-style:none;display:flex;justify-content:space-between;gap:8px}
+.srch summary::-webkit-details-marker{display:none}
+.srch summary::after{content:"▾";color:var(--muted)}
+.srch[open] summary::after{content:"▴"}
+.srch ol{margin:8px 0 0;padding:0;list-style:none;counter-reset:t}
+.srch li{counter-increment:t;display:flex;gap:8px;align-items:flex-start;padding:5px 0;border-top:1px dashed var(--line);color:var(--muted)}
+.srch li::before{content:counter(t);flex:none;width:20px;height:20px;border-radius:50%;background:var(--paper-2);color:var(--ink-800);font-weight:700;font-size:11px;display:grid;place-items:center}
+.srch li.on{color:var(--ink-900);font-weight:600}
+.srch li.on::before{background:var(--ink-800);color:#fff}
+.srch li small{display:block;font-weight:400;color:var(--muted)}
+.srch a{color:var(--ink-600)}
+.lvl{display:inline-flex;padding:2px 8px;border-radius:var(--r-pill);font-size:10.5px;font-weight:700;background:var(--ink-50);color:var(--ink-800);border:1px solid var(--ink-100);white-space:nowrap}
+.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.res-grid .param b{font-size:24px}
+.ref-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 </style>
 </head>
 <body>
@@ -321,7 +346,7 @@ textarea.input{min-height:96px;resize:vertical}
 </svg>
 
 <header class="page-head">
-  <div class="eyebrow">Prototipo de concepto · v0.1 · para revisión</div>
+  <div class="eyebrow">Prototipo de concepto · v0.2 · revisión con feedback de Polina</div>
   <h1>Sala — prepara Ayudantes de Museos sin pánico</h1>
   <p>Nombre provisional «Sala». Prototipo clicable, mobile-first, para la Escala de Ayudantes de Museos del Estado. Todo el contenido (preguntas, explicaciones, noticias, puntuaciones) es <b>de ejemplo</b>; las explicaciones generadas por IA llevan siempre la etiqueta <span class="badge-ai"><svg><use href="#i-ai"/></svg>Contenido IA</span> y una fuente al lado.</p>
   <nav class="toc"><a href="#moodboard">1 · Moodboard</a><a href="#prototipo">2 · Prototipo clicable</a></nav>
@@ -436,18 +461,26 @@ textarea.input{min-height:96px;resize:vertical}
 <section class="screen" data-screen="estudiar" data-tab="estudiar">
   <div class="topbar"><h2>Estudiar</h2><span class="chip xp"><svg width="14" height="14"><use href="#i-star"/></svg>340 XP</span></div>
   <div class="stack">
+    <div class="card">
+      <div class="label" style="margin-bottom:8px">Dos modos de test · elige cómo practicar</div>
+      <div class="modes">
+        <div class="mode"><b>Modo prueba</b>Sin puntuación. Tras <b style="display:inline;font-size:inherit">cada</b> respuesta (acierto o error) ves la explicación y la fuente.</div>
+        <div class="mode ex"><b>Modo examen</b>Con puntuación y cronómetro. Sin feedback durante el test; las explicaciones, al final.<div class="formula">+1 · 0 · −1/3</div></div>
+      </div>
+      <p class="small muted" style="margin-top:8px"><b>Regla −1/3:</b> acierto +1, en blanco 0, error −1/3. Tres errores anulan un acierto.</p>
+    </div>
     <button class="card" style="text-align:left;width:100%;display:block" data-go="leccion">
-      <div class="label">Test temático · 10 preguntas · ~8 min</div>
+      <div class="row between"><div class="label">Modo prueba · 10 preguntas · ~8 min</div><span class="badge-demo">Sin puntuación</span></div>
       <div class="h3" style="margin:4px 0">Legislación de Patrimonio</div>
-      <div class="muted small">Modo estudio: sin cronómetro, con explicación tras cada respuesta.</div>
+      <div class="muted small">Explicación inmediata tras cada respuesta, con fuente.</div>
     </button>
     <button class="card" style="text-align:left;width:100%;display:block;background:var(--ink-800);border:0" data-go="sim-start">
-      <div class="label" style="color:#A9C7C4">Simulacro completo</div>
+      <div class="label" style="color:#A9C7C4">Modo examen · simulacro</div>
       <div class="h3" style="color:#fff;margin:4px 0">100 + 10 preguntas · 100 min</div>
-      <div class="small" style="color:#CFE0DE">Penalización −1/3 · como el día del examen.</div>
+      <div class="small" style="color:#CFE0DE">+1 / 0 / −1/3 · sin feedback hasta el final.</div>
     </button>
     <div class="card">
-      <div class="label">Repaso de errores</div>
+      <div class="label">Repaso de errores · modo prueba</div>
       <div class="h3" style="margin:4px 0">14 preguntas pendientes</div>
       <div class="muted small">Vuelven a 1, 3 y 7 días hasta que las domines.</div>
       <button class="btn btn-ghost" style="margin-top:12px" data-go="leccion">Repasar errores</button>
@@ -462,7 +495,7 @@ textarea.input{min-height:96px;resize:vertical}
     <div class="progress" role="progressbar" aria-valuenow="4" aria-valuemax="10"><i style="width:40%"></i></div>
     <span class="small muted" style="font-weight:600">4/10</span>
   </div>
-  <div class="q-meta"><span class="chip">Legislación · Ley 16/1985</span><span class="badge-demo">Pregunta de ejemplo</span></div>
+  <div class="q-meta"><span class="lvl">Modo prueba · sin puntuación</span><span class="chip">Legislación · Ley 16/1985</span><span class="badge-demo">Pregunta de ejemplo</span></div>
   <div class="q">Según la Ley 16/1985 del Patrimonio Histórico Español, ¿qué categoría otorga la máxima protección a bienes muebles e inmuebles?</div>
   <div class="opts" id="lessonOpts">
     <button class="opt" data-ok="0"><span class="k">A</span>Bien inventariado</button>
@@ -470,7 +503,7 @@ textarea.input{min-height:96px;resize:vertical}
     <button class="opt" data-ok="0"><span class="k">C</span>Bien catalogado de relevancia regional</button>
     <button class="opt" data-ok="0"><span class="k">D</span>Monumento histórico-artístico nacional</button>
   </div>
-  <div class="toggle" style="margin-top:18px"><button class="sw-t" id="timerToggle" role="switch" aria-checked="false" aria-label="Cronómetro"></button><span id="timerLbl">Cronómetro desactivado · modo estudio</span></div>
+  <div class="toggle" style="margin-top:18px"><button class="sw-t" id="timerToggle" role="switch" aria-checked="false" aria-label="Cronómetro"></button><span id="timerLbl">Cronómetro desactivado · modo prueba</span></div>
   <div class="sticky-foot">
     <button class="btn btn-primary" id="checkBtn" disabled>Comprobar</button>
     <button class="btn" style="margin-top:4px;color:var(--muted);font-size:14px;padding:10px" data-go="fb-err">No lo sé — ver explicación</button>
@@ -487,13 +520,14 @@ textarea.input{min-height:96px;resize:vertical}
   <div class="q" style="font-size:17px;margin-top:12px">¿Categoría de máxima protección según la Ley 16/1985?</div>
   <div class="opts"><div class="opt right"><span class="k"><svg width="14" height="14"><use href="#i-check"/></svg></span>Bien de Interés Cultural (BIC)</div></div>
   <div class="fb-sheet ok">
-    <div class="row between"><div class="fb-title">¡Bien visto!</div><span class="xp-pop"><svg width="14" height="14"><use href="#i-star"/></svg>+10 XP</span></div>
+    <div class="row between"><div class="fb-title">¡Bien visto!</div><span class="lvl">Modo prueba · sin puntuación</span></div>
     <p class="small" style="margin:4px 0 12px;color:var(--ok-700)">3 aciertos seguidos en este tema: lo das por consolidado.</p>
     <div class="explain">
       <div class="row between" style="margin-bottom:8px"><b class="small">Por qué</b><span class="badge-ai"><svg><use href="#i-ai"/></svg>Contenido IA</span></div>
       <p>La Ley distingue niveles: <b>BIC</b> (el más alto), bienes incluidos en el <b>Inventario General</b> (solo muebles) y el resto del Patrimonio Histórico Español.</p>
     </div>
-    <a class="source" style="margin-top:10px" href="https://www.boe.es/buscar/act.php?id=BOE-A-1985-12534" target="_blank" rel="noopener"><svg><use href="#i-doc"/></svg><span style="flex:1"><b>Abrir fuente · Ley 16/1985, art. 1 y 9</b><small>BOE-A-1985-12534 · texto consolidado</small></span><svg><use href="#i-ext"/></svg></a>
+    <a class="source" style="margin-top:10px" href="https://www.boe.es/buscar/act.php?id=BOE-A-1985-12534" target="_blank" rel="noopener"><svg><use href="#i-doc"/></svg><span style="flex:1"><b>Abrir fuente · Ley 16/1985, art. 1 y 9</b><small>BOE-A-1985-12534 · texto consolidado</small></span><span class="lvl">Nivel 2 · Legislación</span><svg><use href="#i-ext"/></svg></a>
+    <div style="margin-top:8px"><details class="srch"><summary><span>Jerarquía de fuentes · esta explicación usa 1 y 2</span></summary><ol><li class="on"><span>Temario BOE<small>Bases y programa · BOE-A-2025-26893</small></span></li><li class="on"><span>Legislación<small>Constitución, LPACAP, TREBEP, Igualdad, Transparencia, LPHE, Mecenazgo…</small></span></li><li class=""><span>BNE · opositores museos<small><a href="https://www.bne.es/es/perfiles/bibliotecarios/recursos-para-profesionales-informacion-opositores/museos" target="_blank" rel="noopener">bne.es · recursos para opositores ↗</a></small></span></li><li class=""><span>Normalización documental<small>Tesauros, CER.es, normas DOMUS publicadas</small></span></li><li class=""><span>Planes nacionales<small>Conservación preventiva, Educación y Museos…</small></span></li><li class=""><span>Guías del Ministerio<small>Ministerio de Cultura</small></span></li><li class=""><span>Webs de museos<small>16 museos de gestión directa</small></span></li><li class=""><span>Investigaciones<small>Estudios y publicaciones académicas</small></span></li></ol></details></div>
     <button class="btn btn-primary" style="margin-top:16px" data-go="inicio" data-reset>Continuar</button>
   </div>
 </section>
@@ -512,13 +546,14 @@ textarea.input{min-height:96px;resize:vertical}
   </div>
   <div class="fb-sheet err">
     <div class="fb-title">Casi. Es una confusión muy común.</div>
-    <p class="small" style="margin:4px 0 12px;color:#7A3A22">Sin problema: volverás a verla mañana y dentro de 3 días.</p>
+    <p class="small" style="margin:4px 0 12px;color:#7A3A22">Sin problema: en modo prueba no resta. Volverás a verla mañana y dentro de 3 días.</p>
     <div class="explain">
       <div class="row between" style="margin-bottom:8px"><b class="small">La clave para no fallarla</b><span class="badge-ai"><svg><use href="#i-ai"/></svg>Contenido IA</span></div>
       <p>«Inventariado» es el <b>segundo</b> nivel y solo se aplica a bienes muebles. El nivel máximo es <b>BIC</b>, que vale para muebles <i>e</i> inmuebles.</p>
       <p class="muted small"><svg width="14" height="14" style="vertical-align:-2px"><use href="#i-bulb"/></svg> Para recordarlo, ordénalos de mayor a menor: BIC → Inventario General → resto del Patrimonio.</p>
     </div>
-    <a class="source" style="margin-top:10px" href="https://www.boe.es/buscar/act.php?id=BOE-A-1985-12534" target="_blank" rel="noopener"><svg><use href="#i-doc"/></svg><span style="flex:1"><b>Abrir fuente · Ley 16/1985, arts. 9 y 26</b><small>BOE-A-1985-12534</small></span><svg><use href="#i-ext"/></svg></a>
+    <a class="source" style="margin-top:10px" href="https://www.boe.es/buscar/act.php?id=BOE-A-1985-12534" target="_blank" rel="noopener"><svg><use href="#i-doc"/></svg><span style="flex:1"><b>Abrir fuente · Ley 16/1985, arts. 9 y 26</b><small>BOE-A-1985-12534</small></span><span class="lvl">Nivel 2 · Legislación</span><svg><use href="#i-ext"/></svg></a>
+    <div style="margin-top:8px"><details class="srch"><summary><span>Jerarquía de fuentes · esta explicación usa 1 y 2</span></summary><ol><li class="on"><span>Temario BOE<small>Bases y programa · BOE-A-2025-26893</small></span></li><li class="on"><span>Legislación<small>Constitución, LPACAP, TREBEP, Igualdad, Transparencia, LPHE, Mecenazgo…</small></span></li><li class=""><span>BNE · opositores museos<small><a href="https://www.bne.es/es/perfiles/bibliotecarios/recursos-para-profesionales-informacion-opositores/museos" target="_blank" rel="noopener">bne.es · recursos para opositores ↗</a></small></span></li><li class=""><span>Normalización documental<small>Tesauros, CER.es, normas DOMUS publicadas</small></span></li><li class=""><span>Planes nacionales<small>Conservación preventiva, Educación y Museos…</small></span></li><li class=""><span>Guías del Ministerio<small>Ministerio de Cultura</small></span></li><li class=""><span>Webs de museos<small>16 museos de gestión directa</small></span></li><li class=""><span>Investigaciones<small>Estudios y publicaciones académicas</small></span></li></ol></details></div>
     <div class="row" style="margin-top:12px;gap:8px"><button class="chip">Marcar para repasar</button><button class="chip">Reportar error</button></div>
     <button class="btn btn-primary" style="margin-top:14px" data-go="inicio" data-reset>Entendido, continuar</button>
   </div>
@@ -535,12 +570,18 @@ textarea.input{min-height:96px;resize:vertical}
     <div class="params">
       <div class="param"><b>100 + 10</b><span>preguntas + reserva</span></div>
       <div class="param"><b>100 min</b><span>duración total</span></div>
-      <div class="param"><b>−1/3</b><span>por respuesta errónea</span></div>
+      <div class="param"><b>+1 / −1/3</b><span>acierto / error</span></div>
       <div class="param"><b>0</b><span>en blanco no penaliza</span></div>
     </div>
-    <div class="card small" style="display:flex;gap:10px">
-      <svg width="20" height="20" style="flex:none;color:var(--ink-600)"><use href="#i-info"/></svg>
-      <div><b>Estrategia:</b> con −1/3, si descartas dos opciones, responder suele compensar. Si no descartas ninguna, mejor en blanco.</div>
+    <div class="card small">
+      <div class="label" style="margin-bottom:6px">Estás en modo examen</div>
+      <div class="modes">
+        <div class="mode"><b>Modo prueba</b>Sin nota. Explicación tras cada respuesta. <a href="#" data-go="leccion">Ir a prueba</a></div>
+        <div class="mode ex"><b>Modo examen</b>Nota con penalización. Sin feedback hasta que termines.</div>
+      </div>
+      <div class="formula" style="margin-top:10px">Nota = aciertos − errores ÷ 3</div>
+      <p class="muted" style="margin-top:8px">Ej.: 71 bien, 24 mal, 5 en blanco → 71 − 24/3 = <b>63</b> netos.</p>
+      <p style="margin-top:6px"><b>Estrategia:</b> con −1/3, si descartas dos opciones, responder suele compensar. Si no descartas ninguna, mejor en blanco.</p>
     </div>
     <div class="disclaimer"><svg><use href="#i-info"/></svg><div>Parámetros de la convocatoria de referencia; puedes cambiarlos en <a href="#" data-go="ajustes">Ajustes</a>. Puntuación orientativa, no oficial.</div></div>
     <button class="btn btn-primary" data-go="sim-run">Empezar simulacro</button>
@@ -565,14 +606,43 @@ textarea.input{min-height:96px;resize:vertical}
   </div>
   <div class="row" style="gap:10px;margin-top:16px">
     <button class="btn" style="background:#183A40;color:#fff;border:1px solid #2C5960" id="blankBtn">Dejar en blanco</button>
-    <button class="btn" style="background:var(--gold-500);color:var(--ink-900)">Siguiente</button>
+    <button class="btn" style="background:var(--gold-500);color:var(--ink-900)" id="nextBtn">Siguiente</button>
   </div>
   <div style="margin-top:20px">
     <div class="row between small" style="color:#9FBDBA"><span>Mapa del examen</span><span>34 resp. · 2 en blanco · 1 marcada</span></div>
     <div class="qgrid" id="qgrid"></div>
     <p class="small" style="color:#9FBDBA;margin-top:8px">101–110: preguntas de reserva.</p>
   </div>
-  <p class="small" style="color:#9FBDBA;margin-top:10px">Sin XP ni explicaciones durante el simulacro. Las verás todas al terminar.</p>
+  <p class="small" style="color:#9FBDBA;margin-top:10px">Modo examen: sin XP, sin «correcto/incorrecto» y sin explicaciones durante el simulacro. Las verás todas al terminar.</p>
+  <button class="btn" style="margin-top:12px;background:transparent;color:#fff;border:1.5px solid #2C5960" data-go="sim-res">Entregar y ver resultados</button>
+</section>
+
+<!-- 4c SIMULACRO RESULTADOS -->
+<section class="screen" data-screen="sim-res" data-tab="estudiar">
+  <div class="topbar"><button class="iconbtn" data-go="estudiar" data-reset aria-label="Cerrar"><svg><use href="#i-x"/></svg></button><h2 style="flex:1">Resultado del simulacro</h2></div>
+  <div class="stack">
+    <div class="card row" style="gap:14px">
+      <div class="score-ring"><div><b>63</b><small>/ 100</small></div></div>
+      <div><div class="label">Nota orientativa · netos</div><div class="h3" style="font-size:16px">Por encima de tu media (58). El bloque II es el que más resta.</div><div class="row" style="margin-top:6px;gap:6px;flex-wrap:wrap"><span class="badge-demo">No oficial</span><span class="badge-demo">Ejemplo</span></div></div>
+    </div>
+    <div class="res-grid">
+      <div class="param"><b style="color:var(--ok-700)">71</b><span>aciertos · +71</span></div>
+      <div class="param"><b style="color:var(--err-700)">24</b><span>errores · −8</span></div>
+      <div class="param"><b>5</b><span>en blanco · 0</span></div>
+    </div>
+    <div class="formula">71 × (+1) + 24 × (−1/3) + 5 × 0 = <b>63</b></div>
+    <p class="small muted">Las 10 de reserva no puntúan salvo anulación. Cálculo según los parámetros de <a href="#" data-go="ajustes">Ajustes</a>; nota orientativa, no oficial.</p>
+    <div class="card">
+      <div class="row between"><div class="label">Ahora sí: revisión de errores</div><span class="small muted">24</span></div>
+      <div class="stack" style="margin-top:8px;gap:8px">
+        <button class="source" style="width:100%;text-align:left" data-go="fb-err"><svg><use href="#i-doc"/></svg><span style="flex:1"><b>P. 20 · Ley 16/1985 · categorías</b><small>Tu respuesta: A · Correcta: B</small></span><span class="lvl">Nivel 2</span></button>
+        <button class="source" style="width:100%;text-align:left" data-go="fb-err"><svg><use href="#i-doc"/></svg><span style="flex:1"><b>P. 37 · RD 620/1987 · museos estatales</b><small>Tu respuesta: C · Correcta: B</small></span><span class="lvl">Nivel 2</span></button>
+        <button class="source" style="width:100%;text-align:left" data-go="fb-err"><svg><use href="#i-doc"/></svg><span style="flex:1"><b>P. 58 · Conservación preventiva</b><small>En blanco · Correcta: D</small></span><span class="lvl">Nivel 5</span></button>
+      </div>
+      <p class="small muted" style="margin-top:8px">Cada explicación lleva etiqueta <span class="badge-ai"><svg><use href="#i-ai"/></svg>Contenido IA</span> y su fuente.</p>
+    </div>
+    <div class="row" style="gap:10px"><button class="btn btn-ghost" data-go="leccion">Practicar fallos (prueba)</button><button class="btn btn-primary" data-go="tutor">Ver progreso</button></div>
+  </div>
 </section>
 
 <!-- 5 CATALOGACIÓN FICHA -->
@@ -583,26 +653,30 @@ textarea.input{min-height:96px;resize:vertical}
     <span class="cap">Imagen de referencia · pieza de ejemplo</span>
     <button class="iconbtn zoom" aria-label="Ampliar imagen"><svg><use href="#i-zoom"/></svg></button>
   </div>
-  <p class="small muted" style="margin:10px 0 14px">Observa la pieza y redacta la ficha como en el ejercicio práctico. Usa terminología normalizada. Si un dato no se puede saber, escribe «No consta».</p>
+  <p class="small muted" style="margin:10px 0 14px">Observa la pieza y redacta la ficha como en el ejercicio práctico. Usa la terminología de los <b>Tesauros</b> del Ministerio y <b>CER.es</b>. Si un dato no se puede saber, escribe «No consta».</p>
   <form class="stack" id="fichaForm" onsubmit="return false">
-    <div class="field"><label for="f1">Museo <small>institución</small></label><input id="f1" class="input" placeholder="Ej.: Museo Arqueológico Nacional"></div>
+    <div class="field"><label for="f1">Clasificación genérica</label><input id="f1" class="input" placeholder="Ej.: Arqueología"></div>
+    <div class="field"><label for="f2">Objeto / Documento</label><input id="f2" class="input" placeholder="Término de Tesauros"></div>
     <div class="fgroup">
-      <div class="field"><label for="f2">N.º inventario</label><input id="f2" class="input" placeholder="—"></div>
-      <div class="field"><label for="f3">Objeto</label><input id="f3" class="input" placeholder="Término genérico"></div>
-    </div>
-    <div class="field"><label for="f4">Autor / Taller</label><input id="f4" class="input" placeholder="Anónimo, taller…"></div>
-    <div class="field"><label for="f5">Título / Nombre específico</label><input id="f5" class="input" placeholder="Si procede"></div>
-    <div class="fgroup">
-      <div class="field"><label for="f6">Materia</label><input id="f6" class="input" placeholder="Ej.: arcilla"></div>
-      <div class="field"><label for="f7">Técnica</label><input id="f7" class="input" placeholder="Ej.: torneado"></div>
+      <div class="field"><label for="f3">Autor</label><input id="f3" class="input" placeholder="Anónimo, taller…"></div>
+      <div class="field"><label for="f4">Título</label><input id="f4" class="input" placeholder="Si procede"></div>
     </div>
     <div class="fgroup">
-      <div class="field"><label for="f8">Dimensiones</label><input id="f8" class="input" placeholder="Alt. × diám. (cm)"></div>
-      <div class="field"><label for="f9">Datación</label><input id="f9" class="input" placeholder="Siglo / rango"></div>
+      <div class="field"><label for="f5">Materia / Soporte</label><input id="f5" class="input" placeholder="Ej.: arcilla"></div>
+      <div class="field"><label for="f6">Número de objetos</label><input id="f6" class="input" placeholder="Ej.: 1"></div>
     </div>
-    <div class="field"><label for="f10">Contexto cultural / Estilo</label><input id="f10" class="input" placeholder="Ej.: Cultura ibérica"></div>
-    <div class="field"><label for="f11">Descripción <small>forma, decoración, estado</small></label><textarea id="f11" class="input" placeholder="De lo general a lo particular…"></textarea></div>
-    <div class="row between small muted"><span>Guardado automático · 22:32</span><span>Tiempo: libre</span></div>
+    <div class="field"><label for="f7">Técnica</label><input id="f7" class="input" placeholder="Ej.: torneado; pintado"></div>
+    <div class="field"><label for="f8">Inscripciones</label><input id="f8" class="input" placeholder="Transcripción o «No consta»"></div>
+    <div class="fgroup">
+      <div class="field"><label for="f9">Dimensiones</label><input id="f9" class="input" placeholder="Alt. × diám. (cm)"></div>
+      <div class="field"><label for="f10">Datación</label><input id="f10" class="input" placeholder="Siglo / rango"></div>
+    </div>
+    <div class="field"><label for="f11">Iconografía</label><input id="f11" class="input" placeholder="Tema / motivos representados"></div>
+    <div class="row between small muted"><span>11 campos · guardado automático · 22:32</span><span>Tiempo: libre</span></div>
+    <div class="ref-row">
+      <a class="chip" href="https://tesauros.cultura.gob.es/tesauros/tesauros" target="_blank" rel="noopener">Tesauros ↗</a>
+      <a class="chip" href="https://www.cultura.gob.es/cultura/areas/museos/mc/ceres/portada.html" target="_blank" rel="noopener">CER.es ↗</a>
+    </div>
     <button class="btn btn-primary" type="button" data-go="ficha-fb">Enviar ficha para revisión</button>
   </form>
 </section>
@@ -611,24 +685,33 @@ textarea.input{min-height:96px;resize:vertical}
 <section class="screen" data-screen="ficha-fb" data-tab="catalogar">
   <div class="topbar"><button class="iconbtn" data-back aria-label="Volver a la ficha"><svg><use href="#i-back"/></svg></button><h2 style="flex:1">Revisión de la ficha</h2></div>
   <div class="card row" style="gap:14px">
-    <div class="score-ring"><div><b>6,8</b><small>/ 10</small></div></div>
-    <div><div class="label">Puntuación orientativa</div><div class="h3" style="font-size:16px">Buena base. Afina técnica, datación y descripción.</div><div class="row" style="margin-top:6px;gap:6px;flex-wrap:wrap"><span class="badge-ai"><svg><use href="#i-ai"/></svg>Contenido IA</span><span class="badge-demo">No oficial</span></div></div>
+    <div class="score-ring"><div><b>7</b><small>/ 11</small></div></div>
+    <div><div class="label">Puntuación orientativa</div><div class="h3" style="font-size:16px">Buena base. Afina técnica, inscripciones, iconografía y datación.</div><div class="row" style="margin-top:6px;gap:6px;flex-wrap:wrap"><span class="badge-ai"><svg><use href="#i-ai"/></svg>Contenido IA</span><span class="badge-demo">No oficial</span></div></div>
   </div>
-  <div class="row small" style="gap:12px;margin:14px 0 10px;flex-wrap:wrap"><span><span class="st bien">Bien</span> 5</span><span><span class="st mejorar">Mejorar</span> 3</span><span><span class="st falta">Falta</span> 2</span></div>
+  <div class="row small" style="gap:12px;margin:14px 0 10px;flex-wrap:wrap"><span><span class="st bien">Bien</span> 5</span><span><span class="st mejorar">Mejorar</span> 4</span><span><span class="st falta">Falta</span> 2</span></div>
+  <p class="small muted" style="margin-bottom:10px">Corrección campo a campo contrastada con <b>Tesauros</b> del Ministerio de Cultura y <b>CER.es</b>.</p>
   <div class="stack">
-    <div class="fb-field bien"><div class="row between"><b class="small">Museo</b><span class="st bien">Bien</span></div><div class="val">«Museo Arqueológico Nacional»</div><p>Nombre oficial completo. <span class="muted">1 / 1</span></p></div>
-    <div class="fb-field bien"><div class="row between"><b class="small">Objeto</b><span class="st bien">Bien</span></div><div class="val">«Vaso»</div><p>Término genérico adecuado. <span class="muted">1 / 1</span></p></div>
-    <div class="fb-field mejorar"><div class="row between"><b class="small">Técnica</b><span class="st mejorar">Mejorar</span></div><div class="val">«Hecho a torno, pintado»</div><p>Separa técnicas con términos normalizados: <b>torneado; pintado</b>. <span class="muted">0,5 / 1</span></p></div>
-    <div class="fb-field mejorar"><div class="row between"><b class="small">Datación</b><span class="st mejorar">Mejorar</span></div><div class="val">«Época ibérica»</div><p>Da un rango (p. ej. <b>s. IV – s. III a. C.</b>). El período cultural va en «Contexto cultural». <span class="muted">0,5 / 1</span></p></div>
-    <div class="fb-field falta"><div class="row between"><b class="small">Dimensiones</b><span class="st falta">Falta</span></div><div class="val">(vacío)</div><p>Indica al menos altura y diámetro máximo, en cm. <span class="muted">0 / 1</span></p></div>
-    <div class="fb-field mejorar"><div class="row between"><b class="small">Descripción</b><span class="st mejorar">Mejorar</span></div><div class="val">«Vaso rojo con rayas»</div><p>Estructura: forma → partes (borde, cuello, cuerpo, base) → decoración (bandas, motivos) → estado. <span class="muted">0,8 / 2</span></p></div>
-    <div class="fb-field falta"><div class="row between"><b class="small">N.º inventario</b><span class="st falta">Falta</span></div><div class="val">(vacío)</div><p>Si no se conoce, escribe «No consta» en lugar de dejarlo vacío.</p></div>
+    <div class="fb-field bien"><div class="row between"><b class="small">Clasificación genérica</b><span class="st bien">Bien</span></div><div class="val">«Arqueología»</div><p>Término correcto del tesauro de clasificación genérica. <span class="muted">Ref.: Tesauros</span> <span class="muted">1 / 1</span></p></div>
+    <div class="fb-field bien"><div class="row between"><b class="small">Objeto / Documento</b><span class="st bien">Bien</span></div><div class="val">«Vaso»</div><p>Denominación normalizada adecuada. <span class="muted">Ref.: Tesauros</span> <span class="muted">1 / 1</span></p></div>
+    <div class="fb-field bien"><div class="row between"><b class="small">Autor</b><span class="st bien">Bien</span></div><div class="val">«Anónimo»</div><p>Correcto cuando no hay autoría documentada. <span class="muted">Ref.: CER.es</span> <span class="muted">1 / 1</span></p></div>
+    <div class="fb-field bien"><div class="row between"><b class="small">Título</b><span class="st bien">Bien</span></div><div class="val">«No consta»</div><p>Bien: la pieza no tiene título propio; mejor «No consta» que vacío. <span class="muted">1 / 1</span></p></div>
+    <div class="fb-field bien"><div class="row between"><b class="small">Materia / Soporte</b><span class="st bien">Bien</span></div><div class="val">«Arcilla»</div><p>Término normalizado. <span class="muted">Ref.: Tesauros</span> <span class="muted">1 / 1</span></p></div>
+    <div class="fb-field falta"><div class="row between"><b class="small">Número de objetos</b><span class="st falta">Falta</span></div><div class="val">(vacío)</div><p>Indica el número de objetos que forman la pieza: <b>1</b>. <span class="muted">Ref.: CER.es</span> <span class="muted">0 / 1</span></p></div>
+    <div class="fb-field mejorar"><div class="row between"><b class="small">Técnica</b><span class="st mejorar">Mejorar</span></div><div class="val">«Hecho a torno, pintado»</div><p>Separa técnicas con términos del tesauro: <b>torneado; pintado</b>. <span class="muted">Ref.: Tesauros</span> <span class="muted">0,5 / 1</span></p></div>
+    <div class="fb-field mejorar"><div class="row between"><b class="small">Inscripciones</b><span class="st mejorar">Mejorar</span></div><div class="val">«Ninguna»</div><p>Usa la fórmula normalizada («No tiene» / «No consta») según el criterio de la ficha. <span class="muted">Ref.: CER.es</span> <span class="muted">0,5 / 1</span></p></div>
+    <div class="fb-field falta"><div class="row between"><b class="small">Dimensiones</b><span class="st falta">Falta</span></div><div class="val">(vacío)</div><p>Indica al menos altura y diámetro máximo, en cm. <span class="muted">Ref.: CER.es</span> <span class="muted">0 / 1</span></p></div>
+    <div class="fb-field mejorar"><div class="row between"><b class="small">Iconografía</b><span class="st mejorar">Mejorar</span></div><div class="val">«Rayas»</div><p>Describe los motivos con terminología: <b>decoración geométrica; bandas; semicírculos concéntricos</b>. <span class="muted">Ref.: Tesauros</span> <span class="muted">0,5 / 1</span></p></div>
+    <div class="fb-field mejorar"><div class="row between"><b class="small">Datación</b><span class="st mejorar">Mejorar</span></div><div class="val">«Época ibérica»</div><p>Da un rango (p. ej. <b>s. IV – s. III a. C.</b>), no solo el período cultural. <span class="muted">Ref.: CER.es</span> <span class="muted">0,5 / 1</span></p></div>
   </div>
   <div class="card" style="margin-top:12px">
     <div class="label">Rúbrica orientativa</div>
-    <p class="small muted" style="margin-top:4px">Identificación 3 · Datos técnicos 3 · Descripción 2 · Terminología 2. Ponderación propuesta, <b>no oficial</b>.</p>
+    <p class="small muted" style="margin-top:4px">11 campos × 1 punto (bien 1 · mejorar 0,5 · falta 0). Ponderación propuesta, <b>no oficial</b>.</p>
   </div>
-  <a class="source" style="margin-top:10px" href="https://www.cultura.gob.es/cultura/areas/museos/mc/ceres/portada.html" target="_blank" rel="noopener"><svg><use href="#i-doc"/></svg><span style="flex:1"><b>Normalización documental de museos</b><small>CER.es · Tesauros del Ministerio de Cultura (enlace de ejemplo)</small></span><svg><use href="#i-ext"/></svg></a>
+  <div class="stack" style="margin-top:10px;gap:8px">
+    <a class="source" href="https://tesauros.cultura.gob.es/tesauros/tesauros" target="_blank" rel="noopener"><svg><use href="#i-doc"/></svg><span style="flex:1"><b>Tesauros · Ministerio de Cultura</b><small>tesauros.cultura.gob.es · terminología normalizada</small></span><span class="lvl">Nivel 4</span><svg><use href="#i-ext"/></svg></a>
+    <a class="source" href="https://www.cultura.gob.es/cultura/areas/museos/mc/ceres/portada.html" target="_blank" rel="noopener"><svg><use href="#i-doc"/></svg><span style="flex:1"><b>CER.es · Red Digital de Colecciones de Museos</b><small>Fichas de referencia publicadas</small></span><span class="lvl">Nivel 4</span><svg><use href="#i-ext"/></svg></a>
+    <details class="srch"><summary><span>Jerarquía de fuentes · esta revisión usa 4</span></summary><ol><li class=""><span>Temario BOE<small>Bases y programa · BOE-A-2025-26893</small></span></li><li class=""><span>Legislación<small>Constitución, LPACAP, TREBEP, Igualdad, Transparencia, LPHE, Mecenazgo…</small></span></li><li class=""><span>BNE · opositores museos<small><a href="https://www.bne.es/es/perfiles/bibliotecarios/recursos-para-profesionales-informacion-opositores/museos" target="_blank" rel="noopener">bne.es · recursos para opositores ↗</a></small></span></li><li class="on"><span>Normalización documental<small>Tesauros, CER.es, normas DOMUS publicadas</small></span></li><li class=""><span>Planes nacionales<small>Conservación preventiva, Educación y Museos…</small></span></li><li class=""><span>Guías del Ministerio<small>Ministerio de Cultura</small></span></li><li class=""><span>Webs de museos<small>16 museos de gestión directa</small></span></li><li class=""><span>Investigaciones<small>Estudios y publicaciones académicas</small></span></li></ol></details>
+  </div>
   <div class="row" style="gap:10px;margin-top:14px"><button class="btn btn-ghost" data-back>Corregir ficha</button><button class="btn btn-primary" data-go="tutor">Ver progreso</button></div>
 </section>
 <!-- 7 ACTUALIDAD -->
@@ -637,11 +720,12 @@ textarea.input{min-height:96px;resize:vertical}
   <div class="chiprow" id="newsChips">
     <button class="chip sel">Todo</button><button class="chip">Convocatoria</button><button class="chip">Exposiciones</button><button class="chip">Adquisiciones</button><button class="chip">Legislación</button>
   </div>
+  <div style="margin:0 0 12px"><details class="srch" open><summary><span>Fuentes por jerarquía · de dónde salen estas noticias</span></summary><p class="small muted" style="margin-top:6px">Prioridad de mayor a menor fiabilidad para el examen. Cada tarjeta indica su nivel.</p><ol><li class="on"><span>Temario BOE<small>Bases y programa · BOE-A-2025-26893</small></span></li><li class="on"><span>Legislación<small>Constitución, LPACAP, TREBEP, Igualdad, Transparencia, LPHE, Mecenazgo…</small></span></li><li class=""><span>BNE · opositores museos<small><a href="https://www.bne.es/es/perfiles/bibliotecarios/recursos-para-profesionales-informacion-opositores/museos" target="_blank" rel="noopener">bne.es · recursos para opositores ↗</a></small></span></li><li class=""><span>Normalización documental<small>Tesauros, CER.es, normas DOMUS publicadas</small></span></li><li class=""><span>Planes nacionales<small>Conservación preventiva, Educación y Museos…</small></span></li><li class="on"><span>Guías del Ministerio<small>Ministerio de Cultura</small></span></li><li class="on"><span>Webs de museos<small>16 museos de gestión directa</small></span></li><li class=""><span>Investigaciones<small>Estudios y publicaciones académicas</small></span></li></ol></details></div>
   <div class="stack" id="newsList">
     <article class="card news" data-cat="Convocatoria">
       <div class="img" style="background:linear-gradient(135deg,var(--ink-600),var(--ink-900))"></div>
       <div class="body">
-        <div class="meta"><span class="inst">BOE · Ministerio de Cultura</span><span>· 27 oct 2026</span><span class="badge-demo">Ejemplo</span></div>
+        <div class="meta"><span class="lvl">1 · Temario BOE</span><span class="inst">BOE · Ministerio de Cultura</span><span>· 27 oct 2026</span><span class="badge-demo">Ejemplo</span></div>
         <div class="h3" style="font-size:16px">Lista provisional de admitidos y excluidos</div>
         <p class="small muted" style="margin-top:6px">Plazo de 10 días hábiles para subsanar. Revisa tus datos y el turno de acceso.</p>
         <div class="row between" style="margin-top:10px"><span class="badge-ai"><svg><use href="#i-ai"/></svg>Resumen IA</span><a class="small" href="https://www.boe.es" target="_blank" rel="noopener">Abrir en BOE ↗</a></div>
@@ -650,7 +734,7 @@ textarea.input{min-height:96px;resize:vertical}
     <article class="card news" data-cat="Exposiciones">
       <div class="img" style="background:radial-gradient(circle at 30% 40%,#E9D6B4,#C49A45 50%,#6E531B)"></div>
       <div class="body">
-        <div class="meta"><span class="inst">Museo Arqueológico Nacional</span><span>· 24 oct 2026</span><span class="badge-demo">Ejemplo</span></div>
+        <div class="meta"><span class="lvl">7 · Web de museo</span><span class="inst">Museo Arqueológico Nacional</span><span>· 24 oct 2026</span><span class="badge-demo">Ejemplo</span></div>
         <div class="h3" style="font-size:16px">Reapertura de la sala de orfebrería prerromana</div>
         <p class="small muted" style="margin-top:6px">Nueva museografía con criterios de conservación preventiva e iluminación LED de baja emisión.</p>
         <div class="rel"><b>Para tu examen:</b> Bloque III · Conservación preventiva.</div>
@@ -660,7 +744,7 @@ textarea.input{min-height:96px;resize:vertical}
     <article class="card news" data-cat="Adquisiciones">
       <div class="img" style="background:linear-gradient(140deg,var(--terra-500),#6A2E1B)"></div>
       <div class="body">
-        <div class="meta"><span class="inst">Museo Nacional de Escultura</span><span>· 20 oct 2026</span><span class="badge-demo">Ejemplo</span></div>
+        <div class="meta"><span class="lvl">7 · Web de museo</span><span class="inst">Museo Nacional de Escultura</span><span>· 20 oct 2026</span><span class="badge-demo">Ejemplo</span></div>
         <div class="h3" style="font-size:16px">Ingreso de una talla barroca por dación en pago</div>
         <p class="small muted" style="margin-top:6px">Formas de ingreso de fondos en museos estatales: un tema que suele caer.</p>
         <div class="rel"><b>Para tu examen:</b> Bloque I · Ley 16/1985, medidas de fomento.</div>
@@ -670,7 +754,7 @@ textarea.input{min-height:96px;resize:vertical}
     <article class="card news" data-cat="Legislación">
       <div class="img" style="background:repeating-linear-gradient(90deg,#F6F1E8 0 14px,#EFE8DB 14px 28px)"></div>
       <div class="body">
-        <div class="meta"><span class="inst">BOE · Jefatura del Estado</span><span>· 15 oct 2026</span><span class="badge-demo">Ejemplo</span></div>
+        <div class="meta"><span class="lvl">2 · Legislación</span><span class="inst">BOE · Jefatura del Estado</span><span>· 15 oct 2026</span><span class="badge-demo">Ejemplo</span></div>
         <div class="h3" style="font-size:16px">Modificación de una norma de patrimonio</div>
         <p class="small muted" style="margin-top:6px">Te avisamos si cambia algún artículo de tu temario y marcamos las preguntas afectadas.</p>
         <div class="row between" style="margin-top:10px"><span class="badge-ai"><svg><use href="#i-ai"/></svg>Resumen IA</span><a class="small" href="https://www.boe.es" target="_blank" rel="noopener">Abrir en BOE ↗</a></div>
@@ -731,12 +815,21 @@ textarea.input{min-height:96px;resize:vertical}
       <div class="setting"><div>Preguntas</div><div class="stepper" data-step="5" data-min="10" data-max="200"><button aria-label="Menos">−</button><output>100</output><button aria-label="Más">+</button></div></div>
       <div class="setting"><div>Reserva</div><div class="stepper" data-step="1" data-min="0" data-max="20"><button aria-label="Menos">−</button><output>10</output><button aria-label="Más">+</button></div></div>
       <div class="setting"><div>Duración (min)</div><div class="stepper" data-step="5" data-min="10" data-max="240"><button aria-label="Menos">−</button><output>100</output><button aria-label="Más">+</button></div></div>
-      <div class="setting"><div>Penalización por error</div><select class="select" aria-label="Penalización"><option>−1/3</option><option>−1/4</option><option>Sin penalización</option></select></div>
+      <div class="setting"><div>Penalización por error<small>Modo examen: +1 / 0 / −1/3</small></div><select class="select" aria-label="Penalización"><option>−1/3</option><option>−1/4</option><option>Sin penalización</option></select></div>
       <div class="setting"><div>En blanco<small>No penaliza</small></div><span class="st bien">0 pts</span></div>
     </div>
     <div class="card">
       <div class="setting"><div>Recordatorio diario<small>Uno al día, nunca culpabilizador</small></div><button class="sw-t on" role="switch" aria-checked="true" aria-label="Recordatorio diario"></button></div>
       <div class="setting"><div>Mostrar XP y racha<small>Ocúltalos si te distraen</small></div><button class="sw-t on" role="switch" aria-checked="true" aria-label="Mostrar XP y racha"></button></div>
+    </div>
+    <div class="card">
+      <div class="label" style="margin-bottom:6px">Fuentes · orden de prioridad</div>
+      <p class="small muted" style="margin-bottom:8px">Si dos fuentes difieren, manda la de nivel más alto. La IA solo explica con estas fuentes y siempre enlaza la usada.</p>
+      <details class="srch" open><summary><span>Jerarquía de fuentes (8 niveles)</span></summary><ol><li class="on"><span>Temario BOE<small>Bases y programa · BOE-A-2025-26893</small></span></li><li class="on"><span>Legislación<small>Constitución, LPACAP, TREBEP, Igualdad, Transparencia, LPHE, Mecenazgo…</small></span></li><li class="on"><span>BNE · opositores museos<small><a href="https://www.bne.es/es/perfiles/bibliotecarios/recursos-para-profesionales-informacion-opositores/museos" target="_blank" rel="noopener">bne.es · recursos para opositores ↗</a></small></span></li><li class="on"><span>Normalización documental<small>Tesauros, CER.es, normas DOMUS publicadas</small></span></li><li class="on"><span>Planes nacionales<small>Conservación preventiva, Educación y Museos…</small></span></li><li class="on"><span>Guías del Ministerio<small>Ministerio de Cultura</small></span></li><li class="on"><span>Webs de museos<small>16 museos de gestión directa</small></span></li><li class="on"><span>Investigaciones<small>Estudios y publicaciones académicas</small></span></li></ol></details>
+      <div class="ref-row" style="margin-top:10px">
+        <a class="chip" href="https://www.bne.es/es/perfiles/bibliotecarios/recursos-para-profesionales-informacion-opositores/museos" target="_blank" rel="noopener">BNE · opositores museos ↗</a>
+        <a class="chip" href="https://tesauros.cultura.gob.es/tesauros/tesauros" target="_blank" rel="noopener">Tesauros ↗</a>
+      </div>
     </div>
     <div class="disclaimer"><svg><use href="#i-info"/></svg><div><b>Aviso:</b> puntuaciones, rúbricas y simulacros son <b>orientativos</b> y no tienen valor oficial. Consulta siempre las bases publicadas en el BOE. El contenido marcado «IA» puede contener errores: compruébalo en la fuente.</div></div>
   </div>
@@ -758,17 +851,18 @@ textarea.input{min-height:96px;resize:vertical}
 <script>
 const NOTES = {
   inicio:{n:"1",t:"Inicio · Camino",para:"Saber en 3 segundos qué toca hoy y cuánto falta para el objetivo semanal.",take:["Camino de nodos por bloques del temario","Un único «siguiente paso» destacado","Racha y XP pequeños, en la esquina"],reject:["Mascota, confeti y sonidos","Ligas y rankings competitivos","Vidas/corazones que bloquean el estudio"],desk:"Camino en la columna central y panel lateral fijo con objetivo semanal, recomendación del tutor y actualidad."},
-  estudiar:{n:"1b",t:"Estudiar · menú",para:"Elegir modo: test temático, simulacro o repaso de errores.",take:["Sesiones cortas con duración visible","Repaso espaciado de fallos"],reject:["Mezclar juego y examen en la misma tarjeta"],desk:"Tres tarjetas en fila."},
-  leccion:{n:"2",t:"Lección · pregunta",para:"Responder una pregunta tipo test con calma, sin distracciones. Elige B para ver el acierto; otra opción para ver el error.",take:["Barra de progreso de la lección","«Comprobar» solo se activa al elegir","Salida «No lo sé» sin castigo"],reject:["Cronómetro obligatorio en modo estudio (desactivado por defecto)","Pérdida de vidas por fallo"],desk:"Pregunta centrada (máx. 680 px), atajos de teclado A–D y Enter."},
-  "fb-ok":{n:"3a",t:"Feedback · acierto",para:"Reforzar el acierto y fijar el porqué con la fuente legal.",take:["+XP discreto","Mensaje positivo breve"],reject:["Celebración exagerada","Explicaciones sin fuente"],desk:"Explicación en panel lateral derecho; la fuente se abre en pestaña nueva."},
-  "fb-err":{n:"3b",t:"Feedback · error",para:"Convertir el error en aprendizaje sin culpa: por qué fallaste, una clave para recordarlo y la fuente.",take:["Tono amable, coaching suave","La pregunta vuelve en repaso espaciado"],reject:["Rojo agresivo y sonidos de error","Texto IA sin etiqueta ni fuente"],desk:"Igual que 3a, con tu respuesta y la correcta lado a lado."},
-  "sim-start":{n:"4a",t:"Simulacro · inicio",para:"Reproducir las condiciones reales: 100+10, 100 min, −1/3, blanco sin penalización.",take:["Pantalla de preparación clara antes del reto"],reject:["Gamificar el simulacro: aquí el tono es serio"],desk:"Parámetros en tabla + historial de simulacros a la derecha."},
-  "sim-run":{n:"4b",t:"Simulacro · en curso",para:"Concentración total: cronómetro, contador, mapa de preguntas, opción de dejar en blanco.",take:["Progreso siempre visible"],reject:["XP, racha y feedback durante el examen","Barra inferior (modo foco)"],desk:"Mapa de 110 preguntas fijo a la izquierda; pregunta en el centro."},
-  ficha:{n:"5",t:"Catalogación · ficha",para:"Practicar el ejercicio de catalogación con imagen de referencia y campos normalizados.",take:["Tarea concreta y corta (1 pieza)","Autoguardado"],reject:["Autocompletado que haga la ficha por ti"],desk:"Imagen grande y ampliable a la izquierda, formulario a la derecha."},
-  "ficha-fb":{n:"6",t:"Catalogación · revisión",para:"Ver campo a campo qué está bien, qué mejorar y qué falta, con puntos orientativos.",take:["Feedback inmediato y concreto","Siguiente paso claro"],reject:["Nota única sin explicación","Presentar la nota como oficial"],desk:"Tu ficha y la revisión lado a lado, campo por campo."},
-  actualidad:{n:"7",t:"Actualidad",para:"Estar al día (BOE, museos estatales) y ver por qué importa para el temario.",take:["Tarjetas breves y filtrables"],reject:["Feed infinito tipo red social","Resúmenes sin enlace al original"],desk:"Rejilla de 3 columnas con filtros a la izquierda."},
+  estudiar:{n:"1b",t:"Estudiar · dos modos",para:"v0.2: elegir entre Modo prueba (sin nota, explicación tras cada respuesta) y Modo examen (+1 / 0 / −1/3, feedback solo al final).",take:["Sesiones cortas con duración visible","Repaso espaciado de fallos"],reject:["Mezclar juego y examen en la misma tarjeta","Puntuar el modo prueba"],desk:"Comparativa de modos arriba y tres tarjetas en fila."},
+  leccion:{n:"2",t:"Modo prueba · pregunta",para:"Responder sin puntuación y con calma. Elige B para ver el acierto; otra opción para ver el error.",take:["Barra de progreso de la lección","«Comprobar» solo se activa al elegir","Salida «No lo sé» sin castigo"],reject:["Cronómetro obligatorio (desactivado por defecto)","Pérdida de vidas por fallo","Nota en modo prueba"],desk:"Pregunta centrada (máx. 680 px), atajos de teclado A–D y Enter."},
+  "fb-ok":{n:"3a",t:"Modo prueba · acierto",para:"Explicación inmediata también cuando aciertas, con fuente y su nivel en la jerarquía.",take:["Mensaje positivo breve"],reject:["Celebración exagerada","Explicaciones sin fuente","Puntos en modo prueba"],desk:"Explicación y jerarquía de fuentes en panel lateral derecho."},
+  "fb-err":{n:"3b",t:"Modo prueba · error",para:"Convertir el error en aprendizaje sin culpa: por qué fallaste, una clave y la fuente (con su nivel).",take:["Tono amable, coaching suave","La pregunta vuelve en repaso espaciado"],reject:["Rojo agresivo y sonidos de error","Texto IA sin etiqueta ni fuente"],desk:"Igual que 3a, con tu respuesta y la correcta lado a lado."},
+  "sim-start":{n:"4a",t:"Modo examen · inicio",para:"Explicar la diferencia con el modo prueba y la regla −1/3 con un ejemplo de cálculo antes de empezar.",take:["Pantalla de preparación clara antes del reto"],reject:["Gamificar el simulacro: aquí el tono es serio"],desk:"Parámetros en tabla + historial de simulacros a la derecha."},
+  "sim-run":{n:"4b",t:"Modo examen · en curso",para:"Concentración total: cronómetro, mapa, dejar en blanco. Ningún feedback hasta entregar.",take:["Progreso siempre visible"],reject:["XP, racha y correcto/incorrecto durante el examen","Barra inferior (modo foco)"],desk:"Mapa de 110 preguntas fijo a la izquierda; pregunta en el centro."},
+  "sim-res":{n:"4c",t:"Modo examen · resultados",para:"Nuevo en v0.2: aciertos / errores / blancos, la fórmula aplicada y, ahora sí, la revisión de cada error.",take:["Siguiente paso claro: practicar los fallos en modo prueba"],reject:["Presentar la nota como oficial","Comparar con otros opositores"],desk:"Resumen arriba; lista de errores a la izquierda y explicación a la derecha."},
+  ficha:{n:"5",t:"Catalogación · ficha",para:"v0.2: lista cerrada de 11 campos (sin n.º de inventario) y referencias Tesauros + CER.es a mano.",take:["Tarea concreta y corta (1 pieza)","Autoguardado"],reject:["Autocompletado que haga la ficha por ti","Campos que Polina no pidió (Museo, Contexto, Descripción…)"],desk:"Imagen grande y ampliable a la izquierda, formulario a la derecha."},
+  "ficha-fb":{n:"6",t:"Catalogación · revisión",para:"Revisión de los mismos 11 campos, cada uno contrastado con Tesauros o CER.es, con puntos orientativos.",take:["Feedback inmediato y concreto","Siguiente paso claro"],reject:["Nota única sin explicación","Presentar la nota como oficial"],desk:"Tu ficha y la revisión lado a lado, campo por campo."},
+  actualidad:{n:"7",t:"Actualidad",para:"Estar al día y ver de qué nivel de la jerarquía de fuentes viene cada noticia.",take:["Tarjetas breves y filtrables"],reject:["Feed infinito tipo red social","Resúmenes sin enlace al original"],desk:"Rejilla de 3 columnas con filtros y jerarquía de fuentes a la izquierda."},
   tutor:{n:"8",t:"Progreso · Tutor",para:"Saber qué temas reforzar y qué hacer en la próxima sesión.",take:["Objetivo semanal y racha flexible","Recomendación personalizada"],reject:["Comparación con otros usuarios","Racha que se pierde por un día de descanso"],desk:"Panel tipo cuadro de mando 2×2."},
-  ajustes:{n:"9",t:"Ajustes de convocatoria",para:"Elegir convocatoria y ajustar los parámetros del examen; dejar claro que la nota no es oficial.",take:["Opción de ocultar XP y racha"],reject:["Notificaciones culpabilizadoras"],desk:"Formulario en una columna de 640 px."}
+  ajustes:{n:"9",t:"Ajustes de convocatoria",para:"Parámetros del examen (+1 / 0 / −1/3) y la jerarquía completa de fuentes con enlace a BNE.",take:["Opción de ocultar XP y racha"],reject:["Notificaciones culpabilizadoras"],desk:"Formulario en una columna de 640 px."}
 };
 const TAB_HOME={inicio:"inicio",estudiar:"estudiar",catalogar:"ficha",actualidad:"actualidad",tutor:"tutor"};
 const screens=[...document.querySelectorAll('.screen')];
@@ -806,7 +900,7 @@ document.addEventListener('click',e=>{
   if(t.closest('[data-back]')){e.preventDefault();back();return;}
   const tab=t.closest('[data-tabgo]'); if(tab){stack=[];show(TAB_HOME[tab.dataset.tabgo],{push:false});return;}
   const sw=t.closest('.sw-t'); if(sw){sw.classList.toggle('on');sw.setAttribute('aria-checked',sw.classList.contains('on'));
-    if(sw.id==='timerToggle') document.getElementById('timerLbl').textContent=sw.classList.contains('on')?'Cronómetro activado · 60 s por pregunta':'Cronómetro desactivado · modo estudio'; return;}
+    if(sw.id==='timerToggle') document.getElementById('timerLbl').textContent=sw.classList.contains('on')?'Cronómetro activado · 60 s por pregunta':'Cronómetro desactivado · modo prueba'; return;}
   const st=t.closest('.stepper button'); if(st){const w=st.parentElement,o=w.querySelector('output');let v=parseInt(o.textContent,10);const s=+w.dataset.step;v+=st.getAttribute('aria-label')==='Más'?s:-s;v=Math.max(+w.dataset.min,Math.min(+w.dataset.max,v));o.textContent=v;return;}
   const ch=t.closest('#newsChips .chip'); if(ch){document.querySelectorAll('#newsChips .chip').forEach(c=>c.classList.remove('sel'));ch.classList.add('sel');const f=ch.textContent.trim();document.querySelectorAll('#newsList .news').forEach(a=>a.style.display=(f==='Todo'||a.dataset.cat===f)?'':'none');return;}
   const eo=t.closest('#examOpts .opt'); if(eo){document.querySelectorAll('#examOpts .opt').forEach(o=>o.classList.remove('sel'));eo.classList.add('sel');return;}
