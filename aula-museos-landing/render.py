@@ -8,3 +8,10 @@ with sync_playwright() as p:
         pg.goto((H/'index.html').as_uri()); pg.wait_for_load_state('networkidle'); pg.evaluate('document.fonts.ready')
         pg.screenshot(path=str(H/'png'/f'{name}.png'),full_page=True)
     b.close()
+with sync_playwright() as p:
+    b=p.chromium.launch()
+    pg=b.new_page(viewport={'width':1280,'height':800},device_scale_factor=1.5)
+    pg.goto((H/'index.html').as_uri()); pg.wait_for_load_state('networkidle'); pg.evaluate('document.fonts.ready')
+    pg.locator('#ia-ejemplo').screenshot(path=str(H/'png'/'crop-ia-ejemplo.png'))
+    pg.locator('#faq').screenshot(path=str(H/'png'/'crop-faq.png'))
+    b.close()

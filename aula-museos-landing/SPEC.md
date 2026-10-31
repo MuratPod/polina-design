@@ -14,12 +14,12 @@ Mock-up estático de diseño (no código de producción). Abrir `index.html`; re
 3. **Cómo funciona**: 1 Lección diaria · 2 Repasa tus errores · 3 Simulacro real · chip racha/XP (metas Ligera/Regular/Intensa).
 4. **Simulacro**: «El examen, tal y como será» — 100+10, 100 min, +1/0/−1/3, escala 0–30, BOE-A-2025-26893; tarjeta con fórmula del ejemplo 68/21/11 → 21,64; «nota de corte orientativa».
 5. **Temario**: «79 temas, tres bloques» — barra 30/30/40; Legislación 1–16 (30), Museología 17–35 (30), Patrimonio artístico, arqueológico y antropológico 36–79 (40).
-6. **IA con fuentes**: ejemplo con etiqueta «Contenido generado por IA» + «Fuente: …» (si no hay: «Sin fuente»).
-7. **FAQ** (`<details>`): oposición, cálculo de nota, tiempo al día, ¿es gratis? (**placeholder**), ¿es oficial? (no afiliada).
+6. **IA con fuentes**: pregunta tipo test sobre la definición de Museo (correcta: «Estudio, educación y contemplación»), explicación parafraseada, etiqueta «Contenido generado por IA» + «Fuente: Ley 16/1985, de 25 de junio, del Patrimonio Histórico Español, art. 59.3» (enlace BOE-A-1985-12534). Si no hay fuente: «Sin fuente».
+7. **FAQ** (`<details>`): oposición, cálculo de nota, tiempo al día, ¿es gratis? («Sí. Durante la fase beta puedes usar Aula Museos gratis: simulacros, temario y repaso. Si más adelante añadimos funciones de pago, lo avisaremos con antelación y tu progreso seguirá siendo tuyo.»), ¿es oficial? (no afiliada).
 8. **CTA final** (fondo ink): «Estudia como se examina.» · «Empieza hoy con tu primera lección.» · «Empieza gratis».
 9. **Footer**: «© Aula · Atrio» · «Aviso legal · Privacidad · no afiliada al Ministerio de Cultura».
 
-Prohibido: «Duolingo», «garantía de aprobado», sellos/logos del Estado o Ministerio, mascotas/vidas/ligas, estadísticas, testimonios o precios inventados. Placeholders marcados con borde discontinuo terracota `[…]`.
+Prohibido: «Duolingo», «garantía de aprobado», sellos/logos del Estado o Ministerio, mascotas/vidas/ligas, estadísticas, testimonios o precios inventados. Sin placeholders en v1.
 
 ## Breakpoints
 - **1280** (desktop): contenedor 1120, hero 2 columnas, grids 3/2 columnas.
@@ -30,10 +30,13 @@ Prohibido: «Duolingo», «garantía de aprobado», sellos/logos del Estado o Mi
 - Foco visible (anillo gold 3px), objetivos táctiles ≥44px, FAQ con `<details>` nativo, mockups de móvil `aria-hidden`, barra de bloques con `role="img"` + `aria-label`.
 - `font-display: swap`; respetar `prefers-reduced-motion` si se añade animación.
 
-## SEO
-- Title: «Aula Museos — Oposiciones Ayudantes de Museos del Estado»
-- Description: «Prepara la oposición a la Escala de Ayudantes de Museos del Estado con simulacros en formato real (100 + 10 preguntas, 100 min), lecciones diarias y los 79 temas del BOE. Estudia como se examina.»
-- Añadir en prod: canonical `https://aulamuseos.es/`, OG/Twitter (imagen 1200×630 a diseñar), FAQPage JSON-LD.
+## SEO (al lanzamiento)
+Nada publicado; el dominio aulamuseos.es aún no está conectado. Todo lo siguiente se aplica **al lanzamiento**:
+- Title (al lanzamiento): «Aula Museos — Oposiciones Ayudantes de Museos del Estado»
+- Description (al lanzamiento): «Prepara la oposición a la Escala de Ayudantes de Museos del Estado con simulacros en formato real (100 + 10 preguntas, 100 min), lecciones diarias y los 79 temas del BOE. Estudia como se examina.»
+- Canonical (al lanzamiento): `https://aulamuseos.es/` · dominio (al lanzamiento): aulamuseos.es.
+- OG/Twitter (imagen 1200×630 a diseñar) y FAQPage JSON-LD, al lanzamiento.
+- **Previews / staging:** `<meta name="robots" content="noindex, nofollow">` (o cabecera `X-Robots-Tag: noindex`) y sin canonical hasta el lanzamiento; quitar noindex solo al publicar en el dominio.
 
 ## Analítica (nombres de eventos)
-- `lp_view` · `lp_cta_click` {loc: nav|hero|final} · `lp_secondary_click` · `lp_section_view` {id} · `lp_faq_open` {q} · `lp_footer_click` {link}. Atributos `data-ev`/`data-loc` en el mockup.
+- `lp_view` · `lp_cta_click` {loc: nav|hero|final} · `lp_secondary_click` · `lp_section_view` {id} · `lp_faq_open` {q} · `lp_footer_click` {link} · `lp_source_click`. Atributos `data-ev`/`data-loc` en el mockup.
