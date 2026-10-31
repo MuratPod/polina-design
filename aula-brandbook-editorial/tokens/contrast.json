@@ -1,0 +1,501 @@
+{
+ "contrast": [
+  {
+   "name": "ink sobre papel",
+   "fg": "#142A3D",
+   "bg": "#F4F1EA",
+   "ratio": 13.03,
+   "AA": true,
+   "AA_large": true,
+   "use": "texto"
+  },
+  {
+   "name": "ink sobre blanco",
+   "fg": "#142A3D",
+   "bg": "#FFFFFF",
+   "ratio": 14.7,
+   "AA": true,
+   "AA_large": true,
+   "use": "texto en tarjeta"
+  },
+  {
+   "name": "muted sobre papel",
+   "fg": "#4A5068",
+   "bg": "#F4F1EA",
+   "ratio": 7.06,
+   "AA": true,
+   "AA_large": true,
+   "use": "secundario"
+  },
+  {
+   "name": "subtle sobre papel",
+   "fg": "#66697F",
+   "bg": "#F4F1EA",
+   "ratio": 4.78,
+   "AA": true,
+   "AA_large": true,
+   "use": "captions (corregido)"
+  },
+  {
+   "name": "subtle sobre blanco",
+   "fg": "#66697F",
+   "bg": "#FFFFFF",
+   "ratio": 5.4,
+   "AA": true,
+   "AA_large": true,
+   "use": "captions en tarjeta"
+  },
+  {
+   "name": "subtle sobre surface-2",
+   "fg": "#66697F",
+   "bg": "#EFEBE3",
+   "ratio": 4.54,
+   "AA": true,
+   "AA_large": true,
+   "use": "captions en gris"
+  },
+  {
+   "name": "papel sobre navy",
+   "fg": "#F4F1EA",
+   "bg": "#142A3D",
+   "ratio": 13.03,
+   "AA": true,
+   "AA_large": true,
+   "use": "botón primario"
+  },
+  {
+   "name": "gold sobre papel",
+   "fg": "#D9A21B",
+   "bg": "#F4F1EA",
+   "ratio": 2.04,
+   "AA": false,
+   "AA_large": false,
+   "use": "solo marcador/relleno, nunca texto"
+  },
+  {
+   "name": "navy sobre gold",
+   "fg": "#142A3D",
+   "bg": "#D9A21B",
+   "ratio": 6.4,
+   "AA": true,
+   "AA_large": true,
+   "use": "chip/botón dorado"
+  },
+  {
+   "name": "gold-700 sobre papel",
+   "fg": "#856000",
+   "bg": "#F4F1EA",
+   "ratio": 5.07,
+   "AA": true,
+   "AA_large": true,
+   "use": "texto dorado"
+  },
+  {
+   "name": "gold-700 sobre blanco",
+   "fg": "#856000",
+   "bg": "#FFFFFF",
+   "ratio": 5.72,
+   "AA": true,
+   "AA_large": true,
+   "use": "texto dorado en tarjeta"
+  },
+  {
+   "name": "gold-700 sobre gold-100",
+   "fg": "#856000",
+   "bg": "#F6EBCB",
+   "ratio": 4.81,
+   "AA": true,
+   "AA_large": true,
+   "use": "chip XP"
+  },
+  {
+   "name": "gold sobre navy",
+   "fg": "#D9A21B",
+   "bg": "#142A3D",
+   "ratio": 6.4,
+   "AA": true,
+   "AA_large": true,
+   "use": "acento en navy"
+  },
+  {
+   "name": "success sobre papel",
+   "fg": "#0E7A6E",
+   "bg": "#F4F1EA",
+   "ratio": 4.62,
+   "AA": true,
+   "AA_large": true,
+   "use": "texto/icono"
+  },
+  {
+   "name": "success sobre success-100",
+   "fg": "#0E7A6E",
+   "bg": "#E6F5F2",
+   "ratio": 4.64,
+   "AA": true,
+   "AA_large": true,
+   "use": "badge/aviso"
+  },
+  {
+   "name": "error sobre papel",
+   "fg": "#B42318",
+   "bg": "#F4F1EA",
+   "ratio": 5.83,
+   "AA": true,
+   "AA_large": true,
+   "use": "texto/icono"
+  },
+  {
+   "name": "error sobre error-100",
+   "fg": "#B42318",
+   "bg": "#FBE6E3",
+   "ratio": 5.49,
+   "AA": true,
+   "AA_large": true,
+   "use": "badge/aviso"
+  },
+  {
+   "name": "warning sobre papel",
+   "fg": "#8F5300",
+   "bg": "#F4F1EA",
+   "ratio": 5.47,
+   "AA": true,
+   "AA_large": true,
+   "use": "texto/icono"
+  },
+  {
+   "name": "warning sobre warning-100",
+   "fg": "#8F5300",
+   "bg": "#FBEFD9",
+   "ratio": 5.42,
+   "AA": true,
+   "AA_large": true,
+   "use": "badge/aviso"
+  },
+  {
+   "name": "ai sobre papel",
+   "fg": "#5B3FC4",
+   "bg": "#F4F1EA",
+   "ratio": 6.3,
+   "AA": true,
+   "AA_large": true,
+   "use": "texto/icono"
+  },
+  {
+   "name": "ai sobre ai-100",
+   "fg": "#5B3FC4",
+   "bg": "#EEEAFB",
+   "ratio": 6.03,
+   "AA": true,
+   "AA_large": true,
+   "use": "badge/aviso"
+  },
+  {
+   "name": "oscuro ink sobre bg",
+   "fg": "#F4F1EA",
+   "bg": "#0E1C27",
+   "ratio": 15.33,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo oscuro"
+  },
+  {
+   "name": "oscuro ink sobre surface",
+   "fg": "#F4F1EA",
+   "bg": "#172A38",
+   "ratio": 13.07,
+   "AA": true,
+   "AA_large": true,
+   "use": "tarjeta oscura"
+  },
+  {
+   "name": "oscuro muted sobre bg",
+   "fg": "#B9BCC8",
+   "bg": "#0E1C27",
+   "ratio": 9.13,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo oscuro"
+  },
+  {
+   "name": "oscuro muted sobre surface",
+   "fg": "#B9BCC8",
+   "bg": "#172A38",
+   "ratio": 7.78,
+   "AA": true,
+   "AA_large": true,
+   "use": "tarjeta oscura"
+  },
+  {
+   "name": "oscuro subtle sobre bg",
+   "fg": "#9A9EAE",
+   "bg": "#0E1C27",
+   "ratio": 6.49,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo oscuro"
+  },
+  {
+   "name": "oscuro subtle sobre surface",
+   "fg": "#9A9EAE",
+   "bg": "#172A38",
+   "ratio": 5.53,
+   "AA": true,
+   "AA_large": true,
+   "use": "tarjeta oscura"
+  },
+  {
+   "name": "oscuro gold sobre bg",
+   "fg": "#E3B341",
+   "bg": "#0E1C27",
+   "ratio": 8.89,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo oscuro"
+  },
+  {
+   "name": "oscuro gold sobre surface",
+   "fg": "#E3B341",
+   "bg": "#172A38",
+   "ratio": 7.57,
+   "AA": true,
+   "AA_large": true,
+   "use": "tarjeta oscura"
+  },
+  {
+   "name": "oscuro success sobre bg",
+   "fg": "#4CC2B0",
+   "bg": "#0E1C27",
+   "ratio": 7.95,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo oscuro"
+  },
+  {
+   "name": "oscuro success sobre surface",
+   "fg": "#4CC2B0",
+   "bg": "#172A38",
+   "ratio": 6.77,
+   "AA": true,
+   "AA_large": true,
+   "use": "tarjeta oscura"
+  },
+  {
+   "name": "oscuro error sobre bg",
+   "fg": "#FF8F84",
+   "bg": "#0E1C27",
+   "ratio": 7.84,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo oscuro"
+  },
+  {
+   "name": "oscuro error sobre surface",
+   "fg": "#FF8F84",
+   "bg": "#172A38",
+   "ratio": 6.68,
+   "AA": true,
+   "AA_large": true,
+   "use": "tarjeta oscura"
+  },
+  {
+   "name": "oscuro warning sobre bg",
+   "fg": "#E8B160",
+   "bg": "#0E1C27",
+   "ratio": 8.97,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo oscuro"
+  },
+  {
+   "name": "oscuro warning sobre surface",
+   "fg": "#E8B160",
+   "bg": "#172A38",
+   "ratio": 7.64,
+   "AA": true,
+   "AA_large": true,
+   "use": "tarjeta oscura"
+  },
+  {
+   "name": "oscuro ai sobre bg",
+   "fg": "#B7A6FF",
+   "bg": "#0E1C27",
+   "ratio": 8.16,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo oscuro"
+  },
+  {
+   "name": "oscuro ai sobre surface",
+   "fg": "#B7A6FF",
+   "bg": "#172A38",
+   "ratio": 6.96,
+   "AA": true,
+   "AA_large": true,
+   "use": "tarjeta oscura"
+  },
+  {
+   "name": "museos sobre papel",
+   "fg": "#94502F",
+   "bg": "#F4F1EA",
+   "ratio": 5.4,
+   "AA": true,
+   "AA_large": true,
+   "use": "marcador/texto"
+  },
+  {
+   "name": "museos oscuro sobre bg oscuro",
+   "fg": "#E7A07C",
+   "bg": "#0E1C27",
+   "ratio": 8.0,
+   "AA": true,
+   "AA_large": true,
+   "use": "marcador oscuro"
+  },
+  {
+   "name": "justicia sobre papel",
+   "fg": "#8E2C7A",
+   "bg": "#F4F1EA",
+   "ratio": 6.67,
+   "AA": true,
+   "AA_large": true,
+   "use": "marcador/texto"
+  },
+  {
+   "name": "justicia oscuro sobre bg oscuro",
+   "fg": "#E58BD3",
+   "bg": "#0E1C27",
+   "ratio": 7.38,
+   "AA": true,
+   "AA_large": true,
+   "use": "marcador oscuro"
+  },
+  {
+   "name": "policia sobre papel",
+   "fg": "#00728F",
+   "bg": "#F4F1EA",
+   "ratio": 4.89,
+   "AA": true,
+   "AA_large": true,
+   "use": "marcador/texto"
+  },
+  {
+   "name": "policia oscuro sobre bg oscuro",
+   "fg": "#4FC3E0",
+   "bg": "#0E1C27",
+   "ratio": 8.41,
+   "AA": true,
+   "AA_large": true,
+   "use": "marcador oscuro"
+  },
+  {
+   "name": "educacion sobre papel",
+   "fg": "#4F7A1F",
+   "bg": "#F4F1EA",
+   "ratio": 4.5,
+   "AA": true,
+   "AA_large": true,
+   "use": "marcador/texto"
+  },
+  {
+   "name": "educacion oscuro sobre bg oscuro",
+   "fg": "#A7D46B",
+   "bg": "#0E1C27",
+   "ratio": 10.11,
+   "AA": true,
+   "AA_large": true,
+   "use": "marcador oscuro"
+  }
+ ],
+ "competitors": [
+  {
+   "ours": "navy",
+   "hex": "#142A3D",
+   "ref": "OpositaTest navy",
+   "refhex": "#253B80",
+   "dE2000": 11.3
+  },
+  {
+   "ours": "navy",
+   "hex": "#142A3D",
+   "ref": "OpositaTest naranja",
+   "refhex": "#EF7746",
+   "dE2000": 55.4
+  },
+  {
+   "ours": "navy",
+   "hex": "#142A3D",
+   "ref": "MAD navy",
+   "refhex": "#11184A",
+   "dE2000": 10.9
+  },
+  {
+   "ours": "navy",
+   "hex": "#142A3D",
+   "ref": "MAD rojo",
+   "refhex": "#EC4249",
+   "dE2000": 49.5
+  },
+  {
+   "ours": "gold",
+   "hex": "#D9A21B",
+   "ref": "OpositaTest navy",
+   "refhex": "#253B80",
+   "dE2000": 68.6
+  },
+  {
+   "ours": "gold",
+   "hex": "#D9A21B",
+   "ref": "OpositaTest naranja",
+   "refhex": "#EF7746",
+   "dE2000": 25.1
+  },
+  {
+   "ours": "gold",
+   "hex": "#D9A21B",
+   "ref": "MAD navy",
+   "refhex": "#11184A",
+   "dE2000": 73.0
+  },
+  {
+   "ours": "gold",
+   "hex": "#D9A21B",
+   "ref": "MAD rojo",
+   "refhex": "#EC4249",
+   "dE2000": 40.8
+  },
+  {
+   "ours": "gold-700",
+   "hex": "#856000",
+   "ref": "OpositaTest navy",
+   "refhex": "#253B80",
+   "dE2000": 51.4
+  },
+  {
+   "ours": "gold-700",
+   "hex": "#856000",
+   "ref": "OpositaTest naranja",
+   "refhex": "#EF7746",
+   "dE2000": 29.4
+  },
+  {
+   "ours": "gold-700",
+   "hex": "#856000",
+   "ref": "MAD navy",
+   "refhex": "#11184A",
+   "dE2000": 52.8
+  },
+  {
+   "ours": "gold-700",
+   "hex": "#856000",
+   "ref": "MAD rojo",
+   "refhex": "#EC4249",
+   "dE2000": 36.6
+  }
+ ],
+ "navy_alternative": {
+  "hex": "#142A3D",
+  "vs_MAD": 10.9,
+  "vs_OT": 11.3,
+  "on_paper": 13.03
+ }
+}

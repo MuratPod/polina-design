@@ -1,0 +1,50 @@
+:root{
+  --navy:#142A3D;
+  --navy-800:#1E3A52;
+  --navy-600:#3A566B;
+  --gold:#D9A21B;
+  --gold-700:#856000;
+  --gold-100:#F6EBCB;
+  --paper:#F4F1EA;
+  --bg:#F4F1EA;
+  --surface:#FFFFFF;
+  --surface-2:#EFEBE3;
+  --line:#DCD5C6;
+  --ink:#142A3D;
+  --muted:#4A5068;
+  --subtle:#66697F;
+  --success:#0E7A6E;
+  --success-100:#E6F5F2;
+  --error:#B42318;
+  --error-100:#FBE6E3;
+  --warning:#8F5300;
+  --warning-100:#FBEFD9;
+  --ai:#5B3FC4;
+  --ai-100:#EEEAFB;
+  --r-sm:6px;
+  --r-md:10px;
+  --r-lg:16px;
+  --r-pill:999px;
+  --s-1:4px;
+  --s-2:8px;
+  --s-3:12px;
+  --s-4:16px;
+  --s-5:24px;
+  --s-6:32px;
+  --s-7:48px;
+  --s-8:64px;
+  --font-serif:'Fraunces', Georgia, serif;
+  --font-sans:'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono:'IBM Plex Mono', ui-monospace, monospace;
+  --sh-1:0 1px 0 rgba(20,42,61,.06),0 2px 8px rgba(20,42,61,.05);
+  --v-museos:#94502F;
+  --v-justicia:#8E2C7A;
+  --v-policia:#00728F;
+  --v-educacion:#4F7A1F;
+  --primary:var(--navy);--on-primary:var(--paper);--gold-text:var(--gold-700);
+}
+[data-theme="dark"]{--bg:#0E1C27;--surface:#172A38;--surface-2:#213848;--line:#34505F;--ink:#F4F1EA;--muted:#B9BCC8;--subtle:#9A9EAE;--gold:#E3B341;--success:#4CC2B0;--error:#FF8F84;--warning:#E8B160;--ai:#B7A6FF;--primary:#F4F1EA;--on-primary:#142A3D;--gold-text:#E3B341;--gold-100:#3A3220;--success-100:#123A37;--error-100:#45201E;--warning-100:#3E2E14;--ai-100:#2A2550;--surface-2:#213848;--v-museos:#E7A07C;--v-justicia:#E58BD3;--v-policia:#4FC3E0;--v-educacion:#A7D46B;}
+[data-vertical="museos"]{--accent-v:var(--v-museos);}
+[data-vertical="justicia"]{--accent-v:var(--v-justicia);}
+[data-vertical="policia"]{--accent-v:var(--v-policia);}
+[data-vertical="educacion"]{--accent-v:var(--v-educacion);}
