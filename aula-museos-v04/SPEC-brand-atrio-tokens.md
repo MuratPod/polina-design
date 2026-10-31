@@ -90,3 +90,30 @@ grep -n 'pill--xp' src/App.tsx   # solo la línea del «+{xp} XP»
 npm run build
 ```
 Revisión visual: inicio, pregunta (sel/ok/err), resultado; la «v0.1» ya no es dorada, «+N XP» sí.
+
+## 6. Tokens de bloque (neutros) + letra L/M/P
+
+Decisión: bloques en neutros + letra; teja (`--terra-500`) solo para «Marcada»; oro solo XP.
+
+| token | hex | uso | vs paper #F6F1E8 | vs surface #FFFDF8 | vs blanco | texto ≥4.5 | tira ≥3 |
+|---|---|---|---|---|---|---|---|
+| `--block-1` (L · Legislación) | `#15393F` (= ink-800) | texto, letra, tira | 11.05 | 12.23 | 12.43 | sí | sí |
+| `--block-2` (M · Museología) | `#577075` (= ink-600) | texto, letra, tira | 4.69 | 5.19 | 5.28 | sí | sí |
+| `--block-3` (P · Patrimonio) | `#8A7F70` | **solo tira / relleno no textual** | 3.49 | 3.86 | 3.92 | no | sí |
+| `--block-3-text` | `#766D60` (mismo tono, más oscuro) | texto y fondo de la letra P | 4.52 | 5.01 | 5.09 | sí | sí |
+
+Letra blanca sobre relleno: L 12.43, M 5.28, P (`--block-3-text`) 5.09 → todas ≥4.5. Sobre paper-2 #EFE8DB: block-2 4.33 y block-3-text 4.18 → no usar texto de bloque sobre paper-2.
+
+Reglas:
+- Nunca solo color: siempre letra L/M/P (insignia 18×18, radio 5, letra blanca) junto al nombre o filtro.
+- Tira bajo celda de rejilla: `--block-1/2/3`. Texto o insignia: `--block-1`, `--block-2`, `--block-3-text`.
+- `--terra-*` no se usa para bloques (reservado a «Marcada» y CTA); `--gold-*` no se usa para bloques.
+- Orden fijo L → M → P en filtros, leyendas y resultados.
+
+Añadir en `src/index.css:5` (`:root`):
+`--block-1:#15393F; --block-2:#577075; --block-3:#8A7F70; --block-3-text:#766D60;`
+
+Criterio de aceptación adicional:
+```sh
+! grep -nE 'block-3\)' src/index.css | grep -E '(^|[^-])color:'   # block-3 nunca como color de texto
+```

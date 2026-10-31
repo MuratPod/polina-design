@@ -288,3 +288,9 @@ kbd{font-family:var(--sans);font-size:11px;border:1px solid var(--line);border-b
 .segc{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--paper-2);border-radius:12px;padding:3px}
 .segc span{text-align:center;padding:8px 6px;border-radius:10px;font-size:13px;font-weight:600;color:var(--muted)}
 .segc span.on{background:var(--surface);color:var(--ink-900);box-shadow:var(--sh-1)}
+/* v0.4.3 · tokens de bloque (neutros) + letra L/M/P */
+:root{--block-1:#15393F;--block-2:#577075;--block-3:#8A7F70;--block-3-text:#766D60}
+.lb{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:5px;color:#fff;font:700 11px/1 Inter,sans-serif;flex:none;vertical-align:middle;margin-right:5px}
+.lb.L{background:var(--block-1)}.lb.M{background:var(--block-2)}.lb.P{background:var(--block-3-text)}
+.qgrid.of .L{--bc:var(--block-1)}.qgrid.of .M{--bc:var(--block-2)}.qgrid.of .P{--bc:var(--block-3)}
+.blk .n.L{background:var(--block-1);color:#fff}.blk .n.M{background:var(--block-2);color:#fff}.blk .n.P{background:var(--block-3-text);color:#fff}

@@ -26,9 +26,9 @@ S[1] = ('Simulacro · reglas', 'Formato real (BOE-A-2025-26893): 100 + 10 de res
 </div>
 <div class="card tight" style="margin-top:10px"><div class="row between" style="margin-bottom:8px"><span class="label">Bloques · 79 temas</span><span class="xs muted">BOE-A-2025-26893 · turno libre</span></div>
  <div class="blocks">
-  <div class="blk"><span class="n">I</span><span class="t">Legislación<small>Temas 1–16 · P. 1–30 · reserva 101–103</small></span><span class="c">30+3</span></div>
-  <div class="blk"><span class="n">II</span><span class="t">Museología<small>Temas 17–35 · P. 31–60 · reserva 104–106</small></span><span class="c">30+3</span></div>
-  <div class="blk"><span class="n">III</span><span class="t">Patrimonio artístico, arqueológico y antropológico<small>Temas 36–79 · P. 61–100 · reserva 107–110</small></span><span class="c">40+4</span></div>
+  <div class="blk"><span class="n L">L</span><span class="t">Legislación<small>Temas 1–16 · P. 1–30 · reserva 101–103</small></span><span class="c">30+3</span></div>
+  <div class="blk"><span class="n M">M</span><span class="t">Museología<small>Temas 17–35 · P. 31–60 · reserva 104–106</small></span><span class="c">30+3</span></div>
+  <div class="blk"><span class="n P">P</span><span class="t">Patrimonio artístico, arqueológico y antropológico<small>Temas 36–79 · P. 61–100 · reserva 107–110</small></span><span class="c">40+4</span></div>
  </div></div>
 <div class="foot"><div class="infoline">{ic('i-flame')}Cuenta como día de racha · el simulacro no suma XP</div><span class="btn btn-primary">{ic('i-play')} Empezar simulacro</span>
 <p class="disc">Nota orientativa, no oficial. El cronómetro no se pausa. La reserva (101–110) solo cuenta si se anula alguna.</p></div>''')
@@ -36,7 +36,7 @@ S[1] = ('Simulacro · reglas', 'Formato real (BOE-A-2025-26893): 100 + 10 de res
 # ---------- 2 · Pregunta en curso ----------
 S[2] = ('Pregunta en curso', 'Cronómetro, número, marcar y saltar siempre visibles. Sin feedback hasta entregar.', f'''
 <div class="exambar"><span class="iconbtn">{ic('i-x')}</span><span class="timer">{ic('i-clock')}58:24</span><span class="spacer"></span>
-<span class="chip ex">Bloque I</span><span class="iconbtn">{ic('i-grid')}</span></div>
+<span class="chip ex"><span class="lb L">L</span>Legislación</span><span class="iconbtn">{ic('i-grid')}</span></div>
 <div class="row"><div class="progress"><i style="width:23%"></i></div><span class="xs muted tab">23/100</span></div>
 <div class="qmeta"><span class="qnum">Pregunta 23</span><span>Respondidas 19 · en blanco 3 · marcadas 2</span></div>
 <div class="row" style="margin-top:8px">{DEMO}</div>
@@ -62,11 +62,11 @@ def grid():
         if n in flags: c.append('f')
         if n==23: c.append('cur')
         return f'<span class="{" ".join(c)}{extra}">{n}</span>'
-    secs=[('I · Legislación','temas 1–16 · 1–30',range(1,31)),('II · Museología','temas 17–35 · 31–60',range(31,61)),('III · Patrimonio','temas 36–79 · 61–100',range(61,101))]
+    secs=[('<span class="lb L">L</span>Legislación','temas 1–16 · 1–30',range(1,31)),('<span class="lb M">M</span>Museología','temas 17–35 · 31–60',range(31,61)),('<span class="lb P">P</span>Patrimonio','temas 36–79 · 61–100',range(61,101))]
     for nm,rg,r in secs:
         out.append(f'<div class="gsep"><b>{nm}</b><span>{rg}</span></div><div class="qgrid">'+''.join(cell(n) for n in r)+'</div>')
     res=''.join(f'<span class="r{" a" if n<=104 else ""}">{n}</span>' for n in range(101,111))
-    out.append(f'<div class="gsep"><b>Reserva</b><span>I 101–103 · II 104–106 · III 107–110</span></div><div class="qgrid">{res}</div>')
+    out.append(f'<div class="gsep"><b>Reserva</b><span>L 101–103 · M 104–106 · P 107–110</span></div><div class="qgrid">{res}</div>')
     return ''.join(out)
 S[3] = ('Rejilla de navegación + entregar', 'Saltar a cualquier número; reserva 101–110 siempre visible. Entrega anticipada: una sola confirmación con resumen, sin pausa.', f'''
 <div class="exambar"><span class="iconbtn">{ic('i-x')}</span><span class="timer">{ic('i-clock')}41:12</span><span class="spacer"></span><span class="serif" style="font-size:17px;color:var(--ink-900)">Preguntas</span></div>
@@ -98,16 +98,16 @@ S[4] = ('Resultado', 'Nota 0–30 frente a 15 (nota de corte orientativa), fórm
 </div>
 <div class="formula" style="margin-top:8px">68 − 21 ÷ 3 = 61,00 → 61,00 × 30 ÷ 100 = <b>18,30</b></div>
 <div class="card tight" style="margin-top:8px"><div class="label" style="margin-bottom:4px">Por bloques · neta</div>
- <div class="bk"><div class="row"><span class="nm">I · Legislación</span><span class="pts">20,00 / 30</span></div><div class="split"><i class="o" style="width:73.3%"></i><i class="e" style="width:20%"></i><i class="z" style="width:6.7%"></i></div><small>22 aciertos · 6 errores · 2 en blanco</small></div>
- <div class="bk"><div class="row"><span class="nm">II · Museología</span><span class="pts">16,67 / 30</span><span class="chip err" style="font-size:10.5px;padding:2px 8px">Más resta</span></div><div class="split"><i class="o" style="width:63.3%"></i><i class="e" style="width:23.3%"></i><i class="z" style="width:13.3%"></i></div><small>19 aciertos · 7 errores · 4 en blanco</small></div>
- <div class="bk"><div class="row"><span class="nm">III · Patrimonio art., arq. y antrop.</span><span class="pts">24,33 / 40</span></div><div class="split"><i class="o" style="width:67.5%"></i><i class="e" style="width:20%"></i><i class="z" style="width:12.5%"></i></div><small>27 aciertos · 8 errores · 5 en blanco</small></div>
+ <div class="bk"><div class="row"><span class="nm"><span class="lb L">L</span>Legislación</span><span class="pts">20,00 / 30</span></div><div class="split"><i class="o" style="width:73.3%"></i><i class="e" style="width:20%"></i><i class="z" style="width:6.7%"></i></div><small>22 aciertos · 6 errores · 2 en blanco</small></div>
+ <div class="bk"><div class="row"><span class="nm"><span class="lb M">M</span>Museología</span><span class="pts">16,67 / 30</span><span class="chip err" style="font-size:10.5px;padding:2px 8px">Más resta</span></div><div class="split"><i class="o" style="width:63.3%"></i><i class="e" style="width:23.3%"></i><i class="z" style="width:13.3%"></i></div><small>19 aciertos · 7 errores · 4 en blanco</small></div>
+ <div class="bk"><div class="row"><span class="nm"><span class="lb P">P</span>Patrimonio art., arq. y antrop.</span><span class="pts">24,33 / 40</span></div><div class="split"><i class="o" style="width:67.5%"></i><i class="e" style="width:20%"></i><i class="z" style="width:12.5%"></i></div><small>27 aciertos · 8 errores · 5 en blanco</small></div>
 </div>
 <div class="foot"><div class="infoline">{ic('i-flame')}Cuenta como día de racha · el simulacro no suma XP</div><div class="btns"><span class="btn btn-ghost">Nuevo simulacro</span><span class="btn btn-primary">Revisar errores</span></div></div>''')
 
 # ---------- 5 · Revisión ----------
 S[5] = ('Revisión por bloque y tema', 'Filtros por bloque, temas que más restan, explicación del error con fuente y «Practicar errores».', f'''
 <div class="topbar"><span class="iconbtn">{ic('i-back')}</span><h2>Revisión</h2><span class="chip err">21 errores</span></div>
-<div class="tabs"><span class="chip">Legislación 6</span><span class="chip on">Museología 7</span><span class="chip">Patrimonio 8</span><span class="chip blank">Blanco 11</span></div>
+<div class="tabs"><span class="chip"><span class="lb L">L</span>Legislación 6</span><span class="chip on"><span class="lb M">M</span>Museología 7</span><span class="chip"><span class="lb P">P</span>Patrimonio 8</span><span class="chip blank">Blanco 11</span></div>
 <div class="topic" style="margin-top:10px"><span class="t"><b>Museos de titularidad estatal</b><small>Museología · temas 17–35 · el que más resta</small></span><span class="e">4 err.</span></div>
 <div class="card tight" style="margin-top:8px">
  <div class="row between"><span class="qnum">Pregunta 38</span><div class="row" style="gap:6px">{DEMO}<span class="chip err">−1/3</span></div></div>
@@ -127,7 +127,7 @@ S[5] = ('Revisión por bloque y tema', 'Filtros por bloque, temas que más resta
 WEEK = ''.join(f'<div class="{c}"><i>{ic("i-flame") if c=="d" else (ic("i-rest") if c=="rest" else "")}</i>{d}</div>' for d,c in zip('LMXJVSD',['d','d','rest','d','d','t','']))
 S[6] = ('Inicio · racha y XP', 'Racha de días con 1 descanso semanal automático (sin vidas ni ligas), XP diario frente a la meta elegida y un único siguiente paso.', f'''
 <div class="topbar"><span class="logo">{LOGO}<b>Aula Museos</b></span><div class="row" style="gap:6px"><span class="chip streak">{ic('i-flame')}12</span><span class="chip xp">{ic('i-star')}30 XP</span></div></div>
-<h1 style="font-size:25px">Buenas tardes, Lucía</h1><p class="lead" style="margin-top:4px">Hoy toca repasar el Bloque II: unos 8 minutos.</p>
+<h1 style="font-size:25px">Buenas tardes, Lucía</h1><p class="lead" style="margin-top:4px">Hoy toca repasar Museología (bloque M): unos 8 minutos.</p>
 <div class="card" style="margin-top:14px"><div class="streakcard"><span class="flame">{ic('i-flame')}</span>
 <div><div class="serif" style="font-size:22px">12 días seguidos</div><p class="small muted">Haz la lección o un simulacro para llegar a 13.</p></div></div>
 <div class="week">{WEEK}</div>
@@ -137,7 +137,7 @@ S[6] = ('Inicio · racha y XP', 'Racha de días con 1 descanso semanal automáti
 <div class="lesson" style="margin-top:12px"><span class="label">Lección del día</span><h3>Museos de titularidad estatal</h3>
 <div class="meta"><span>{ic('i-clock')}8 min</span><span>{ic('i-book')}6 preguntas</span><span>{ic('i-star')}+20 XP</span></div>
 <span class="btn">{ic('i-play')} Empezar lección</span></div>
-<div class="mini" style="margin-top:10px"><span class="ic">{ic('i-repeat')}</span><span class="t"><b>Repaso pendiente</b><small>5 preguntas falladas ayer · Bloque II</small></span>{ic('i-back','i" style="transform:rotate(180deg);color:var(--subtle)')}</div>
+<div class="mini" style="margin-top:10px"><span class="ic">{ic('i-repeat')}</span><span class="t"><b>Repaso pendiente</b><small>5 preguntas falladas ayer · Bloque M · Museología</small></span>{ic('i-back','i" style="transform:rotate(180deg);color:var(--subtle)')}</div>
 <div class="spacer"></div>''', True)
 
 # ---------- 7 · Pregunta de lección ----------
@@ -224,7 +224,7 @@ def ogrid():
     return '<div class="qgrid of">'+o+'</div>'
 S[11] = ('Examen oficial · orden del cuadernillo', 'Rejilla en el orden real del cuadernillo; el bloque se ve por color y filtro. Pregunta anulada por el tribunal sustituida por la primera reserva.', f"""
 <div class="exambar"><span class="iconbtn">{ic('i-x')}</span><span class="timer">{ic('i-clock')}41:12</span><span class="spacer"></span><span class="chip ex">Oficial 2026 · Modelo A</span></div>
-<div class="fchips"><span class="chip on">Todos</span><span class="chip"><i style="background:var(--ink-800)"></i>Legislación 35</span><span class="chip"><i style="background:var(--terra-500)"></i>Museología 27</span><span class="chip"><i style="background:var(--warn-700)"></i>Patrimonio 38</span></div>
+<div class="fchips"><span class="chip on">Todos</span><span class="chip"><span class="lb L">L</span>Legislación 35</span><span class="chip"><span class="lb M">M</span>Museología 27</span><span class="chip"><span class="lb P">P</span>Patrimonio 38</span></div>
 <div class="legend" style="margin-top:8px"><span><i></i>Respondida</span><span><i class="b"></i>En blanco</span><span><i class="f"></i>Marcada</span><span><i class="r"></i>Reserva</span></div>
 <p class="xs muted" style="margin-top:4px">Orden del cuadernillo · bloque asignado de forma provisional</p>
 <div style="margin-top:4px">{ogrid()}</div>
@@ -264,16 +264,16 @@ def dgrid():
         c=(['b'] if n in blanks else [])+(['f'] if n in flags else [])+(['cur'] if n==23 else [])
         return f'<span class="{" ".join(c)}">{n}</span>'
     o=''
-    for nm,rg,r in [('I · Legislación','temas 1–16',range(1,31)),('II · Museología','temas 17–35',range(31,61)),('III · Patrimonio','temas 36–79',range(61,101))]:
+    for nm,rg,r in [('<span class="lb L">L</span>Legislación','temas 1–16',range(1,31)),('<span class="lb M">M</span>Museología','temas 17–35',range(31,61)),('<span class="lb P">P</span>Patrimonio','temas 36–79',range(61,101))]:
         o+=f'<div class="gsep"><b>{nm}</b><span>{rg}</span></div><div class="qgrid">'+''.join(cell(n) for n in r)+'</div>'
-    o+='<div class="gsep"><b>Reserva</b><span>I 101–103 · II 104–106 · III 107–110</span></div><div class="qgrid">'+''.join(f'<span class="r{" a" if n<=104 else ""}">{n}</span>' for n in range(101,111))+'</div>'
+    o+='<div class="gsep"><b>Reserva</b><span>L 101–103 · M 104–106 · P 107–110</span></div><div class="qgrid">'+''.join(f'<span class="r{" a" if n<=104 else ""}">{n}</span>' for n in range(101,111))+'</div>'
     return o
 DESK = f"""<div class="desk" data-vertical="museos">
 <div class="dhead"><span class="logo">{LOGO}<b>Aula Museos</b></span><span class="chip ex" style="margin-left:12px">Simulacro · formato real</span><span class="spacer"></span>
 <span class="small muted">Respondidas 19 · en blanco 3 · marcadas 2</span><span class="timer">{ic('i-clock')}58:24</span><span class="btn btn-ghost" style="width:auto;padding:9px 16px;font-size:14px">Entregar</span></div>
 <div class="dmain">
  <div class="dq">
-  <div class="row between"><div class="row"><span class="qnum" style="font-size:19px">Pregunta 23</span><span class="chip">Bloque I · Legislación</span>{DEMO}</div>
+  <div class="row between"><div class="row"><span class="qnum" style="font-size:19px">Pregunta 23</span><span class="chip"><span class="lb L">L</span>Legislación</span>{DEMO}</div>
   <div class="row"><span class="btn btn-ghost" style="width:auto;padding:9px 14px;font-size:14px">{ic('i-flag')} Marcar <kbd>M</kbd></span><span class="btn btn-ghost" style="width:auto;padding:9px 14px;font-size:14px">{ic('i-skip')} Saltar <kbd>S</kbd></span></div></div>
   <div class="row" style="margin-top:14px"><div class="progress"><i style="width:23%"></i></div><span class="xs muted tab">23/100</span></div>
   <p class="q">Según la Ley 16/1985, del Patrimonio Histórico Español, ¿cómo se declaran de forma individualizada los Bienes de Interés Cultural?</p>
