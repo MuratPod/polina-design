@@ -131,7 +131,7 @@ S[6] = ('Inicio · racha y XP', 'Racha de días con 1 descanso semanal automáti
 <div class="card" style="margin-top:14px"><div class="streakcard"><span class="flame">{ic('i-flame')}</span>
 <div><div class="serif" style="font-size:22px">12 días seguidos</div><p class="small muted">Haz la lección o un simulacro para llegar a 13.</p></div></div>
 <div class="week">{WEEK}</div>
-<div class="restnote">{ic('i-rest')}<span>Descanso semanal automático: usado el miércoles. Tu racha se mantuvo.</span></div></div>
+<div class="restnote">{ic('i-rest')}<span>Descanso semanal automático: el miércoles, tu primer día sin estudiar. Tu racha se mantuvo.</span></div></div>
 <div class="card tight" style="margin-top:10px"><div class="row between"><span class="label">XP de hoy · meta Regular</span><span class="small tab"><b>30</b> / 50 XP</span></div>
 <div class="xpbar" style="margin-top:8px"><div class="progress gold"><i style="width:60%"></i></div><span class="xs muted">Meta diaria</span></div></div>
 <div class="lesson" style="margin-top:12px"><span class="label">Lección del día</span><h3>Museos de titularidad estatal</h3>
@@ -181,8 +181,57 @@ S[9] = ('Onboarding · meta diaria', 'Tres niveles de meta de XP; se puede cambi
  <div class="goal sel"><span class="rad"></span><span class="t"><b>Regular</b><small>Unos 10 minutos · lección + repaso</small></span><span class="xpv">50 XP</span></div>
  <div class="goal"><span class="rad"></span><span class="t"><b>Intensa</b><small>Unos 20 minutos · varias lecciones</small></span><span class="xpv">80 XP</span></div>
 </div>
-<div class="card tight" style="margin-top:14px"><div class="row" style="align-items:flex-start">{ic('i-rest')}<p class="small"><b>Racha de días.</b> Cuenta cualquier día con lección o simulacro. Tienes 1 día de descanso por semana, automático. El simulacro no suma XP.</p></div></div>
+<div class="card tight" style="margin-top:14px"><div class="row" style="align-items:flex-start">{ic('i-rest')}<p class="small"><b>Racha de días.</b> Cuenta cualquier día con lección o simulacro. Tienes 1 día de descanso por semana: se aplica solo al primer día sin estudiar. El simulacro no suma XP.</p></div></div>
 <div class="foot"><span class="btn btn-primary">Continuar</span><p class="legal"><a>Aviso legal</a> · <a>Privacidad</a><br>Aula Museos es una herramienta no afiliada al Ministerio de Cultura.</p></div>''')
+
+# ---------- 10 · Ajustes ----------
+S[10] = ('Ajustes', 'Meta diaria de XP (30/50/80), descanso semanal, recordatorio, convocatoria (turno libre / promoción interna), cuenta y pie legal.', f"""
+<div class="topbar"><span class="iconbtn">{ic('i-back')}</span><h2>Ajustes</h2><span style="width:38px"></span></div>
+<div class="sect" style="margin-top:0"><span class="label">Meta diaria de XP</span><div class="list">
+ <div class="li"><span class="rad"></span><span class="t"><b>Ligera</b><small>Unos 5 min</small></span><span class="chip xp">30 XP</span></div>
+ <div class="li"><span class="rad on"></span><span class="t"><b>Regular</b><small>Unos 10 min</small></span><span class="chip xp">50 XP</span></div>
+ <div class="li"><span class="rad"></span><span class="t"><b>Intensa</b><small>Unos 20 min</small></span><span class="chip xp">80 XP</span></div>
+</div></div>
+<div class="sect"><span class="label">Racha</span><div class="list"><div class="li" style="align-items:flex-start">{ic('i-rest')}<span class="t">1 día de descanso por semana, automático: se aplica al <b>primer día sin estudiar</b> de la semana.</span></div></div></div>
+<div class="sect"><span class="label">Notificaciones</span><div class="list">
+ <div class="li"><span class="t">Recordatorio diario</span><span class="toggle"></span></div>
+ <div class="li"><span class="t">Hora del recordatorio</span><span class="v">19:30 ›</span></div>
+</div></div>
+<div class="sect"><span class="label">Convocatoria</span><div class="list"><div class="li" style="display:block">
+ <div class="segc"><span class="on">Turno libre</span><span>Promoción interna</span></div>
+ <small style="margin-top:6px">BOE-A-2025-26893 · Sección Museos · 79 temas · simulacro 100 + 10</small></div></div></div>
+<div class="sect"><span class="label">Cuenta</span><div class="list">
+ <div class="li"><span class="t">lucia@ejemplo.es<small>Correo de acceso</small></span><span class="v">›</span></div>
+ <div class="li"><span class="t" style="color:var(--err-700)">Cerrar sesión</span></div>
+</div></div>
+<div class="foot"><p class="legal"><a>Aviso legal</a> · <a>Privacidad</a><br>Aula Museos es una herramienta no afiliada al Ministerio de Cultura.</p></div>""")
+
+# ---------- 11 · Examen oficial: rejilla + anulada ----------
+SEQ = "MMPPMLLMPPLPLMMMMPPPPPLPMLPLLMPPLLLLLMMPPLMPMMPMLPLPLPPMLMMLLLPPPMMPMPLLLPPPLPPPPLLMPPLMLMLLMPLMLPLLMPPPPLLLMP"
+def ogrid():
+    blanks={12,27,33,41,58,66,72,88,95}; flags={14,47,81}
+    o=''
+    for n in range(1,111):
+        c=[SEQ[n-1]]
+        if n==60: c.append('x')
+        elif n>100: c.append('r a' if n==101 else 'r')
+        elif n in blanks: c.append('b')
+        if n in flags: c.append('f')
+        if n==101: c.append('sub')
+        if n==23: c.append('cur')
+        o+=f'<span class="{" ".join(c)}">{n}</span>'
+        if n==100: o+='</div><div class="gsep"><b>Reserva</b><span>101 sustituye a la 60 anulada</span></div><div class="qgrid of">'
+    return '<div class="qgrid of">'+o+'</div>'
+S[11] = ('Examen oficial · orden del cuadernillo', 'Rejilla en el orden real del cuadernillo; el bloque se ve por color y filtro. Pregunta anulada por el tribunal sustituida por la primera reserva.', f"""
+<div class="exambar"><span class="iconbtn">{ic('i-x')}</span><span class="timer">{ic('i-clock')}41:12</span><span class="spacer"></span><span class="chip ex">Oficial 2026 · Modelo A</span></div>
+<div class="fchips"><span class="chip on">Todos</span><span class="chip"><i style="background:var(--ink-800)"></i>Legislación 35</span><span class="chip"><i style="background:var(--terra-500)"></i>Museología 27</span><span class="chip"><i style="background:var(--warn-700)"></i>Patrimonio 38</span></div>
+<div class="legend" style="margin-top:8px"><span><i></i>Respondida</span><span><i class="b"></i>En blanco</span><span><i class="f"></i>Marcada</span><span><i class="r"></i>Reserva</span></div>
+<p class="xs muted" style="margin-top:4px">Orden del cuadernillo · bloque asignado de forma provisional</p>
+<div style="margin-top:4px">{ogrid()}</div>
+<div class="annul" style="margin-top:10px"><div class="row between"><span class="qnum" style="font-size:14px">Pregunta 60</span><span class="st">{ic('i-x')}Anulada por el tribunal</span></div>
+<p style="margin-top:6px">No puntúa. La sustituye la <b>reserva 101</b> (Museología), que pasa a contar en la nota.</p>
+<div class="cite" style="margin-top:6px">{ic('i-doc')}<span><b>Plantilla definitiva del tribunal</b><small>Estado de ejemplo · se enlazará la publicación oficial del tribunal</small></span></div></div>
+<div class="foot"><div class="btns"><span class="btn btn-ghost">Ir a la 101</span><span class="btn btn-primary">Entregar</span></div></div>""")
 
 def phone(n):
     t, cap, body, *tab = S[n]
@@ -206,6 +255,7 @@ def board(fname, title, sub, nums):
 <div class="bfoot">Preguntas, temas mostrados y puntuaciones son de ejemplo; bloques según BOE-A-2025-26893 (turno libre, 79 temas: 1–16, 17–35, 36–79). Explicaciones de IA siempre con la etiqueta «Contenido generado por IA» y fuente; «Sin fuente» cuando no la hay. Normas citadas: Ley 16/1985, de 25 de junio, del Patrimonio Histórico Español (BOE-A-1985-12534); Real Decreto 620/1987, de 10 de abril. Escritorio: ver desktop-simulacro.html (pregunta + rejilla fija). Aviso legal · Privacidad · Aula Museos no está afiliada al Ministerio de Cultura.</div>
 </body></html>''')
 board('board-simulacro.html','Simulacro · formato real','100 preguntas + 10 de reserva · 100 minutos · bloques 30/30/40 · acierto +1, blanco 0, error −1/3 · nota 0–30 con 15 como nota de corte orientativa · navegación por números, marcar y saltar · revisión por bloques y temas.',[1,2,3,4,5])
+board('board-oficial-ajustes.html','Examen oficial y Ajustes','Examen oficial: rejilla en el orden del cuadernillo, bloques por color y filtro, pregunta anulada por el tribunal sustituida por la reserva 101. 30/30/40 solo en simulacros propios. Ajustes: meta de XP, descanso semanal, recordatorio, convocatoria, cuenta y pie legal.',[11,10])
 board('board-leccion.html','Lección diaria con racha','Racha de días y XP diario frente a la meta (oro solo para XP; teja para la racha, como en el concepto v0.3) · lección corta con explicación inmediata · cierre con XP, racha +1 y repaso espaciado. Sin vidas, sin ligas, sin mascotas.',[9,6,7,8])
 
 def dgrid():
@@ -250,5 +300,5 @@ DESK = f"""<div class="desk" data-vertical="museos">
 (H/'desktop-simulacro.html').write_text(HEAD.format(t='Aula Museos v0.4 · escritorio · simulacro') + f'<body>{SPR}{DESK}</body></html>')
 
 idx = ''.join(f'<li><a href="screen-{n:02d}.html">{n:02d} · {S[n][0]}</a></li>' for n in S)
-(H/'index.html').write_text(HEAD.format(t='Aula Museos v0.4') + f'<body class="boardbody"><h1>Aula Museos · v0.4</h1><p class="lead">Prototipo de diseño: simulacro + lección diaria (estilo Atrio).</p><ul style="margin:16px 0 0 20px;line-height:1.9"><li><a href="board-simulacro.html">Tablero · Simulacro</a></li><li><a href="board-leccion.html">Tablero · Lección diaria</a></li><li><a href="desktop-simulacro.html">Escritorio · simulacro</a></li>{idx}</ul></body></html>')
+(H/'index.html').write_text(HEAD.format(t='Aula Museos v0.4') + f'<body class="boardbody"><h1>Aula Museos · v0.4</h1><p class="lead">Prototipo de diseño: simulacro + lección diaria (estilo Atrio).</p><ul style="margin:16px 0 0 20px;line-height:1.9"><li><a href="board-simulacro.html">Tablero · Simulacro</a></li><li><a href="board-leccion.html">Tablero · Lección diaria</a></li><li><a href="board-oficial-ajustes.html">Tablero · Examen oficial y Ajustes</a></li><li><a href="desktop-simulacro.html">Escritorio · simulacro</a></li>{idx}</ul></body></html>')
 print('built', len(S))
