@@ -1,0 +1,428 @@
+{
+ "contrast": [
+  {
+   "name": "coral sobre bg",
+   "fg": "#FF4250",
+   "bg": "#FFF8EC",
+   "ratio": 3.24,
+   "AA": false,
+   "AA_large": true,
+   "use": "solo relleno/grande"
+  },
+  {
+   "name": "blanco sobre coral",
+   "fg": "#FFFFFF",
+   "bg": "#FF4250",
+   "ratio": 3.42,
+   "AA": false,
+   "AA_large": true,
+   "use": "botón ≥18px bold"
+  },
+  {
+   "name": "coral-700 sobre bg",
+   "fg": "#C8162B",
+   "bg": "#FFF8EC",
+   "ratio": 5.52,
+   "AA": true,
+   "AA_large": true,
+   "use": "texto coral"
+  },
+  {
+   "name": "blanco sobre coral-700",
+   "fg": "#FFFFFF",
+   "bg": "#C8162B",
+   "ratio": 5.82,
+   "AA": true,
+   "AA_large": true,
+   "use": "botón texto normal"
+  },
+  {
+   "name": "blue sobre bg",
+   "fg": "#2E5BFF",
+   "bg": "#FFF8EC",
+   "ratio": 4.9,
+   "AA": true,
+   "AA_large": true,
+   "use": "enlaces"
+  },
+  {
+   "name": "blanco sobre blue",
+   "fg": "#FFFFFF",
+   "bg": "#2E5BFF",
+   "ratio": 5.18,
+   "AA": true,
+   "AA_large": true,
+   "use": "botón"
+  },
+  {
+   "name": "blue-700 sobre bg",
+   "fg": "#2449D8",
+   "bg": "#FFF8EC",
+   "ratio": 6.59,
+   "AA": true,
+   "AA_large": true,
+   "use": "texto pequeño"
+  },
+  {
+   "name": "ink sobre bg",
+   "fg": "#1B2140",
+   "bg": "#FFF8EC",
+   "ratio": 14.86,
+   "AA": true,
+   "AA_large": true,
+   "use": "texto"
+  },
+  {
+   "name": "muted sobre bg",
+   "fg": "#5A5F78",
+   "bg": "#FFF8EC",
+   "ratio": 5.95,
+   "AA": true,
+   "AA_large": true,
+   "use": "secundario"
+  },
+  {
+   "name": "subtle sobre bg",
+   "fg": "#6A6E84",
+   "bg": "#FFF8EC",
+   "ratio": 4.76,
+   "AA": true,
+   "AA_large": true,
+   "use": "captions"
+  },
+  {
+   "name": "success sobre bg",
+   "fg": "#0E7A6E",
+   "bg": "#FFF8EC",
+   "ratio": 4.94,
+   "AA": true,
+   "AA_large": true,
+   "use": "texto/icono"
+  },
+  {
+   "name": "error sobre bg",
+   "fg": "#B42318",
+   "bg": "#FFF8EC",
+   "ratio": 6.23,
+   "AA": true,
+   "AA_large": true,
+   "use": "texto/icono"
+  },
+  {
+   "name": "warning sobre bg",
+   "fg": "#A15C00",
+   "bg": "#FFF8EC",
+   "ratio": 4.92,
+   "AA": true,
+   "AA_large": true,
+   "use": "texto/icono"
+  },
+  {
+   "name": "ai sobre bg",
+   "fg": "#5B3FC4",
+   "bg": "#FFF8EC",
+   "ratio": 6.74,
+   "AA": true,
+   "AA_large": true,
+   "use": "texto/icono"
+  },
+  {
+   "name": "ai sobre ai-100",
+   "fg": "#5B3FC4",
+   "bg": "#ECE7FF",
+   "ratio": 5.91,
+   "AA": true,
+   "AA_large": true,
+   "use": "badge IA"
+  },
+  {
+   "name": "gold-700 sobre gold-100",
+   "fg": "#7A4F00",
+   "bg": "#FCEFC9",
+   "ratio": 6.22,
+   "AA": true,
+   "AA_large": true,
+   "use": "chip XP"
+  },
+  {
+   "name": "navy sobre gold",
+   "fg": "#0B1530",
+   "bg": "#F2C14E",
+   "ratio": 10.75,
+   "AA": true,
+   "AA_large": true,
+   "use": "chip XP/racha oscuro"
+  },
+  {
+   "name": "dark ink sobre navy-900",
+   "fg": "#F3F5FB",
+   "bg": "#0B1530",
+   "ratio": 16.55,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo navy"
+  },
+  {
+   "name": "dark ink sobre navy-800",
+   "fg": "#F3F5FB",
+   "bg": "#142350",
+   "ratio": 13.9,
+   "AA": true,
+   "AA_large": true,
+   "use": "tarjeta navy"
+  },
+  {
+   "name": "dark muted sobre navy-900",
+   "fg": "#A9B4D0",
+   "bg": "#0B1530",
+   "ratio": 8.7,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo navy"
+  },
+  {
+   "name": "dark muted sobre navy-800",
+   "fg": "#A9B4D0",
+   "bg": "#142350",
+   "ratio": 7.31,
+   "AA": true,
+   "AA_large": true,
+   "use": "tarjeta navy"
+  },
+  {
+   "name": "dark gold sobre navy-900",
+   "fg": "#F2C14E",
+   "bg": "#0B1530",
+   "ratio": 10.75,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo navy"
+  },
+  {
+   "name": "dark gold sobre navy-800",
+   "fg": "#F2C14E",
+   "bg": "#142350",
+   "ratio": 9.03,
+   "AA": true,
+   "AA_large": true,
+   "use": "tarjeta navy"
+  },
+  {
+   "name": "dark coral sobre navy-900",
+   "fg": "#FF7A85",
+   "bg": "#0B1530",
+   "ratio": 7.19,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo navy"
+  },
+  {
+   "name": "dark coral sobre navy-800",
+   "fg": "#FF7A85",
+   "bg": "#142350",
+   "ratio": 6.04,
+   "AA": true,
+   "AA_large": true,
+   "use": "tarjeta navy"
+  },
+  {
+   "name": "dark blue sobre navy-900",
+   "fg": "#7C9BFF",
+   "bg": "#0B1530",
+   "ratio": 6.86,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo navy"
+  },
+  {
+   "name": "dark blue sobre navy-800",
+   "fg": "#7C9BFF",
+   "bg": "#142350",
+   "ratio": 5.76,
+   "AA": true,
+   "AA_large": true,
+   "use": "tarjeta navy"
+  },
+  {
+   "name": "dark success sobre navy-900",
+   "fg": "#3CC7B4",
+   "bg": "#0B1530",
+   "ratio": 8.61,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo navy"
+  },
+  {
+   "name": "dark success sobre navy-800",
+   "fg": "#3CC7B4",
+   "bg": "#142350",
+   "ratio": 7.23,
+   "AA": true,
+   "AA_large": true,
+   "use": "tarjeta navy"
+  },
+  {
+   "name": "dark error sobre navy-900",
+   "fg": "#FF8A80",
+   "bg": "#0B1530",
+   "ratio": 7.9,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo navy"
+  },
+  {
+   "name": "dark error sobre navy-800",
+   "fg": "#FF8A80",
+   "bg": "#142350",
+   "ratio": 6.64,
+   "AA": true,
+   "AA_large": true,
+   "use": "tarjeta navy"
+  },
+  {
+   "name": "dark ai sobre navy-900",
+   "fg": "#B3A2FF",
+   "bg": "#0B1530",
+   "ratio": 8.19,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo navy"
+  },
+  {
+   "name": "dark ai sobre navy-800",
+   "fg": "#B3A2FF",
+   "bg": "#142350",
+   "ratio": 6.88,
+   "AA": true,
+   "AA_large": true,
+   "use": "tarjeta navy"
+  },
+  {
+   "name": "gold sobre navy-700",
+   "fg": "#F2C14E",
+   "bg": "#1C2E63",
+   "ratio": 7.72,
+   "AA": true,
+   "AA_large": true,
+   "use": "hero/footer"
+  },
+  {
+   "name": "museos light sobre bg",
+   "fg": "#9C5A00",
+   "bg": "#FFF8EC",
+   "ratio": 5.13,
+   "AA": true,
+   "AA_large": true,
+   "use": "texto/línea"
+  },
+  {
+   "name": "blanco sobre museos",
+   "fg": "#FFFFFF",
+   "bg": "#9C5A00",
+   "ratio": 5.42,
+   "AA": true,
+   "AA_large": true,
+   "use": "badge"
+  },
+  {
+   "name": "museos dark sobre navy",
+   "fg": "#F0B54A",
+   "bg": "#0B1530",
+   "ratio": 9.8,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo navy"
+  },
+  {
+   "name": "justicia light sobre bg",
+   "fg": "#8E2C7A",
+   "bg": "#FFF8EC",
+   "ratio": 7.13,
+   "AA": true,
+   "AA_large": true,
+   "use": "texto/línea"
+  },
+  {
+   "name": "blanco sobre justicia",
+   "fg": "#FFFFFF",
+   "bg": "#8E2C7A",
+   "ratio": 7.52,
+   "AA": true,
+   "AA_large": true,
+   "use": "badge"
+  },
+  {
+   "name": "justicia dark sobre navy",
+   "fg": "#E58BD3",
+   "bg": "#0B1530",
+   "ratio": 7.7,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo navy"
+  },
+  {
+   "name": "policia light sobre bg",
+   "fg": "#00728F",
+   "bg": "#FFF8EC",
+   "ratio": 5.23,
+   "AA": true,
+   "AA_large": true,
+   "use": "texto/línea"
+  },
+  {
+   "name": "blanco sobre policia",
+   "fg": "#FFFFFF",
+   "bg": "#00728F",
+   "ratio": 5.52,
+   "AA": true,
+   "AA_large": true,
+   "use": "badge"
+  },
+  {
+   "name": "policia dark sobre navy",
+   "fg": "#4FC3E0",
+   "bg": "#0B1530",
+   "ratio": 8.77,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo navy"
+  },
+  {
+   "name": "educacion light sobre bg",
+   "fg": "#4F7A1F",
+   "bg": "#FFF8EC",
+   "ratio": 4.81,
+   "AA": true,
+   "AA_large": true,
+   "use": "texto/línea"
+  },
+  {
+   "name": "blanco sobre educacion",
+   "fg": "#FFFFFF",
+   "bg": "#4F7A1F",
+   "ratio": 5.08,
+   "AA": true,
+   "AA_large": true,
+   "use": "badge"
+  },
+  {
+   "name": "educacion dark sobre navy",
+   "fg": "#A7D46B",
+   "bg": "#0B1530",
+   "ratio": 10.54,
+   "AA": true,
+   "AA_large": true,
+   "use": "modo navy"
+  }
+ ],
+ "coral_vs_reference": {
+  "final": "#FF4250",
+  "ref": "#EF7746",
+  "hue_final": 355.6,
+  "hue_ref": 17.4,
+  "hue_diff": 21.8,
+  "dE2000": 15.6,
+  "dE2000_old_FF6B3D": 3.8,
+  "dE_text": 23.6
+ }
+}
