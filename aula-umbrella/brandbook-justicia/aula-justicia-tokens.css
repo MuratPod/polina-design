@@ -1,0 +1,23 @@
+/* Aula Justicia · tokens de vertical v1 · cargar después de aula-tokens.css */
+[data-vertical="justicia"]{
+  --v-ink-900:#0F243A;
+  --v-ink-800:#14304D;
+  --v-ink-700:#354D66;
+  --v-ink-600:#566A7F;
+  --v-ink-100:#DEE2E6;
+  --v-ink-50:#EFF1F3;
+  --v-acc-600:#976924;
+  --v-acc-500:#B07A2A;
+  --v-acc-100:#F2EADD;
+  --v-bg:#EEF2F7;
+  --v-acc-dark:#D9A24E;
+  /* neutros fríos de la vertical (sustituyen a los cálidos de plataforma dentro de la app) */
+  --surface:#FFFFFF;
+  --paper:#EEF2F7;
+  --paper-2:#E3E9F1;
+  --line:#DCE4EE;
+  --text:#16202B;
+  --muted:#4A5868;
+  --subtle:#6B7787;
+  /* estados: heredados de plataforma, no cambiar */
+}

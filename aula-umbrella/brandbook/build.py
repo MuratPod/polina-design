@@ -259,6 +259,7 @@ s5 = f'''<p class="lead">Fórmula fija: <b>[arco] Aula</b> (Source Serif 4) + <b
 <div class="g3"><div class="panel"><b>Nomenclatura</b><p>Siempre «Aula» + nombre corto del ámbito, en singular y sin artículos: Aula Museos, Aula Justicia, Aula Policía, Aula Administración. Futuras: Aula Hacienda, Aula Correos, Aula Educación…</p></div>
 <div class="panel"><b>Cuándo usar el paraguas</b><p>Web corporativa, selector de verticales, facturas, legal, prensa. Dentro de una app de vertical, solo el lockup de esa vertical.</p></div>
 <div class="panel"><b>Nombre de cuerpo</b><p>La línea de sector (p. ej. «Tramitación · Auxilio · Gestión») es descriptiva, nunca forma parte del nombre de marca ni del icono.</p></div></div>
+<p class="note">Manual de vertical disponible: <a href="../brandbook-justicia/">Aula Justicia v1 →</a></p>
 {lk}'''
 
 # ---- 6 app icons
@@ -430,7 +431,7 @@ HTML = f'''<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&display=swap" rel="stylesheet">
 <style>{CSS}</style></head><body>
-<nav class="top"><span class="lg">{horiz(c=P['paper'], base=P['gold_rev'])[0]}</span>{nav}<a href="#archivos">Archivos</a></nav>
+<nav class="top"><span class="lg">{horiz(c=P['paper'], base=P['gold_rev'])[0]}</span>{nav}<a href="../brandbook-justicia/">Aula Justicia →</a><a href="#archivos">Archivos</a></nav>
 <div class="wrap">
 <header class="cover"><div class="cl">{cover_logo}</div><svg class="bigarch" viewBox="0 0 38 40">{arch(P['paper'],P['gold_rev'])}</svg>
 <h1>Manual de marca de la plataforma</h1><p class="tg">«Estudia como se examina.»</p>

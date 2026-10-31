@@ -9,6 +9,7 @@ Prototipo clicable, mobile-first, para la app de preparación de la oposición
 - `RESUMEN-MURAT.md` — resumen breve (ruso).
 - `brandbook/` — manual de marca v1 (HTML + PDF + logotipos SVG). En línea: https://muratpod.github.io/polina-design/brandbook/
 - `aula-umbrella/brandbook/` — **manual de marca de la plataforma Aula (dirección C · Atrio, v1)**: logotipo y símbolo, paleta y verticales, tipografía, voz, lockups, iconos, UI tokens (`aula-tokens.css/json`), examen. HTML + PDF + ZIP. En línea: https://muratpod.github.io/polina-design/aula-umbrella/brandbook/
+- `aula-umbrella/brandbook-justicia/` — **manual de vertical Aula Justicia v1** (azul toga #14304D + ámbar #B07A2A): lockups y sublockups por cuerpo, color, citación normativa, voz, iconografía, icono/OG, tokens `aula-justicia-tokens.css`, pantallas. En línea: https://muratpod.github.io/polina-design/aula-umbrella/brandbook-justicia/
 - `CHANGELOG.md` — historial de versiones (v0.3: nombre Aula Museos).
 - `CHANGELOG-v0.2.md` — qué cambió en v0.2 (feedback de Polina).
 
