@@ -145,7 +145,7 @@ h1{font-size:28px;letter-spacing:-.3px}h3{font-size:18px}
 .res3 .ok{background:var(--ok-100);border-color:#BFDCC9;color:var(--ok-700)}
 .res3 .bl{border-style:dashed;border-color:#A9A291;color:var(--muted)}
 .res3 .er{background:var(--err-100);border-color:#EBC3B6;color:var(--err-700)}
-.bk{padding:10px 0;border-top:1px solid var(--line)}
+.bk{padding:7px 0;border-top:1px solid var(--line)}
 .bk:first-of-type{border-top:0;padding-top:4px}
 .bk .row{font-size:13px}.bk .nm{flex:1;font-weight:600;color:var(--ink-900)}
 .bk .pts{font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink-900)}
