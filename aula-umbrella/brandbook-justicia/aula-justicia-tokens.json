@@ -14,12 +14,19 @@
     "acc-100": "#F2EADD",
     "bg": "#EEF2F7",
     "acc-dark": "#D9A24E",
+    "acc-text": "#8A5F1F",
     "surface": "#FFFFFF",
     "paper-2": "#E3E9F1",
     "line": "#DCE4EE",
     "text": "#16202B",
     "muted": "#4A5868",
-    "subtle": "#6B7787"
+    "subtle": "#5F6B7B"
+  },
+  "version": "2.0",
+  "text_tokens_v2": {
+    "acc-text": "#8A5F1F",
+    "subtle": "#5F6B7B",
+    "rule": "texto ámbar siempre --v-acc-text; metadatos --subtle sobre fondo/superficie, --muted sobre paper-2"
   },
   "status_colors": {
     "ok": "#2D6B4C",
