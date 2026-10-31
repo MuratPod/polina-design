@@ -44,7 +44,7 @@ for var,bg,fg,dot,wc in [('light',NV,PP,GD,NV),('dark',PP,NV,GD,PP),('mono','#00
   save(f'aula-mark-{var}',96,96,mark(bg,fg,dot,8,8,80));LOG.append(f'aula-mark-{var}')
 # clear space: x = cap height ~ 0.7*size
 wm,ww=wordmark(NV,GD,70,126,72)
-cs=f'<rect x="20" y="20" width="{ww+100}" height="150" fill="none" stroke="#3A4A6B" stroke-dasharray="5 5"/><rect x="70" y="72" width="{ww}" height="56" fill="none" stroke="#D9A21B" stroke-width="1"/>'+P(tp('zona de respeto = x (altura de la «A»)',13,'sans',500,24,196)[0],'#4A5068')
+cs=f'<rect x="20" y="20" width="{ww+100}" height="150" fill="none" stroke="#3A566B" stroke-dasharray="5 5"/><rect x="70" y="72" width="{ww}" height="56" fill="none" stroke="#D9A21B" stroke-width="1"/>'+P(tp('zona de respeto = x (altura de la «A»)',13,'sans',500,24,196)[0],'#4A5068')
 save('aula-clearspace',ww+140,210,cs+wm,PP)
 json.dump(LOG,open('logo/_list.json','w'))
 # app icon / favicon / adaptive

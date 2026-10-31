@@ -2,18 +2,18 @@
  "contrast": [
   {
    "name": "ink sobre papel",
-   "fg": "#14213D",
+   "fg": "#142A3D",
    "bg": "#F4F1EA",
-   "ratio": 14.16,
+   "ratio": 13.03,
    "AA": true,
    "AA_large": true,
    "use": "texto"
   },
   {
    "name": "ink sobre blanco",
-   "fg": "#14213D",
+   "fg": "#142A3D",
    "bg": "#FFFFFF",
-   "ratio": 15.97,
+   "ratio": 14.7,
    "AA": true,
    "AA_large": true,
    "use": "texto en tarjeta"
@@ -57,8 +57,8 @@
   {
    "name": "papel sobre navy",
    "fg": "#F4F1EA",
-   "bg": "#14213D",
-   "ratio": 14.16,
+   "bg": "#142A3D",
+   "ratio": 13.03,
    "AA": true,
    "AA_large": true,
    "use": "botón primario"
@@ -74,9 +74,9 @@
   },
   {
    "name": "navy sobre gold",
-   "fg": "#14213D",
+   "fg": "#142A3D",
    "bg": "#D9A21B",
-   "ratio": 6.95,
+   "ratio": 6.4,
    "AA": true,
    "AA_large": true,
    "use": "chip/botón dorado"
@@ -111,8 +111,8 @@
   {
    "name": "gold sobre navy",
    "fg": "#D9A21B",
-   "bg": "#14213D",
-   "ratio": 6.95,
+   "bg": "#142A3D",
+   "ratio": 6.4,
    "AA": true,
    "AA_large": true,
    "use": "acento en navy"
@@ -192,8 +192,8 @@
   {
    "name": "oscuro ink sobre bg",
    "fg": "#F4F1EA",
-   "bg": "#0F1728",
-   "ratio": 15.86,
+   "bg": "#0E1C27",
+   "ratio": 15.33,
    "AA": true,
    "AA_large": true,
    "use": "modo oscuro"
@@ -201,8 +201,8 @@
   {
    "name": "oscuro ink sobre surface",
    "fg": "#F4F1EA",
-   "bg": "#18233A",
-   "ratio": 13.89,
+   "bg": "#172A38",
+   "ratio": 13.07,
    "AA": true,
    "AA_large": true,
    "use": "tarjeta oscura"
@@ -210,8 +210,8 @@
   {
    "name": "oscuro muted sobre bg",
    "fg": "#B9BCC8",
-   "bg": "#0F1728",
-   "ratio": 9.45,
+   "bg": "#0E1C27",
+   "ratio": 9.13,
    "AA": true,
    "AA_large": true,
    "use": "modo oscuro"
@@ -219,8 +219,8 @@
   {
    "name": "oscuro muted sobre surface",
    "fg": "#B9BCC8",
-   "bg": "#18233A",
-   "ratio": 8.27,
+   "bg": "#172A38",
+   "ratio": 7.78,
    "AA": true,
    "AA_large": true,
    "use": "tarjeta oscura"
@@ -228,8 +228,8 @@
   {
    "name": "oscuro subtle sobre bg",
    "fg": "#9A9EAE",
-   "bg": "#0F1728",
-   "ratio": 6.71,
+   "bg": "#0E1C27",
+   "ratio": 6.49,
    "AA": true,
    "AA_large": true,
    "use": "modo oscuro"
@@ -237,8 +237,8 @@
   {
    "name": "oscuro subtle sobre surface",
    "fg": "#9A9EAE",
-   "bg": "#18233A",
-   "ratio": 5.88,
+   "bg": "#172A38",
+   "ratio": 5.53,
    "AA": true,
    "AA_large": true,
    "use": "tarjeta oscura"
@@ -246,8 +246,8 @@
   {
    "name": "oscuro gold sobre bg",
    "fg": "#E3B341",
-   "bg": "#0F1728",
-   "ratio": 9.2,
+   "bg": "#0E1C27",
+   "ratio": 8.89,
    "AA": true,
    "AA_large": true,
    "use": "modo oscuro"
@@ -255,8 +255,8 @@
   {
    "name": "oscuro gold sobre surface",
    "fg": "#E3B341",
-   "bg": "#18233A",
-   "ratio": 8.05,
+   "bg": "#172A38",
+   "ratio": 7.57,
    "AA": true,
    "AA_large": true,
    "use": "tarjeta oscura"
@@ -264,8 +264,8 @@
   {
    "name": "oscuro success sobre bg",
    "fg": "#4CC2B0",
-   "bg": "#0F1728",
-   "ratio": 8.22,
+   "bg": "#0E1C27",
+   "ratio": 7.95,
    "AA": true,
    "AA_large": true,
    "use": "modo oscuro"
@@ -273,8 +273,8 @@
   {
    "name": "oscuro success sobre surface",
    "fg": "#4CC2B0",
-   "bg": "#18233A",
-   "ratio": 7.2,
+   "bg": "#172A38",
+   "ratio": 6.77,
    "AA": true,
    "AA_large": true,
    "use": "tarjeta oscura"
@@ -282,8 +282,8 @@
   {
    "name": "oscuro error sobre bg",
    "fg": "#FF8F84",
-   "bg": "#0F1728",
-   "ratio": 8.11,
+   "bg": "#0E1C27",
+   "ratio": 7.84,
    "AA": true,
    "AA_large": true,
    "use": "modo oscuro"
@@ -291,8 +291,8 @@
   {
    "name": "oscuro error sobre surface",
    "fg": "#FF8F84",
-   "bg": "#18233A",
-   "ratio": 7.1,
+   "bg": "#172A38",
+   "ratio": 6.68,
    "AA": true,
    "AA_large": true,
    "use": "tarjeta oscura"
@@ -300,8 +300,8 @@
   {
    "name": "oscuro warning sobre bg",
    "fg": "#E8B160",
-   "bg": "#0F1728",
-   "ratio": 9.28,
+   "bg": "#0E1C27",
+   "ratio": 8.97,
    "AA": true,
    "AA_large": true,
    "use": "modo oscuro"
@@ -309,8 +309,8 @@
   {
    "name": "oscuro warning sobre surface",
    "fg": "#E8B160",
-   "bg": "#18233A",
-   "ratio": 8.12,
+   "bg": "#172A38",
+   "ratio": 7.64,
    "AA": true,
    "AA_large": true,
    "use": "tarjeta oscura"
@@ -318,8 +318,8 @@
   {
    "name": "oscuro ai sobre bg",
    "fg": "#B7A6FF",
-   "bg": "#0F1728",
-   "ratio": 8.45,
+   "bg": "#0E1C27",
+   "ratio": 8.16,
    "AA": true,
    "AA_large": true,
    "use": "modo oscuro"
@@ -327,8 +327,8 @@
   {
    "name": "oscuro ai sobre surface",
    "fg": "#B7A6FF",
-   "bg": "#18233A",
-   "ratio": 7.4,
+   "bg": "#172A38",
+   "ratio": 6.96,
    "AA": true,
    "AA_large": true,
    "use": "tarjeta oscura"
@@ -345,8 +345,8 @@
   {
    "name": "museos oscuro sobre bg oscuro",
    "fg": "#E7A07C",
-   "bg": "#0F1728",
-   "ratio": 8.28,
+   "bg": "#0E1C27",
+   "ratio": 8.0,
    "AA": true,
    "AA_large": true,
    "use": "marcador oscuro"
@@ -363,8 +363,8 @@
   {
    "name": "justicia oscuro sobre bg oscuro",
    "fg": "#E58BD3",
-   "bg": "#0F1728",
-   "ratio": 7.64,
+   "bg": "#0E1C27",
+   "ratio": 7.38,
    "AA": true,
    "AA_large": true,
    "use": "marcador oscuro"
@@ -381,8 +381,8 @@
   {
    "name": "policia oscuro sobre bg oscuro",
    "fg": "#4FC3E0",
-   "bg": "#0F1728",
-   "ratio": 8.7,
+   "bg": "#0E1C27",
+   "ratio": 8.41,
    "AA": true,
    "AA_large": true,
    "use": "marcador oscuro"
@@ -399,8 +399,8 @@
   {
    "name": "educacion oscuro sobre bg oscuro",
    "fg": "#A7D46B",
-   "bg": "#0F1728",
-   "ratio": 10.46,
+   "bg": "#0E1C27",
+   "ratio": 10.11,
    "AA": true,
    "AA_large": true,
    "use": "marcador oscuro"
@@ -409,31 +409,31 @@
  "competitors": [
   {
    "ours": "navy",
-   "hex": "#14213D",
+   "hex": "#142A3D",
    "ref": "OpositaTest navy",
    "refhex": "#253B80",
-   "dE2000": 12.6
+   "dE2000": 11.3
   },
   {
    "ours": "navy",
-   "hex": "#14213D",
+   "hex": "#142A3D",
    "ref": "OpositaTest naranja",
    "refhex": "#EF7746",
-   "dE2000": 56.5
+   "dE2000": 55.4
   },
   {
    "ours": "navy",
-   "hex": "#14213D",
+   "hex": "#142A3D",
    "ref": "MAD navy",
    "refhex": "#11184A",
-   "dE2000": 6.6
+   "dE2000": 10.9
   },
   {
    "ours": "navy",
-   "hex": "#14213D",
+   "hex": "#142A3D",
    "ref": "MAD rojo",
    "refhex": "#EC4249",
-   "dE2000": 48.6
+   "dE2000": 49.5
   },
   {
    "ours": "gold",

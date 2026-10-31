@@ -3,7 +3,7 @@ T=json.load(open('tokens/_t.json'));C=json.load(open('tokens/contrast.json'));L=
 VN={'museos':'Museos','justicia':'Justicia','policia':'Policía','educacion':'Educación'}
 sw=lambda n,h,fg:f'<div class="sw"><div style="background:{h};color:{fg}">{n}</div><code>{h}</code></div>'
 dk=lambda h: sum(int(h[i:i+2],16) for i in (1,3,5))<380
-pal=lambda g: ''.join(sw(k,v,'#F4F1EA' if dk(v) else '#14213D') for k,v in T[g].items())
+pal=lambda g: ''.join(sw(k,v,'#F4F1EA' if dk(v) else '#142A3D') for k,v in T[g].items())
 rows=''.join(f'<tr><td>{r["name"]}</td><td><span class="chipc" style="background:{r["bg"]};color:{r["fg"]}">Aa</span> <code>{r["fg"]}</code> / <code>{r["bg"]}</code></td><td><b>{r["ratio"]}</b></td><td>{"AA ✓" if r["AA"] else ("solo grande" if r["AA_large"] else "no texto")}</td><td>{r["use"]}</td></tr>' for r in C['contrast'])
 comp=''.join(f'<tr><td><code>{c["hex"]}</code> {c["ours"]}</td><td><code>{c["refhex"]}</code> {c["ref"]}</td><td><b>{c["dE2000"]}</b></td></tr>' for c in C['competitors'])
 fig=lambda src,cap,cls='':f'<figure class="{cls}"><img src="{src}" alt="{cap}" loading="lazy"><figcaption>{cap}</figcaption></figure>'
@@ -18,7 +18,7 @@ html=f'''<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="
 .toc{{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px}}.grid{{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}}
 .sw div{{height:68px;border-radius:8px;display:flex;align-items:flex-end;padding:8px;font-size:13px;border:1px solid var(--line)}}.sw code{{font-size:12px}}
 .tw{{overflow-x:auto}}table{{border-collapse:collapse;width:100%;font-size:14px;background:#fff;min-width:620px}}td,th{{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left}}.chipc{{display:inline-block;padding:2px 8px;border-radius:5px;font:500 12px var(--font-mono)}}
-.lgs{{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}}.lg{{margin:0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}}.lg.dk{{background:#14213D}}.lg img{{height:52px;max-width:100%;display:block}}.lg figcaption{{font-size:11px;margin-top:6px;color:var(--subtle);word-break:break-all}}.lg.dk figcaption,.lg.dk a{{color:#B9BCC8}}
+.lgs{{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}}.lg{{margin:0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}}.lg.dk{{background:#142A3D}}.lg img{{height:52px;max-width:100%;display:block}}.lg figcaption{{font-size:11px;margin-top:6px;color:var(--subtle);word-break:break-all}}.lg.dk figcaption,.lg.dk a{{color:#B9BCC8}}
 .icons{{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:10px;background:#fff;padding:16px;border-radius:12px}}.icn{{margin:0;text-align:center;font-size:11px;color:var(--subtle)}}.icn img{{width:28px}}
 figure{{margin:0}}figure img{{max-width:100%;display:block;border-radius:10px;border:1px solid var(--line)}}figcaption{{font-size:12px;color:var(--subtle);margin-top:4px}}.phs{{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}}.two{{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}}
 pre{{background:#fff;border:1px solid var(--line);padding:14px;border-radius:10px;overflow:auto;font:500 12px/1.5 var(--font-mono);max-height:360px}}
@@ -33,7 +33,7 @@ pre{{background:#fff;border:1px solid var(--line);padding:14px;border-radius:10p
 <div class="two">{fig('app-icon/master-1024.png','master 1024')}{fig('app-icon/android-adaptive-preview.png','Android adaptive: círculo, squircle, gota, monocromo')}</div>
 <p style="margin-top:12px">{''.join(f'<img src="favicon/favicon-{s}.png" width="{s}" style="margin-right:12px;vertical-align:bottom"> ' for s in [16,32,48,64])} <a href="favicon/head-snippet.html">head-snippet.html</a> · <a href="favicon/favicon.svg">favicon.svg</a></p></section>
 <section id="web"><h2>Web: cabecera, héroe y pie</h2><div class="two">{fig('web/site-desktop-1280.png','Escritorio 1280')}{fig('web/site-mobile-390.png','Móvil 390')}</div><p class="muted" style="margin-top:10px">Pie obligatorio: «Aviso legal · Privacidad · no afiliada al Ministerio de Cultura».</p></section>
-<section id="color"><h2>Color</h2><p>Papel <code>#F4F1EA</code> y tinta navy <code>#14213D</code> llevan la marca. El oro <code>#D9A21B</code> es <b>solo acento</b> (punto, marcador, barra de meta); como texto se usa <code>gold-700 #856000</code> (AA). Botón principal: navy.</p>
+<section id="color"><h2>Color</h2><p>Papel <code>#F4F1EA</code> y tinta navy <code>#142A3D</code> llevan la marca. El oro <code>#D9A21B</code> es <b>solo acento</b> (punto, marcador, barra de meta); como texto se usa <code>gold-700 #856000</code> (AA). Botón principal: navy.</p>
 <h3>Marca</h3><div class="grid">{pal('brand')}</div><h3>Neutros</h3><div class="grid">{pal('neutral')}</div><h3>Semánticos</h3><div class="grid">{pal('semantic')}</div><h3>Modo oscuro</h3><div class="grid">{pal('dark')}</div>
 <h3>Contraste WCAG 2.2</h3><div class="tw" data-ovok><table><tr><th>Par</th><th>Muestra</th><th>Ratio</th><th>Nivel</th><th>Uso</th></tr>{rows}</table></div>
 <h3>Distancia vs competencia (ΔE2000)</h3><div class="tw" data-ovok><table><tr><th>Aula</th><th>Referencia</th><th>ΔE2000</th></tr>{comp}</table></div><img src="ui/competitor-check.png" style="max-width:100%;margin-top:10px" alt=""></section>
@@ -58,11 +58,11 @@ open('index.html','w').write(html)
 B=f'''<!doctype html><html lang="es"><head><meta charset="utf-8"><link rel="stylesheet" href="ui/aula-ui.css"><style>body{{width:1880px;padding:36px;overflow:hidden}}.b{{display:grid;grid-template-columns:330px 1fr 1fr 1fr 1fr 1fr;gap:18px;align-items:start}}.b img{{width:100%;display:block;border-radius:14px;border:1px solid var(--line)}}.c{{font-size:13px}}.k{{display:flex;gap:6px;margin:6px 0}}.k i{{flex:1;height:40px;border-radius:6px;border:1px solid var(--line)}}</style></head><body>
 <div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:22px"><div><p class="eyebrow">Aula · Brandbook · Dirección D · Editorial</p><h1 style="font-size:52px;margin:0">Menos ruido<span class="dot">.</span> Más temario<span class="dot">.</span></h1></div><img src="logo/aula-umbrella-horizontal.svg" height="64" style="border:0"></div>
 <div class="b"><div class="c"><img src="logo/aula-stacked-light.svg" style="width:150px;border:0;margin-bottom:10px">
-<p class="eyebrow">Color</p><div class="k"><i style="background:#F4F1EA"></i><i style="background:#14213D"></i><i style="background:#D9A21B"></i><i style="background:#856000"></i><i style="background:#66697F"></i></div>
-<p style="margin:0">papel #F4F1EA · navy #14213D (14,2:1) · oro #D9A21B solo acento · gold-700 #856000 (5,1:1) · subtle #66697F (4,8:1)</p>
+<p class="eyebrow">Color</p><div class="k"><i style="background:#F4F1EA"></i><i style="background:#142A3D"></i><i style="background:#D9A21B"></i><i style="background:#856000"></i><i style="background:#66697F"></i></div>
+<p style="margin:0">papel #F4F1EA · navy #142A3D (13,0:1) · oro #D9A21B solo acento · gold-700 #856000 (5,1:1) · subtle #66697F (4,8:1)</p>
 <p class="eyebrow" style="margin-top:14px">Verticales · marcador</p>{''.join(f'<span class="vtag" style="margin-right:10px"><span class="marker" style="background:{v["light"]}"></span>{VN[k]}</span>' for k,v in T['vertical'].items())}
 <p class="eyebrow" style="margin-top:14px">Tipografía</p><p class="serif" style="font-size:28px;margin:0">Fraunces</p><p style="margin:0">IBM Plex Sans · <span class="mono">Plex Mono</span></p>
-<p class="eyebrow" style="margin-top:14px">ΔE2000 navy / oro</p><p style="margin:0">vs OpositaTest: 12,6 / 25,1<br>vs MAD: 6,6 ⚠ / 40,8</p>
+<p class="eyebrow" style="margin-top:14px">ΔE2000 navy / oro</p><p style="margin:0">vs OpositaTest: 11,3 / 25,1<br>vs MAD: 10,9 / 40,8</p>
 <img src="app-icon/master-1024.png" style="width:96px;margin-top:14px;border-radius:22px"></div>
 {''.join(f'<img src="screens/{k}.png">' for k in ['home','explanation','result','simulacro','home-dark'])}</div>
 <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:18px;margin-top:18px"></div></body></html>'''

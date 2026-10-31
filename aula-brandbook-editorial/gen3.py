@@ -19,6 +19,6 @@ for k,s in {'mdpi':48,'hdpi':72,'xhdpi':96,'xxhdpi':144,'xxxhdpi':192,'play-stor
 r=Image.new('L',(1024,1024),0);ImageDraw.Draw(r).rounded_rectangle([0,0,1023,1023],radius=225,fill=255);fm=m.copy();fm.putalpha(r)
 for s in [16,32,48,64,96,128,180,192,256,512]: fm.resize((s,s),Image.LANCZOS).save(f'favicon/favicon-{s}.png')
 m.resize((180,180),Image.LANCZOS).save('favicon/apple-touch-icon.png');fm.save('favicon/favicon.ico',sizes=[(16,16),(32,32),(48,48)])
-pathlib.Path('favicon/site.webmanifest').write_text(json.dumps({"name":"Aula.","short_name":"Aula.","icons":[{"src":"favicon-192.png","sizes":"192x192","type":"image/png"},{"src":"favicon-512.png","sizes":"512x512","type":"image/png"}],"theme_color":"#14213D","background_color":"#F4F1EA","display":"standalone"},indent=1))
-pathlib.Path('favicon/head-snippet.html').write_text('<link rel="icon" href="/favicon.ico" sizes="any">\n<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n<link rel="apple-touch-icon" href="/apple-touch-icon.png">\n<link rel="manifest" href="/site.webmanifest">\n<meta name="theme-color" content="#14213D">\n')
+pathlib.Path('favicon/site.webmanifest').write_text(json.dumps({"name":"Aula.","short_name":"Aula.","icons":[{"src":"favicon-192.png","sizes":"192x192","type":"image/png"},{"src":"favicon-512.png","sizes":"512x512","type":"image/png"}],"theme_color":"#142A3D","background_color":"#F4F1EA","display":"standalone"},indent=1))
+pathlib.Path('favicon/head-snippet.html').write_text('<link rel="icon" href="/favicon.ico" sizes="any">\n<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n<link rel="apple-touch-icon" href="/apple-touch-icon.png">\n<link rel="manifest" href="/site.webmanifest">\n<meta name="theme-color" content="#142A3D">\n')
 print('ok')

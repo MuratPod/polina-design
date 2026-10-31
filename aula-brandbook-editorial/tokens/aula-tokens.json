@@ -1,8 +1,8 @@
 {
   "brand": {
-    "navy": "#14213D",
-    "navy-800": "#1E2D4F",
-    "navy-600": "#3A4A6B",
+    "navy": "#142A3D",
+    "navy-800": "#1E3A52",
+    "navy-600": "#3A566B",
     "gold": "#D9A21B",
     "gold-700": "#856000",
     "gold-100": "#F6EBCB",
@@ -13,7 +13,7 @@
     "surface": "#FFFFFF",
     "surface-2": "#EFEBE3",
     "line": "#DCD5C6",
-    "ink": "#14213D",
+    "ink": "#142A3D",
     "muted": "#4A5068",
     "subtle": "#66697F"
   },
@@ -28,10 +28,10 @@
     "ai-100": "#EEEAFB"
   },
   "dark": {
-    "bg": "#0F1728",
-    "surface": "#18233A",
-    "surface-2": "#22304B",
-    "line": "#33425F",
+    "bg": "#0E1C27",
+    "surface": "#172A38",
+    "surface-2": "#213848",
+    "line": "#34505F",
     "ink": "#F4F1EA",
     "muted": "#B9BCC8",
     "subtle": "#9A9EAE",
@@ -91,6 +91,6 @@
     "mono": "Plex Mono 14/1.6 500"
   },
   "shadow": {
-    "1": "0 1px 0 rgba(20,33,61,.06),0 2px 8px rgba(20,33,61,.05)"
+    "1": "0 1px 0 rgba(20,42,61,.06),0 2px 8px rgba(20,42,61,.05)"
   }
 }
