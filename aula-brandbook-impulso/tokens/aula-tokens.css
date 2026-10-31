@@ -43,13 +43,13 @@
   --sh-pop:0 4px 0 rgba(27,33,64,.12);
   --font-sans:'Nunito', system-ui, sans-serif;
   --font-mono:'JetBrains Mono', ui-monospace, monospace;
-  --v-museos:#9C5A00;
+  --v-museos:#94502F;
   --v-justicia:#8E2C7A;
   --v-policia:#00728F;
   --v-educacion:#4F7A1F;
   --accent:var(--coral);--accent-text:var(--coral-700);
 }
-[data-theme="dark"]{--bg:#0B1530;--surface:#142350;--surface-2:#1C2E63;--line:#2A3D78;--ink:#F3F5FB;--muted:#A9B4D0;--gold:#F2C14E;--coral:#FF7A85;--blue:#7C9BFF;--success:#3CC7B4;--error:#FF8A80;--ai:#B3A2FF;--coral-700:#FF7A85;--blue-700:#7C9BFF;--gold-700:#F2C14E;--v-museos:#F0B54A;--v-justicia:#E58BD3;--v-policia:#4FC3E0;--v-educacion:#A7D46B;}
+[data-theme="dark"]{--bg:#0B1530;--surface:#142350;--surface-2:#1C2E63;--line:#2A3D78;--ink:#F3F5FB;--muted:#A9B4D0;--gold:#F2C14E;--coral:#FF7A85;--blue:#7C9BFF;--success:#3CC7B4;--error:#FF8A80;--ai:#B3A2FF;--coral-700:#FF7A85;--blue-700:#7C9BFF;--gold-700:#F2C14E;--v-museos:#E7A07C;--v-justicia:#E58BD3;--v-policia:#4FC3E0;--v-educacion:#A7D46B;}
 [data-vertical="museos"]{--accent-v:var(--v-museos);}
 [data-vertical="justicia"]{--accent-v:var(--v-justicia);}
 [data-vertical="policia"]{--accent-v:var(--v-policia);}

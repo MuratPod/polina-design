@@ -9,7 +9,7 @@ T={
  'neutral':{'bg':'#FFF8EC','surface':'#FFFFFF','surface-2':'#FBF1DF','line':'#EADFCB','ink':'#1B2140','muted':'#5A5F78','subtle':'#6A6E84'},
  'semantic':{'success':'#0E7A6E','success-100':'#DDF2EE','error':'#B42318','error-100':'#FDE4E1','warning':'#A15C00','warning-100':'#FFF0D1','ai':'#5B3FC4','ai-100':'#ECE7FF'},
  'dark':{'bg':'#0B1530','surface':'#142350','surface-2':'#1C2E63','line':'#2A3D78','ink':'#F3F5FB','muted':'#A9B4D0','gold':'#F2C14E','coral':'#FF7A85','blue':'#7C9BFF','success':'#3CC7B4','error':'#FF8A80','ai':'#B3A2FF'},
- 'vertical':{'museos':{'light':'#9C5A00','dark':'#F0B54A'},'justicia':{'light':'#8E2C7A','dark':'#E58BD3'},'policia':{'light':'#00728F','dark':'#4FC3E0'},'educacion':{'light':'#4F7A1F','dark':'#A7D46B'}},
+ 'vertical':{'museos':{'light':'#94502F','dark':'#E7A07C'},'justicia':{'light':'#8E2C7A','dark':'#E58BD3'},'policia':{'light':'#00728F','dark':'#4FC3E0'},'educacion':{'light':'#4F7A1F','dark':'#A7D46B'}},
  'radius':{'sm':'10px','md':'16px','lg':'24px','pill':'999px'},'space':{'1':'4px','2':'8px','3':'12px','4':'16px','5':'24px','6':'32px','7':'48px','8':'64px'},
  'font':{'sans':"'Nunito', system-ui, sans-serif",'mono':"'JetBrains Mono', ui-monospace, monospace"},
  'type':{'display':'40/1.1 800','h1':'32/1.15 800','h2':'24/1.2 800','h3':'20/1.25 700','body':'16/1.5 500','small':'14/1.45 600','caption':'12/1.4 700'},

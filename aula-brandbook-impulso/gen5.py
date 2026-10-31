@@ -27,25 +27,28 @@ def tpl(name,w,h,body):
 tpl('instagram-post',1080,1080,f'''<div class="navy" style="width:1080px;height:1080px;padding:90px;display:flex;flex-direction:column;justify-content:space-between">
 <img src="../logo/aula-umbrella-on-dark.svg" height="70" style="align-self:flex-start"><div><span class="streak" style="font-size:34px;padding:12px 26px">{ic('flame',38)} 30 días</span>
 <h1 style="font-size:104px;color:#fff;margin:36px 0 0;line-height:1.02">Un mes seguido<br>estudiando.<br><span style="color:var(--gold)">Eso es método.</span></h1></div>
-<p style="font-size:34px;color:#C9D2E8;font-weight:700;margin:0">Estudia como se examina · aula</p></div>''')
+<p style="font-size:34px;color:#C9D2E8;font-weight:700;margin:0">Estudia como se examina · aulaoposiciones.es</p></div>''')
 tpl('instagram-story',1080,1920,f'''<div style="width:1080px;height:1920px;background:var(--bg);padding:110px 90px;display:flex;flex-direction:column;gap:50px">
 <img src="../logo/aula-umbrella-horizontal.svg" height="80" style="align-self:flex-start"><h1 style="font-size:110px;line-height:1.02;margin:40px 0 0">¿Te atreves con<br>un <span style="color:var(--coral-700)">simulacro</span><br>de verdad?</h1>
-<p style="font-size:42px;font-weight:700;color:var(--muted);margin:0">100 + 10 preguntas · 100 minutos · +1 / 0 / −1/3</p>
+<p style="font-size:42px;font-weight:700;color:var(--muted);margin:0">100 + 10 preguntas · 100 minutos<br>Puntuación: +1 / 0 / −1/3</p>
 <img src="../screens/result.png" style="width:640px;align-self:center;border-radius:60px;border:14px solid #0B1530;box-shadow:0 40px 80px rgba(0,0,0,.25)">
 <a class="btn btn-primary big" style="font-size:44px;padding:36px;margin-top:auto">Empieza gratis</a></div>''')
 tpl('og-image',1200,630,f'''<div class="navy" style="width:1200px;height:630px;padding:70px;display:flex;justify-content:space-between;align-items:center">
-<div><img src="../logo/aula-umbrella-on-dark.svg" height="64"><h1 style="font-size:84px;color:#fff;margin:40px 0 16px;line-height:1.02">Estudia como<br>se <span style="color:var(--gold)">examina</span><span style="color:#FF7A85">!</span></h1><p style="font-size:28px;color:#C9D2E8;font-weight:700;margin:0">Oposiciones · lecciones diarias · simulacros reales</p></div>
+<div><img src="../logo/aula-umbrella-on-dark.svg" height="64"><h1 style="font-size:84px;color:#fff;margin:40px 0 16px;line-height:1.02">Estudia como<br>se <span style="color:var(--gold)">examina</span><span style="color:#FF7A85">!</span></h1><p style="font-size:28px;color:#C9D2E8;font-weight:700;margin:0">Oposiciones · lecciones diarias · simulacros reales</p><p style="font-size:24px;color:var(--gold);font-weight:800;margin:10px 0 0">aulaoposiciones.es</p></div>
 <img src="../illustrations/racha.svg" width="300"></div>''')
 frames=[('Un poco cada día.<br>Tu racha te espera.','home'),('Explicaciones al instante,<br>con su fuente.','explanation'),('Simulacros con el<br>formato real.','simulacro'),('Tu nota 0–30,<br>sin cajas negras.','result')]
 for i,(t,s) in enumerate(frames,1):
   bg='navy' if i%2 else ''
   tpl(f'appstore-6.7-{i}',430,932,f'''<div class="{bg}" style="width:430px;height:932px;{'' if bg else 'background:var(--bg);'}padding:48px 28px 0;text-align:center;overflow:hidden">
 <h1 style="font-size:31px;line-height:1.12;{'color:#fff' if bg else ''}">{t}</h1><img src="../screens/{s}.png" style="width:330px;margin-top:26px;border-radius:44px;border:10px solid #0B1530;box-shadow:0 30px 60px rgba(0,0,0,.3)"></div>''')
-open('templates/email-signature.html','w').write('''<!-- Firma de email aula! · pegar en el cliente de correo (tablas + estilos inline) -->
-<table cellpadding="0" cellspacing="0" style="font-family:Nunito,Arial,sans-serif;color:#1B2140;font-size:14px;line-height:1.4">
-<tr><td style="padding-right:14px;border-right:3px solid #FF4250"><img src="https://aula.example/brand/favicon-96.png" width="48" height="48" alt="aula!" style="border-radius:13px;display:block"></td>
-<td style="padding-left:14px"><b style="font-size:16px">[Nombre Apellido]</b><br><span style="color:#5A5F78">[Cargo] · aula!</span><br>
-<a href="https://[dominio]" style="color:#2449D8;text-decoration:none;font-weight:700">[dominio]</a> · <span style="color:#C8162B;font-weight:800">Estudia como se examina.</span></td></tr></table>''')
+open('templates/email-signature.html','w').write('''<!-- Firma de email aula! · pegar en el cliente de correo (tablas + estilos inline).
+     Nota: el dominio aulaoposiciones.es aún no está activo; la imagen debe alojarse allí antes de usar la firma. -->
+<table cellpadding="0" cellspacing="0" role="presentation" style="font-family:Nunito,Arial,sans-serif;color:#1B2140;font-size:14px;line-height:1.4">
+<tr><td style="padding-right:14px;border-right:3px solid #FF4250"><img src="https://aulaoposiciones.es/brand/favicon-96.png" width="48" height="48" alt="aula!" style="border-radius:13px;display:block"></td>
+<td style="padding-left:14px"><b style="font-size:16px">Equipo Aula</b><br>
+<a href="mailto:hola@aulaoposiciones.es" style="color:#2449D8;text-decoration:none;font-weight:700">hola@aulaoposiciones.es</a> · <a href="https://aulaoposiciones.es" style="color:#2449D8;text-decoration:none;font-weight:700">aulaoposiciones.es</a><br>
+<span style="color:#C8162B;font-weight:800">Estudia como se examina.</span></td></tr></table>''')
+open('templates/email-signature-preview.html','w').write(page('<div style="padding:24px 30px;background:#fff;height:120px">'+open('templates/email-signature.html').read()+'</div>',w=520,h=120).replace('https://aulaoposiciones.es/brand/favicon-96.png','../favicon/favicon-96.png'))
 # ---------- UI kit
 V=T['vertical']
 kit=f'''<div style="padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:28px">

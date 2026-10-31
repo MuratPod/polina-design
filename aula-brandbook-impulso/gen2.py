@@ -28,7 +28,7 @@ LOG=[]
 def set_for(key,label,acc_l,acc_d):
   sub=lambda c,x: (lambda p:(f'<path d="{p[0]}" fill="{c}"/>',p[1]))(tp(label,30,800,x,82)) if label else ('',0)
   # horizontal light
-  for var,bg,sym,symfg,wm,bang,subc,dot in [('horizontal','#FFF8EC',acc_l,'#FFFFFF',N['ink'],B['coral'],acc_l,None),
+  for var,bg,sym,symfg,wm,bang,subc,dot in [('horizontal',None,acc_l,'#FFFFFF',N['ink'],B['coral'],acc_l,None),
       ('on-dark',None,B['gold'],B['navy-900'],B['gold'],B['coral'] if not label else acc_d,acc_d,None),
       ('mono',None,'#000000','#FFFFFF','#000000','#000000','#000000',None)]:
     s=symbol(sym,symfg,16,16,72);wmb,ww=wordmark(wm,bang,104,74,60);sb,sw=sub(subc,104+ww+12)
@@ -66,3 +66,9 @@ IL={'racha':f'<circle cx="120" cy="120" r="100" fill="{B["gold-100"]}"/><path d=
 'meta':f'<circle cx="120" cy="120" r="100" fill="#DDF2EE"/><circle cx="120" cy="124" r="62" fill="#fff" stroke="{NV}" stroke-width="6"/><circle cx="120" cy="124" r="38" fill="{C}"/><circle cx="120" cy="124" r="16" fill="#fff"/><path d="M120 124l52-52" stroke="{NV}" stroke-width="6" stroke-linecap="round"/><path d="M164 64l16-4-4 16z" fill="{G}"/>'}
 for k,b in IL.items(): open(f'illustrations/{k}.svg','w').write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">{b}</svg>')
 print(len(LOG),'logos',len(I),'icons')
+# Android adaptive icon layers (108dp canvas, safe zone = central 66dp circle)
+g=lambda col,dot=None: symbol('none',col,24,24,60,dot).replace('fill="none"/>','fill="none" opacity="0"/>',1)
+open('app-icon/android-adaptive-foreground.svg','w').write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108">{g("#FFFFFF",B["gold"])}</svg>')
+open('app-icon/android-adaptive-background.svg','w').write('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF4250"/><stop offset="1" stop-color="#E5233F"/></linearGradient></defs><rect width="108" height="108" fill="url(#g)"/></svg>')
+open('app-icon/android-adaptive-monochrome.svg','w').write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108">{g("#000000")}</svg>')
+open('app-icon/ic_launcher.xml','w').write('<?xml version="1.0" encoding="utf-8"?>\n<!-- res/mipmap-anydpi-v26/ic_launcher.xml · convertir los SVG a VectorDrawable (Android Studio > Vector Asset) -->\n<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">\n  <background android:drawable="@drawable/ic_launcher_background"/>\n  <foreground android:drawable="@drawable/ic_launcher_foreground"/>\n  <monochrome android:drawable="@drawable/ic_launcher_monochrome"/>\n</adaptive-icon>\n')

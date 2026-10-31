@@ -28,3 +28,11 @@ fm.save('favicon/favicon.ico',sizes=[(16,16),(32,32),(48,48)])
 pathlib.Path('favicon/site.webmanifest').write_text(json.dumps({"name":"aula!","short_name":"aula!","icons":[{"src":"favicon-192.png","sizes":"192x192","type":"image/png"},{"src":"favicon-512.png","sizes":"512x512","type":"image/png"}],"theme_color":"#FF4250","background_color":"#FFF8EC","display":"standalone"},indent=1))
 pathlib.Path('favicon/head-snippet.html').write_text('<link rel="icon" href="/favicon.ico" sizes="any">\n<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n<link rel="apple-touch-icon" href="/apple-touch-icon.png">\n<link rel="manifest" href="/site.webmanifest">\n<meta name="theme-color" content="#FF4250">\n')
 print('ok')
+# adaptive layer PNGs (432px = 108dp @xxxhdpi) + preview masks
+from shot import shots as _s
+html='<body style="margin:0">'
+for n in ['foreground','background','monochrome']:
+  pathlib.Path(f'app-icon/_{n}.html').write_text(f'<body style="margin:0"><img src="android-adaptive-{n}.svg" width=432 height=432 style="display:block">')
+pathlib.Path('app-icon/_prev.html').write_text('<body style="margin:0;background:#E8E4DC;display:flex;gap:24px;padding:24px">'+''.join(f'<div style="width:160px;height:160px;{m};overflow:hidden;position:relative"><img src="android-adaptive-background.svg" style="position:absolute;inset:-25%;width:150%"><img src="android-adaptive-foreground.svg" style="position:absolute;inset:-25%;width:150%"></div>' for m in ['border-radius:50%','border-radius:36px','border-radius:50% 50% 50% 12px'])+'<div style="width:160px;height:160px;border-radius:50%;background:#DCE3F5;overflow:hidden;position:relative"><img src="android-adaptive-monochrome.svg" style="position:absolute;inset:-25%;width:150%;opacity:.8"></div></body>')
+_s([(f'app-icon/_{n}.html',f'app-icon/android-adaptive-{n}-432.png',432,432,1,False) for n in ['foreground','background','monochrome']]+[('app-icon/_prev.html','app-icon/android-adaptive-preview.png',800,210,2,False)])
+for f in pathlib.Path('app-icon').glob('_*.html'): f.unlink()

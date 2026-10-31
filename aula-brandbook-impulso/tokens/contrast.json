@@ -308,9 +308,9 @@
   },
   {
    "name": "museos light sobre bg",
-   "fg": "#9C5A00",
+   "fg": "#94502F",
    "bg": "#FFF8EC",
-   "ratio": 5.13,
+   "ratio": 5.77,
    "AA": true,
    "AA_large": true,
    "use": "texto/línea"
@@ -318,17 +318,17 @@
   {
    "name": "blanco sobre museos",
    "fg": "#FFFFFF",
-   "bg": "#9C5A00",
-   "ratio": 5.42,
+   "bg": "#94502F",
+   "ratio": 6.09,
    "AA": true,
    "AA_large": true,
    "use": "badge"
   },
   {
    "name": "museos dark sobre navy",
-   "fg": "#F0B54A",
+   "fg": "#E7A07C",
    "bg": "#0B1530",
-   "ratio": 9.8,
+   "ratio": 8.35,
    "AA": true,
    "AA_large": true,
    "use": "modo navy"
