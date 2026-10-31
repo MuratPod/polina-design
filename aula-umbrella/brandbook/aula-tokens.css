@@ -1,0 +1,100 @@
+:root{
+  --ink:#17242B;
+  --ink2:#2A3A42;
+  --paper:#F6F1E8;
+  --paper2:#EFE8DB;
+  --surface:#FFFDF8;
+  --line:#E3D9C8;
+  --text:#1B2427;
+  --muted:#56615F;
+  --subtle:#6E7775;
+  --gold:#C49A45;
+  --gold-rev:#D8B46A;
+  --gold100:#F5EBD3;
+  --ok:#2D6B4C;
+  --ok100:#DFEEE4;
+  --err:#9A3B28;
+  --err100:#F6E0D8;
+  --warn:#8A5A12;
+  --warn100:#F7EBCF;
+  --ai:#4B3F8F;
+  --ai100:#E9E6F7;
+  --r-sm:10px;
+  --r-md:16px;
+  --r-lg:22px;
+  --r-pill:999px;
+  --s-1:4px;
+  --s-2:8px;
+  --s-3:12px;
+  --s-4:16px;
+  --s-5:24px;
+  --s-6:32px;
+  --s-7:48px;
+  --serif:'Source Serif 4','Iowan Old Style',Georgia,serif;
+  --sans:Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --sh-1:0 1px 2px rgba(23,36,43,.06),0 2px 8px rgba(23,36,43,.05);
+  --focus:0 0 0 3px var(--gold);
+  --v-ink-900:#111B20;
+  --v-ink-800:#17242B;
+  --v-ink-700:#374349;
+  --v-ink-600:#586166;
+  --v-ink-100:#DFE0E1;
+  --v-ink-50:#EFF0F0;
+  --v-acc-600:#A9843B;
+  --v-acc-500:#C49A45;
+  --v-acc-100:#F6EFE1;
+  --v-bg:#F6F1E8;
+  --v-acc-dark:#D8B46A;
+}
+[data-vertical="museos"]{ /* Museos · Bloqueado · hereda Aula Museos v1 */
+  --v-ink-900:#102B2F;
+  --v-ink-800:#15393F;
+  --v-ink-700:#36555A;
+  --v-ink-600:#577075;
+  --v-ink-100:#DEE3E4;
+  --v-ink-50:#EFF1F2;
+  --v-acc-600:#A55636;
+  --v-acc-500:#C0643F;
+  --v-acc-100:#F5E6E0;
+  --v-bg:#F6F1E8;
+  --v-acc-dark:#E08A63;
+}
+[data-vertical="justicia"]{ /* Justicia · Bloqueado · manual propio pendiente */
+  --v-ink-900:#0F243A;
+  --v-ink-800:#14304D;
+  --v-ink-700:#354D66;
+  --v-ink-600:#566A7F;
+  --v-ink-100:#DEE2E6;
+  --v-ink-50:#EFF1F3;
+  --v-acc-600:#976924;
+  --v-acc-500:#B07A2A;
+  --v-acc-100:#F2EADD;
+  --v-bg:#EEF2F7;
+  --v-acc-dark:#D9A24E;
+}
+[data-vertical="policia"]{ /* Policía · Provisional */
+  --v-ink-900:#172334;
+  --v-ink-800:#1F2F45;
+  --v-ink-700:#3E4C5F;
+  --v-ink-600:#5E6979;
+  --v-ink-100:#E0E2E5;
+  --v-ink-50:#EFF0F2;
+  --v-acc-600:#365F97;
+  --v-acc-500:#3F6FB0;
+  --v-acc-100:#E0E8F2;
+  --v-bg:#EEF1F6;
+  --v-acc-dark:#7FA6DB;
+}
+[data-vertical="administracion"]{ /* Administración · Provisional */
+  --v-ink-900:#1B352C;
+  --v-ink-800:#24473B;
+  --v-ink-700:#436156;
+  --v-ink-600:#617B72;
+  --v-ink-100:#E0E5E4;
+  --v-ink-50:#F0F2F1;
+  --v-acc-600:#6C8432;
+  --v-acc-500:#7E9A3A;
+  --v-acc-100:#EAEFDF;
+  --v-bg:#EFF3EE;
+  --v-acc-dark:#A9C46A;
+}

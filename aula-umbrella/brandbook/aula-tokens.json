@@ -1,0 +1,120 @@
+{
+  "platform": {
+    "ink": "#17242B",
+    "ink2": "#2A3A42",
+    "paper": "#F6F1E8",
+    "paper2": "#EFE8DB",
+    "surface": "#FFFDF8",
+    "line": "#E3D9C8",
+    "text": "#1B2427",
+    "muted": "#56615F",
+    "subtle": "#6E7775",
+    "gold": "#C49A45",
+    "gold_rev": "#D8B46A",
+    "gold100": "#F5EBD3",
+    "ok": "#2D6B4C",
+    "ok100": "#DFEEE4",
+    "err": "#9A3B28",
+    "err100": "#F6E0D8",
+    "warn": "#8A5A12",
+    "warn100": "#F7EBCF",
+    "ai": "#4B3F8F",
+    "ai100": "#E9E6F7"
+  },
+  "radius": {
+    "r-sm": "10px",
+    "r-md": "16px",
+    "r-lg": "22px",
+    "r-pill": "999px"
+  },
+  "space": {
+    "s-1": "4px",
+    "s-2": "8px",
+    "s-3": "12px",
+    "s-4": "16px",
+    "s-5": "24px",
+    "s-6": "32px",
+    "s-7": "48px"
+  },
+  "type": {
+    "serif": "'Source Serif 4','Iowan Old Style',Georgia,serif",
+    "sans": "Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif"
+  },
+  "verticals": {
+    "museos": {
+      "name": "Museos",
+      "status": "Bloqueado · hereda Aula Museos v1",
+      "accent_on_dark": "#E08A63",
+      "ink-900": "#102B2F",
+      "ink-800": "#15393F",
+      "ink-700": "#36555A",
+      "ink-600": "#577075",
+      "ink-100": "#DEE3E4",
+      "ink-50": "#EFF1F2",
+      "acc-600": "#A55636",
+      "acc-500": "#C0643F",
+      "acc-100": "#F5E6E0",
+      "bg": "#F6F1E8"
+    },
+    "justicia": {
+      "name": "Justicia",
+      "status": "Bloqueado · manual propio pendiente",
+      "accent_on_dark": "#D9A24E",
+      "ink-900": "#0F243A",
+      "ink-800": "#14304D",
+      "ink-700": "#354D66",
+      "ink-600": "#566A7F",
+      "ink-100": "#DEE2E6",
+      "ink-50": "#EFF1F3",
+      "acc-600": "#976924",
+      "acc-500": "#B07A2A",
+      "acc-100": "#F2EADD",
+      "bg": "#EEF2F7"
+    },
+    "policia": {
+      "name": "Policía",
+      "status": "Provisional",
+      "accent_on_dark": "#7FA6DB",
+      "ink-900": "#172334",
+      "ink-800": "#1F2F45",
+      "ink-700": "#3E4C5F",
+      "ink-600": "#5E6979",
+      "ink-100": "#E0E2E5",
+      "ink-50": "#EFF0F2",
+      "acc-600": "#365F97",
+      "acc-500": "#3F6FB0",
+      "acc-100": "#E0E8F2",
+      "bg": "#EEF1F6"
+    },
+    "administracion": {
+      "name": "Administración",
+      "status": "Provisional",
+      "accent_on_dark": "#A9C46A",
+      "ink-900": "#1B352C",
+      "ink-800": "#24473B",
+      "ink-700": "#436156",
+      "ink-600": "#617B72",
+      "ink-100": "#E0E5E4",
+      "ink-50": "#F0F2F1",
+      "acc-600": "#6C8432",
+      "acc-500": "#7E9A3A",
+      "acc-100": "#EAEFDF",
+      "bg": "#EFF3EE"
+    },
+    "aula": {
+      "name": "Aula (paraguas)",
+      "status": "Bloqueado",
+      "accent_on_dark": "#D8B46A",
+      "ink-900": "#111B20",
+      "ink-800": "#17242B",
+      "ink-700": "#374349",
+      "ink-600": "#586166",
+      "ink-100": "#DFE0E1",
+      "ink-50": "#EFF0F0",
+      "acc-600": "#A9843B",
+      "acc-500": "#C49A45",
+      "acc-100": "#F6EFE1",
+      "bg": "#F6F1E8"
+    }
+  }
+}
